@@ -1,0 +1,10 @@
+.nav_userInfo {
+  display: flex;
+  font-size: 13px;
+  justify-content: right;
+  margin-right: 10px;
+}
+
+.nav_userInfo ul {
+  margin-right: 10px;
+}

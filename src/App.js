@@ -1,13 +1,16 @@
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
-import Main from './components/layout/Main';
+import '../src/App.css';
+import Footer from './routes/Footer';
+import Header from './routes/Header';
+import Main from './routes/Main';
 
 function App() {
   return (
     <div className="web">
-      <Header />
-      <Main />
-      <Footer />
+      <div className="web_div">
+        <Header />
+        <Main />
+        <Footer />
+      </div>
     </div>
   );
 }

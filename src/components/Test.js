@@ -23,7 +23,7 @@ function Test() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/test`, user);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/test/save`, user);
       alert('데이터 추가 완료 / ' + response.data);
       fetchData();
     } catch (error) {
@@ -33,7 +33,7 @@ function Test() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/test`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/test/findAll`);
       setEntities(response.data);
     } catch (error) {
       console.error('데이터 불러오기 에러:', error);
@@ -53,7 +53,7 @@ function Test() {
         <ul>
           {entities.map((entity) => (
             <li key={entity.id}>
-              아이디: {entity.userId} / 이름: {entity.userPw}
+              아이디: {entity.userId} / 비밀번호: {entity.userPw}
             </li>
           ))}
         </ul>
