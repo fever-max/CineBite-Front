@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import useFetchData from '../hooks/useFetchData';
+import handleChange from '../utils/handleChange';
 
 function Test() {
+  //hook 사용
+  const apiUrl = `${process.env.REACT_APP_API_URL}/test/findAll`;
+  const { entities, fetchData } = useFetchData(apiUrl);
+
   //인풋 데이터
   const [user, setUser] = useState({
     userId: '',
     userPw: '',
   });
 
-  //db 데이터
-  const [entities, setEntities] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setUser({ ...user, [id]: value });
+  const handleInputChange = (e) => {
+    handleChange(e, setUser);
   };
 
   const handleSubmit = async (e) => {
@@ -25,18 +23,9 @@ function Test() {
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/test/save`, user);
       alert('데이터 추가 완료 / ' + response.data);
-      fetchData();
+      fetchData(); //추가후 재로딩
     } catch (error) {
       console.log('데이터 추가 에러: ' + error);
-    }
-  };
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/test/findAll`);
-      setEntities(response.data);
-    } catch (error) {
-      console.error('데이터 불러오기 에러:', error);
     }
   };
 
@@ -44,8 +33,8 @@ function Test() {
     <div>
       <h3>데이터 인풋</h3>
       <form onSubmit={handleSubmit}>
-        <input type="text" id="userId" value={user.userId} placeholder="아이디" onChange={handleChange} />
-        <input type="text" id="userPw" value={user.userPw} placeholder="비밀번호" onChange={handleChange} />
+        <input type="text" id="userId" value={user.userId} placeholder="아이디" onChange={handleInputChange} />
+        <input type="text" id="userPw" value={user.userPw} placeholder="비밀번호" onChange={handleInputChange} />
         <button type="submit">데이터 저장</button>
       </form>
       <div>
