@@ -39,13 +39,17 @@ function Test() {
       </form>
       <div>
         <h2>TestEntity DB</h2>
-        <ul>
-          {entities.map((entity) => (
-            <li key={entity.id}>
-              아이디: {entity.userId} / 비밀번호: {entity.userPw}
-            </li>
-          ))}
-        </ul>
+        {entities.length > 0 ? (
+          <ul>
+            {entities.map((entity) => (
+              <li key={entity.id}>
+                아이디: {entity.userId} / 비밀번호: {entity.userPw}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>데이터가 없습니다.</p>
+        )}
       </div>
     </div>
   );
