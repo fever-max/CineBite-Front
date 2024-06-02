@@ -38,7 +38,7 @@ function Test() {
         <button type="submit">데이터 저장</button>
       </form>
       <div>
-        <h2>TestEntity DB</h2>
+        <h3>TestEntity DB</h3>
         {entities.length > 0 ? (
           <ul>
             {entities.map((entity) => (
