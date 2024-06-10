@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const MovieList = () => {
     const [movies, setMovies] = useState([]);
@@ -16,29 +17,6 @@ const MovieList = () => {
             });
     }, []);
 
-    const handleClick = (movieId) => {
-        // 클릭한 영화의 movie_id를 서버에 전송
-        axios.get(`http://localhost:4000/api/movie/detail/${movieId}`, { withCredentials: true })
-            .then(response => {
-                console.log('상세 정보 :', response.data); // 상세 정보 로그
-                
-                // 여기서 상세 정보 처리
-                const movieDetail = response.data;
-                const genreNames = movieDetail.genres.map(genre => genre.name);
-                const creditNames = movieDetail.credits.cast.map(cast => cast.name);
-                const creditProfile = movieDetail.credits.cast.map(cast => cast.profile_path);
-                
-                console.log('장르 이름들:', genreNames);
-                console.log('배우들:', creditNames);
-                console.log('배우 사진:', creditProfile);
-                
-                // <p>장르 : {genreNames}</p> 
-            })
-            .catch(error => {
-                console.error("영화 상세 정보를 가져오는 데 실패했습니다.", error);
-            });
-    };
-
     return (
         <div>
             <h1>Movie List</h1>
@@ -47,15 +25,16 @@ const MovieList = () => {
                     <li>영화가 없어요.</li>
                 ) : (
                     movies.map(movie => (
-                        <li key={movie.id} onClick={() => handleClick(movie.id)}>
+                        <li key={movie.id}>
                             <h2>제목 : {movie.title}</h2>
                             <p>줄거리 : {movie.overview}</p>
-                            {/* <p>장르 : {movie.genreNames}</p>  */}
-                            <img
-                                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                alt={movie.title}
-                                style={{ maxWidth: '300px', height: 'auto' }}
-                            />
+                            <Link to={`/movie/${movie.id}`}>
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                    alt={movie.title}
+                                    style={{ maxWidth: '300px', height: 'auto' }}
+                                />
+                            </Link>
                         </li>
                     ))
                 )}
