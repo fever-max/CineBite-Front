@@ -25,7 +25,13 @@ const MovieList = () => {
                 // 여기서 상세 정보 처리
                 const movieDetail = response.data;
                 const genreNames = movieDetail.genres.map(genre => genre.name);
+                const creditNames = movieDetail.credits.cast.map(cast => cast.name);
+                const creditProfile = movieDetail.credits.cast.map(cast => cast.profile_path);
+                
                 console.log('장르 이름들:', genreNames);
+                console.log('배우들:', creditNames);
+                console.log('배우 사진:', creditProfile);
+                
                 // <p>장르 : {genreNames}</p> 
             })
             .catch(error => {
