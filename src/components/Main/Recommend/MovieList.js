@@ -9,7 +9,7 @@ const MovieList = () => {
         // 데이터 가져오기
         axios.get('http://localhost:4000/api/trendMovie/list', { withCredentials: true })
             .then(response => {
-                console.log('해당 영화의 상세 정보 :', response.data); // 데이터 로그
+                console.log('해당 영화의 상세 정보 :', response.data); // 영화 정보
                 setMovies(response.data);
             })
             .catch(error => {
