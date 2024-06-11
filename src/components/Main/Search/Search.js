@@ -6,7 +6,10 @@ import {getSearchData, saveSearchKeyword, saveSearchList} from './SearchService'
 const Search = () => {
   const [keyword, setKeyword] = useState('');
   const [movieData, setMovieData] = useState([]);
-
+  const [searchMessage, setSearchMessage] = useState('');
+  
+  const userId = 'aaa';
+  
   // 검색어 입력
   const changeInput = (e) => {
     const { value } = e.target;
@@ -14,13 +17,24 @@ const Search = () => {
   }
 
   //검색어 입력 시 실행
-  const search = (keyword) => {
+  const search = async(keyword) => {
     if (keyword.trim() !== "") {
-      getSearchData(keyword); // DB 가져오기
-      saveSearchKeyword(keyword); // 검색어 저장 
-      saveSearchList(keyword); // 검색 기록 저장 
+      const searchData =  await getSearchData(keyword); // DB 가져오기
+    
+      //검색 결과가 있으면
+      if(searchData && searchData.length > 0) {
+        setMovieData(searchData);
+
+      //검색 결과가 없으면
+      }else { 
+        setMovieData([]);
+        setSearchMessage('검색한 결과를 찾을 수 없습니다.');
+      }
+      saveSearchList(userId, [keyword]);
+      saveSearchKeyword(keyword);
     } else {
       setMovieData([]);
+      setSearchMessage('');
     }
   }
 
@@ -28,6 +42,7 @@ const Search = () => {
   //검색어가 변경 될 때 마다 결과값 초기화
   useEffect(() => {
     setMovieData([]);
+    setSearchMessage('');
   }, [keyword]);
 
 
@@ -42,6 +57,9 @@ const Search = () => {
 
       {/* 최근검색어 */}
       <SearchList />
+
+       {/* 검색 결과 메시지 */}
+    {searchMessage && <p>{searchMessage}</p>}
 
       {/* 영화작품 */}
       {movieData.length > 0 && <SearchMovie movieData={movieData} />}
