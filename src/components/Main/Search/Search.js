@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import SearchList from './SearchList';
 import SearchMovie from './SearchMenu/SearchMovie';
-import {getSearchData, saveSearchKeyword, saveSearchList} from './SearchService';
+import {saveSearchKeyword, saveSearchList} from './SearchService';
+import axios from 'axios';
 
 const Search = () => {
   const [keyword, setKeyword] = useState('');
@@ -9,6 +10,22 @@ const Search = () => {
   const [searchMessage, setSearchMessage] = useState('');
   
   const userId = 'aaa';
+
+  // DB 불러오기
+  const getSearchData = async (keyword) => {
+
+    console.log("키워드 : ", keyword);
+    
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/movie/search/${keyword}`, {withCredential : true});
+      console.log("주소데이터 : ", response.data);
+      return response.data; // 데이터 반환
+    } catch (error) {
+      console.error('검색 중 오류가 발생했습니다:', error);
+      return []; // 오류 시 빈 배열 반환
+    }
+  }
+
   
   // 검색어 입력
   const changeInput = (e) => {
@@ -18,8 +35,10 @@ const Search = () => {
 
   //검색어 입력 시 실행
   const search = async(keyword) => {
-    if (keyword.trim() !== "") {
+    console.log("서치키워드 : ", keyword);
+    if (keyword.trim() !== "") { //공백없이도 빈 문자열이 아니면
       const searchData =  await getSearchData(keyword); // DB 가져오기
+      console.log("DB에서 가져온 데이터 : ", searchData);
     
       //검색 결과가 있으면
       if(searchData && searchData.length > 0) {
@@ -62,7 +81,7 @@ const Search = () => {
     {searchMessage && <p>{searchMessage}</p>}
 
       {/* 영화작품 */}
-      {movieData.length > 0 && <SearchMovie movieData={movieData} />}
+      {movieData.length > 0 && <SearchMovie movieData={movieData} setMovieData={setMovieData}/>}
     </div>
   );
 };

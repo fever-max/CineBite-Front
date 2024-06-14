@@ -1,19 +1,23 @@
 import React from 'react';
 
 const SearchMovie = ({ movieData }) => {
+  
+  console.log("불러와진 데이터 확인", movieData);
+  
   return (
     <div>
       <h2>검색 결과</h2>
       <ul>
-        {/* key 값 = 추후 movieData를 받아 바꿀 예정 */}
-        {movieData.map((movie, index) => (
-          <li key={index}>
-            {movie.movieNm} / {movie.actors}
+        {movieData.map((movie) => (
+          <li key={movie.id}>
+            <h3>{movie.title}</h3>
+            <img src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={`${movie.title} Poster`} />
           </li>
         ))}
       </ul>
     </div>
   );
 };
+
 
 export default SearchMovie;

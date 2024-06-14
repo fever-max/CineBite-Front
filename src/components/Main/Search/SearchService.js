@@ -1,17 +1,5 @@
 import axios from 'axios';
 
-// DB 불러오기
-export const getSearchData = async (keyword) => {
-    try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/movies/search/${keyword}`);
-        return response.data;
-    } catch (error) {
-        console.error('검색 중 오류가 발생했습니다:', error);
-        return null;
-    }
-}
-
-
 // 검색기록 저장
 export const saveSearchList = async (userId, searchList) => {
     // userId가 null 또는 비어 있으면 'aaa'로 설정
