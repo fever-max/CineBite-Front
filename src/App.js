@@ -9,7 +9,6 @@ function App() {
       <div className="web_div">
         <Header />
         <Main />
-        {/* <MovieList/> */}
         <Footer />
       </div>
     </div>
