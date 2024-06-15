@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import '../styles/Main/Main.css';
 import Home from '../components/Main/Home/Home';
 import Search from '../components/Main/Search/Search';
@@ -13,6 +13,9 @@ import ReviewWrite from '../components/Main/Review/ReviewWrite';
 import MovieInfo from '../components/Main/Review/MovieInfo';
 import MovieDetail from '../components/Main/Recommend/MovieDetail';
 import MovieList from '../components/Main/Home/MovieList';
+
+import MovieList from '../components/Main/Recommend/MovieList';  // 수정된 경로
+import MovieDetail from '../components/Main/Recommend/MovieDetail';  // 수정된 경로
 
 function Main() {
   return (
@@ -29,7 +32,11 @@ function Main() {
         <Route path="/search" element={<Search />} />
 
         {/* 사용자 영화 추천 */}
+<<<<<<< HEAD
         <Route path="/recommend" element={<Recommend />} />
+=======
+        <Route path="/recommend" element={<MovieList />} />
+>>>>>>> 5216f12befdb72f89447090c080290ca97d44236
         <Route path="/movie/:movieId" element={<MovieDetail />} />
 
         {/* 영화 커뮤니티 */}
