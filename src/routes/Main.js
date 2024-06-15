@@ -11,6 +11,8 @@ import Join from '../components/Main/UserInfo/Join';
 import NotFound from '../components/Main/NotFound';
 import ReviewWrite from '../components/Main/Review/ReviewWrite';
 import MovieInfo from '../components/Main/Review/MovieInfo';
+import MovieDetail from '../components/Main/Recommend/MovieDetail';
+import MovieList from '../components/Main/Home/MovieList';
 
 import MovieList from '../components/Main/Recommend/MovieList';  // 수정된 경로
 import MovieDetail from '../components/Main/Recommend/MovieDetail';  // 수정된 경로
@@ -30,7 +32,11 @@ function Main() {
         <Route path="/search" element={<Search />} />
 
         {/* 사용자 영화 추천 */}
+<<<<<<< HEAD
+        <Route path="/recommend" element={<Recommend />} />
+=======
         <Route path="/recommend" element={<MovieList />} />
+>>>>>>> 5216f12befdb72f89447090c080290ca97d44236
         <Route path="/movie/:movieId" element={<MovieDetail />} />
 
         {/* 영화 커뮤니티 */}
@@ -38,6 +44,7 @@ function Main() {
 
         {/* 영화정보 및 리뷰 */}
         <Route path="/review/:movieId" element={<MovieInfo />} />
+        <Route path="/api/movie/detail/:movieId" element={<MovieDetail />} />
         <Route path="/review/write/:movieId" element={<ReviewWrite />} />
 
         {/* 마이페이지 */}
