@@ -4,7 +4,6 @@ import '../styles/Main/Main.css';
 import Home from '../components/Main/Home/Home';
 import Search from '../components/Main/Search/Search';
 import Community from '../components/Main/Community/Community';
-import Recommend from '../components/Main/Recommend/Recommend';
 import MyPage from '../components/Main/MyPage/MyPage';
 import Login from '../components/Main/UserInfo/Login';
 import Join from '../components/Main/UserInfo/Join';
@@ -14,8 +13,6 @@ import MovieInfo from '../components/Main/Review/MovieInfo';
 import MovieDetail from '../components/Main/Recommend/MovieDetail';
 import MovieList from '../components/Main/Home/MovieList';
 
-import MovieList from '../components/Main/Recommend/MovieList';  // 수정된 경로
-import MovieDetail from '../components/Main/Recommend/MovieDetail';  // 수정된 경로
 
 function Main() {
   return (
@@ -32,12 +29,7 @@ function Main() {
         <Route path="/search" element={<Search />} />
 
         {/* 사용자 영화 추천 */}
-<<<<<<< HEAD
-        <Route path="/recommend" element={<Recommend />} />
-=======
         <Route path="/recommend" element={<MovieList />} />
->>>>>>> 5216f12befdb72f89447090c080290ca97d44236
-        <Route path="/movie/:movieId" element={<MovieDetail />} />
 
         {/* 영화 커뮤니티 */}
         <Route path="/community" element={<Community />} />
