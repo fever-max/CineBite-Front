@@ -11,7 +11,7 @@ import Join from '../components/Main/UserInfo/Join';
 import NotFound from '../components/Main/NotFound';
 import ReviewWrite from '../components/Main/Review/ReviewWrite';
 import MovieInfo from '../components/Main/Review/MovieInfo';
-import MovieDetail from '../components/Main/Recommend/MovieDetail';
+import MovieDetail from '../components/Main/Home/MovieDetail';
 
 function Main() {
   return (
@@ -35,8 +35,8 @@ function Main() {
 
         {/* 영화정보 및 리뷰 */}
         <Route path="/review/:movieId" element={<MovieInfo />} />
-        <Route path="/api/movie/detail/:movieId" element={<MovieDetail />} />
         <Route path="/review/write/:movieId" element={<ReviewWrite />} />
+        <Route path="/api/movie/detail/:movieId" element={<MovieDetail />} />
 
         {/* 마이페이지 */}
         <Route path="/myPage" element={<MyPage />} />

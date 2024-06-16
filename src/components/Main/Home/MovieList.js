@@ -35,8 +35,6 @@ const MovieList = () => {
         });
         console.log('actors: ',resp.data);
     }
-
-
     useEffect(()=>{
         getMovieData();
         getMovieGenres();
