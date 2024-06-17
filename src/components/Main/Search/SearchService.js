@@ -14,7 +14,7 @@ export const saveSearchList = async (userId, setSearchKeyword, ...searchList) =>
       keywords: searchList,
     };
 
-    console.log('요청 페이로드:', request);
+    console.log('요청한 데이터:', request);
 
     const response = await axios.post(`${API_URL}/api/search/saveSearchList`, request);
     console.log('클라이언트 검색 기록 저장 성공:', response);
@@ -36,7 +36,7 @@ export const getSearchData = async (keyword) => {
 
     const response = await axios.get(url);
     console.log('서버 응답:', response.data);
-    return response.data; // 데이터 반환
+    return response.data; 
   } catch (error) {
     console.error('서버 요청 오류:', error);
     return [];
@@ -49,8 +49,11 @@ export const fetchSearchList = async (userId) => {
     const response = await axios.get(`${API_URL}/api/search/user/${userId}`);
     let searchData = response.data || [];
 
-    // 검색어 목록에서 null 또는 빈 문자열을 필터링하여 처리
+    // 검색어 목록에서 null 또는 빈 문자열을 필터링
     searchData = searchData.filter(item => item.searchKeyword && item.searchKeyword.trim() !== '');
+
+    //검색어 목록 - 날짜별 내림차순
+    searchData.sort((a,b) => new Date(b.searchListTime) - new Date(a.searchListTime));
 
     return searchData;
   } catch (error) {
@@ -63,9 +66,9 @@ export const fetchSearchList = async (userId) => {
 export const fetchSearchData = async (userId, setSearchKeyword) => {
   try {
     const searchData = await fetchSearchList(userId);
-    setSearchKeyword(searchData); // 검색어 상태 업데이트
+    setSearchKeyword(searchData); // 검색어 업데이트
   } catch (error) {
     console.error('최근 검색어 가져오기 실패:', error);
-    setSearchKeyword([]); // 오류 시 빈 배열로 설정
+    setSearchKeyword([]);
   }
 };

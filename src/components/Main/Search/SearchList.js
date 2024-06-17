@@ -20,20 +20,25 @@ const SearchList = ({ userId , searchKeyword ,setSearchKeyword }) => {
         fetchData();
     }, [userId]);
 
+
+    // -todo : 삭제 / 전체 삭제
+
     return (
         <div>
             <h3>최근검색어</h3>
             {loading ? (
-                <p>Loading...</p> 
+                <p>Loading...</p>
             ) : (
-                <ul>
-                    {searchKeyword.length > 0 ? (
-                        searchKeyword.map((searchData, index) => (
-                            <li key={index}>{searchData.searchKeyword}</li>
-                        ))
-                    ) : (
-                        <li>최근 검색어가 없습니다.</li>
-                    )}
+                    <ul>
+                        {searchKeyword.length > 0 ? (
+                            searchKeyword.map((searchData) => (
+                                <li key={searchData.searchListNo}>
+                                    {searchData.searchKeyword}
+                                </li>
+                            ))
+                        ) : (
+                            <li>최근 검색어가 없습니다.</li>
+                        )}
                 </ul>
             )}
         </div>
