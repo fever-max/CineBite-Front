@@ -1,35 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { fetchSearchList } from './SearchService';
+import { fetchSearchData } from './SearchService';
 import '../../../styles/Main/Search/SearchList.css';
 
-const SearchList = () => {
-    const [searchKeyword, setSearchKeyword] = useState([]);
+const SearchList = ({ userId , searchKeyword ,setSearchKeyword }) => {
+
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // 추후 userId 변경 예정
-        const userId = 'guest';
-
-        const fetchSearchData = async () => {
-            const searchData = await fetchSearchList(userId);
-            setSearchKeyword(searchData);
+        const fetchData = async () => {
+            try {
+                await fetchSearchData(userId, setSearchKeyword);
+            } catch (error) {
+                console.error('최근 검색어를 가져오는데 실패했습니다.', error);
+                setSearchKeyword([]);
+            }
+            setLoading(false); 
         };
-
-        fetchSearchData();
-    }, []);
+    
+        fetchData();
+    }, [userId]);
 
     return (
         <div>
-            {/* - todo: 최근검색순으로 정렬해야함  */}
-            {/* - todo: 새로 검색 시, 최근검색어 업데이트 반영 */}
-            {/* - 지금은 f5눌러야 업데이트됨 */}
             <h3>최근검색어</h3>
-            <ul>
-                {searchKeyword.length > 0 && (
-                    searchKeyword.map((searchData, index) => (
-                        <li key={index}>{searchData.searchKeyword}</li>
-                    ))
-                )}
-            </ul>
+            {loading ? (
+                <p>Loading...</p> 
+            ) : (
+                <ul>
+                    {searchKeyword.length > 0 ? (
+                        searchKeyword.map((searchData, index) => (
+                            <li key={index}>{searchData.searchKeyword}</li>
+                        ))
+                    ) : (
+                        <li>최근 검색어가 없습니다.</li>
+                    )}
+                </ul>
+            )}
         </div>
     );
 };

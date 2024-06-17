@@ -1,18 +1,36 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import SearchMovie from './SearchMenu/SearchMovie';
-import { saveSearchList, getSearchData } from './SearchService'; 
 import SearchList from './SearchList';
+import { saveSearchList } from './SearchService';
 import '../../../styles/Main/Search/Search.css';
 
 const Search = () => {
-  const [keyword, setKeyword] = useState('');
-  const [movieData, setMovieData] = useState([]);
-  const [searchMessage, setSearchMessage] = useState('');
+  const [keyword, setKeyword] = useState(''); // 검색어
+  const [movieData, setMovieData] = useState([]); //영화 데이터
+  const [searchMessage, setSearchMessage] = useState(''); // 검색 메세지
+  const [searchKeyword, setSearchKeyword] = useState([]); // 키워드 목록
 
   const userId = 'guest';
 
+  // DB에서 데이터 불러오기
+  const getSearchData = async (keyword) => {
+    console.log('키워드:', keyword);
+    const url = `${process.env.REACT_APP_API_URL}/api/movie/search/${keyword}`;
+    console.log('요청 URL:', url);
+
+    try {
+      const response = await axios.get(url);
+      console.log('서버 응답:', response.data);
+      return response.data; // 데이터 반환
+    } catch (error) {
+      console.error('서버 요청 오류:', error);
+      return []; // 오류 시 빈 배열 반환
+    }
+  };
+
   // 검색 실행
-  const search = async () => {
+  const search = async (keyword) => {
     if (keyword.trim() !== '') {
       const searchData = await getSearchData(keyword);
 
@@ -23,10 +41,7 @@ const Search = () => {
         setMovieData([]);
         setSearchMessage('검색한 결과를 찾을 수 없습니다.');
       }
-      saveSearchList(userId, [keyword]);
-
-      // 검색 후 입력창 초기화
-      setKeyword('');
+      await saveSearchList(userId, setSearchKeyword, keyword);
 
     } else {
       setMovieData([]);
@@ -46,29 +61,28 @@ const Search = () => {
     setSearchMessage('');
   }, [keyword]);
 
-  // 엔터키를 누르면 검색 실행
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      search();
-    }
+  // 폼 제출 시 검색 실행
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    search(keyword);
+    setKeyword('')
   };
-
-  // - todo: 최근검색어 하나씩 삭제 / 전체삭제
 
   return (
     <div>
-      <input
-        type='text'
-        className='input_box'
-        value={keyword}
-        placeholder='보고싶은 영화, 배우, 커뮤니티 글을 찾아보세요'
-        onChange={changeInput}
-        onKeyDown={handleKeyPress} />
-      <button onClick={() => search(keyword)}>검색</button>
+      <form onSubmit={handleSubmit}>
+        <input
+          type='text'
+          className='input_box'
+          value={keyword}
+          placeholder='보고싶은 영화, 배우, 커뮤니티 글을 찾아보세요'
+          onChange={changeInput}
+        />
+        <button type="submit">검색</button>
+      </form>
 
       {/* 최근검색어 */}
-      <SearchList />
+      <SearchList userId={userId} searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword}/>
 
       {/* 검색 결과 메시지 */}
       {searchMessage && <p>{searchMessage}</p>}
