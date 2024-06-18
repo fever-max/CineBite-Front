@@ -1,0 +1,11 @@
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  ul li {
+    width: 20%; /* 5개씩 한 줄에 배치 */
+    padding: 5px;
+    box-sizing: border-box;
+  }
