@@ -1,0 +1,25 @@
+.write_input {
+  display: flex;
+  flex-direction: column;
+}
+
+.write_input input {
+  width: 300px;
+}
+
+.write_input textarea {
+  width: 300px;
+}
+
+.write_input form {
+  display: flex;
+  flex-direction: column;
+}
+
+.write_btn {
+  width: 300px;
+}
+
+.tag_container {
+  display: flex;
+}
