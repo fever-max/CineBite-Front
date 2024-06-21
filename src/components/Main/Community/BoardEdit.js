@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../../../styles/Main/Community/BoardWrite.css';
 
-function BoardWrite() {
+function BoardEdit() {
   const apiUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -88,7 +87,7 @@ function BoardWrite() {
 
   return (
     <div className="write_content">
-      <h2>게시글 작성</h2>
+      <h2>게시글 수정</h2>
       <div className="write_input">
         <form onSubmit={handleSubmit}>
           <input type="text" id="postTitle" placeholder="제목" value={formData.postTitle} onChange={(e) => handleChange(e, setFormData)} />
@@ -125,4 +124,4 @@ function BoardWrite() {
   );
 }
 
-export default BoardWrite;
+export default BoardEdit;
