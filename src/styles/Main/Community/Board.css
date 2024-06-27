@@ -1,0 +1,57 @@
+.board_content {
+  width: 100%;
+  display: flex;
+}
+
+.post_content {
+  margin: 20px;
+  overflow-y: auto; /* 세로 스크롤바 자동 생성 */
+  max-height: calc(100vh - 180px); /* 최대 높이 설정 (화면 크기에 맞게 조절 필요) */
+}
+
+.post_content::-webkit-scrollbar {
+  display: none;
+}
+
+.post_sub {
+  display: flex;
+}
+
+.author_content {
+  width: 100%;
+}
+
+.sub_content {
+  margin: 20px;
+}
+
+.post_content2 {
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.author_info {
+  display: flex;
+  justify-content: space-between;
+  width: 310px;
+  margin-right: 10px;
+}
+
+.post_info {
+}
+
+.post_info2 {
+  display: flex;
+}
+
+.post_img {
+  width: 150px;
+  border-radius: 5%;
+  object-fit: cover;
+}
+
+.post_createDate {
+  text-align: right;
+}
