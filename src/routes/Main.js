@@ -6,11 +6,12 @@ import Search from '../components/Main/Search/Search';
 import Community from '../components/Main/Community/Community';
 import Recommend from '../components/Main/Recommend/Recommend';
 import MyPage from '../components/Main/MyPage/MyPage';
-import Login from '../components/Main/UserInfo/Login';
-import Join from '../components/Main/UserInfo/Join';
 import NotFound from '../components/Main/NotFound';
 import ReviewWrite from '../components/Main/Review/ReviewWrite';
 import MovieInfo from '../components/Main/Review/MovieInfo';
+import OAuth from '../components/Main/UserInfo/OAuth';
+import SignIn from '../components/Main/UserInfo/SignIn';
+import SignUp from '../components/Main/UserInfo/SignUp';
 
 function Main() {
   return (
@@ -20,8 +21,9 @@ function Main() {
         <Route path="/" element={<Home />} />
 
         {/* 로그인,회원가입 */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/join" element={<Join />} />
+        <Route path="/login" element={<SignIn />} />
+        <Route path="/join" element={<SignUp />} />
+        {/* <Route path="oauth-response/:token/:expirationTime" element={<OAuth />} /> */}
 
         {/* 영화 검색 */}
         <Route path="/search" element={<Search />} />
