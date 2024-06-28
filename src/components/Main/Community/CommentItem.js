@@ -15,12 +15,56 @@ function CommentItem(props) {
         userId: 'test4',
         content: '',
     });
+    const [formEdit, setFormEdit] = useState({
+        commentNo: null,
+        userId: '',
+        content: '',
+    });
 
     const handleContentChange = (e) => {
+        setFormEdit({
+            ...formEdit,
+            content: e.target.value,
+        });
+    };
+
+    const handleCommentChange = (e) => {
         setFormComment({
             ...formComment,
             content: e.target.value,
         });
+    };
+
+    const handleEditClick = (commentNo, content, userId) => {
+        setFormEdit({
+            commentNo: commentNo,
+            content: content,
+            userId: userId,
+        });
+    };
+
+    const handleCancelEdit = () => {
+        setFormEdit({
+            commentNo: null,
+            userId: '',
+            content: '',
+        });
+    };
+
+    const handleSubmitEdit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.patch(`${apiUrl}/board/post/${postNo}/comment/${formEdit.commentNo}`, formEdit);
+            console.log('댓글 수정 성공: ', response.data);
+            setFormEdit({
+                commentNo: null,
+                content: '',
+                userId: '',
+            });
+            fetchData();
+        } catch (error) {
+            console.error('댓글 수정 에러: ', error);
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -39,6 +83,16 @@ function CommentItem(props) {
         }
     };
 
+    const handleDeleteClick = async (commentNo) => {
+        try {
+            const response = await axios.delete(`${apiUrl}/board/post/${postNo}/comment/${commentNo}`);
+            console.log('댓글 삭제 성공: ', response.data);
+            fetchData();
+        } catch (error) {
+            console.error('댓글 삭제 에러: ', error);
+        }
+    };
+
     return (
         <div>
             <h3>댓글창</h3>
@@ -48,9 +102,23 @@ function CommentItem(props) {
                         <div key={item.commentNo} className="comment_div">
                             <div className="comment_title">
                                 <div className="comment_id">{item.userId}</div>
-                                <div className="comment_date">{getTimeAgo(currentTime, item.date)}</div>
+                                <div className="comment_date">{item.updateDate ? <>{getTimeAgo(currentTime, item.updateDate)} (수정)</> : getTimeAgo(currentTime, item.createDate)}</div>
                             </div>
-                            <div>{item.content}</div>
+                            {formEdit.commentNo === item.commentNo ? (
+                                <form onSubmit={handleSubmitEdit}>
+                                    <textarea placeholder="댓글 수정" id="content" value={formEdit.content} onChange={handleContentChange} />
+                                    <button type="submit">수정 완료</button>
+                                    <button type="button" onClick={handleCancelEdit}>
+                                        취소
+                                    </button>
+                                </form>
+                            ) : (
+                                <div>
+                                    {item.content}
+                                    <button onClick={() => handleEditClick(item.commentNo, item.content, item.userId)}>수정</button>
+                                    <button onClick={() => handleDeleteClick(item.commentNo)}>삭제</button>
+                                </div>
+                            )}
                             <button onClick={() => setShowReplyForm((prevState) => (prevState === item.commentNo ? null : item.commentNo))}>{showReplyForm === item.commentNo ? '닫기' : '대댓글'}</button>
                             <div>
                                 <ReplyItem commentNo={item.commentNo} apiUrl={apiUrl} showReplyForm={showReplyForm === item.commentNo} />
@@ -64,7 +132,7 @@ function CommentItem(props) {
             <hr />
             <div>
                 <form onSubmit={handleSubmit}>
-                    <textarea placeholder="댓글작성" id="content" value={formComment.content} onChange={handleContentChange} />
+                    <textarea placeholder="댓글작성" id="content" value={formComment.content} onChange={handleCommentChange} />
                     <button type="submit">등록</button>
                 </form>
             </div>
