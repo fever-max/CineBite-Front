@@ -24,7 +24,7 @@ function Main() {
         <Route path="/" element={<Home />} />
 
         {/* 로그인,회원가입 */}
-        {/* <Route path="/login" element={<SignIn />} /> */}
+        {<Route path="/login" element={<SignIn />} />}
         <Route path="/join" element={<SignUp />} />
         {/* <Route path="oauth-response/:token/:expirationTime" element={<OAuth />} /> */}
 
