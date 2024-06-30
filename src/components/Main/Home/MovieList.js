@@ -9,7 +9,7 @@ const MovieList = () => {
     
     //전체 데이터 출력
     const getMovieData= async()=>{
-        const response = await axios.get(`${url}/api/movie/movieList`, { withCredentials: true });
+        const response = await axios.get(`${url}/movie/movieList`, { withCredentials: true });
         console.log('getMovieData',response.data);
         setMovieData(response.data);
     }
@@ -17,7 +17,7 @@ const MovieList = () => {
     //장르별 데이터 출력
     const getMovieGenres=async()=>{
         const genre = '코미디'
-        const resp = await axios.post(`${url}/api/movie/movieGenres`, genre, {
+        const resp = await axios.post(`${url}/movie/movieGenres`, genre, {
             headers: {
                 'Content-Type': 'text/plain'
             }
@@ -28,7 +28,7 @@ const MovieList = () => {
     //배우별 데이터 출력
     const getMovieActor=async()=>{
         const actor = '휴 잭맨'
-        const resp = await axios.post(`${url}/api/movie/movieActor`, actor, {
+        const resp = await axios.post(`${url}/movie/movieActor`, actor, {
             headers: {
                 'Content-Type': 'text/plain'
             }

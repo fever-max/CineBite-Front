@@ -8,7 +8,7 @@ const MovieDetail = () => {
     const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
-        axios.get(`${API_URL}/api/movie/movieDetail/${movieId}`, { withCredentials: true })
+        axios.get(`${API_URL}/movie/movieDetail/${movieId}`, { withCredentials: true })
             .then(response => {
                 console.log('상세 정보 :', response.data); // 상세 정보 로그
                 setMovieDetail(response.data);
