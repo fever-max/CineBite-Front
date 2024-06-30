@@ -8,6 +8,7 @@ const useFetchData = (apiUrl) => {
     try {
       const response = await axios.get(apiUrl);
       console.log(apiUrl + ' 데이터 불러오기 성공');
+      console.log(response.data);
       setEntities(response.data);
     } catch (error) {
       console.error('데이터 불러오기 에러:', error);
@@ -18,7 +19,7 @@ const useFetchData = (apiUrl) => {
     fetchData();
   }, [apiUrl]);
 
-  return { entities, fetchData };
+  return { entities, setEntities, fetchData };
 };
 
 export default useFetchData;
