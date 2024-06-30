@@ -36,7 +36,7 @@ function Main() {
         {/* 영화정보 및 리뷰 */}
         <Route path="/review/:movieId" element={<MovieInfo />} />
         <Route path="/review/write/:movieId" element={<ReviewWrite />} />
-        <Route path="/api/movie/detail/:movieId" element={<MovieDetail />} />
+        <Route path="/movie/:movieId" element={<MovieDetail />} />
 
         {/* 마이페이지 */}
         <Route path="/myPage" element={<MyPage />} />

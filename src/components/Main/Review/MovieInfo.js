@@ -28,7 +28,45 @@ function MovieInfo() {
       </div>
     )
     }
-
+{/* <div>
+                    <section>
+                        <div>
+                            <div>
+                                <div>
+                                    <span></span>
+                                    <button>더보기</button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <ul>
+                            <li>
+                                <span></span>
+                                <span></span>
+                            </li>
+                            <li>
+                                <span></span>
+                                <span></span>
+                            </li>
+                            <li>
+                                <span></span>
+                                <span></span>
+                            </li>
+                            <li>
+                                <span></span>
+                                <span></span>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <div>
+                            <div>출연진</div>
+                            <div>출연진 값</div>
+                        </div>
+                    </section>
+                    <section></section>
+                    <section></section>
+                </div> */}
 
   </div>;
 }
