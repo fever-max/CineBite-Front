@@ -1,14 +1,13 @@
 import React, { useRef, useState } from 'react';
 import '../../../styles/Main/UserInfo/SignUp.css';
 import InputBox from './InputBox';
-import ResponseCode from './types/enums/ResponseCode';
+import ResponseCode from '../../../utils/userInfo/ResponseCode';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function SignUp() {
 
     const navigate = useNavigate();
-    const [message, setMessage] = useState("");
 
     const userIdRef = useRef(null);
     const userNickRef = useRef(null);
@@ -56,7 +55,7 @@ function SignUp() {
         setUserIdCheck(false);
         if (!userIdPattern.test(value)) {
             setUserIdError(true);
-            setUserIdMessage('아이디는 문자/숫자 포함 형태의 5~10자리여야 합니다.');
+            setUserIdMessage('문자, 숫자 포함 5~10자리로 입력해주세요.');
         } else {
             setUserIdError(false);
             setUserIdMessage('');
@@ -74,7 +73,7 @@ function SignUp() {
         setUserPwd(value);
         if (!userPwdPattern.test(value)) {
             setUserPwdError(true);
-            setUserPwdMessage('영문, 숫자 포함 8자 이상 입력해주세요.');
+            setUserPwdMessage('영문, 숫자 포함 8자 이상으로 입력해주세요.');
         } else {
             setUserPwdError(false);
             setUserPwdMessage('');
@@ -86,7 +85,7 @@ function SignUp() {
         setUserPwdCheck(value);
         if (!userPwdPattern.test(value)) {
             setUserPwdError(true);
-            setUserPwdMessage('영문, 숫자 포함 8자 이상 입력해주세요.');
+            setUserPwdMessage('영문, 숫자 포함 8자 이상으로 입력해주세요.');
         } else {
             setUserPwdError(false);
             setUserPwdMessage('');
@@ -98,7 +97,7 @@ function SignUp() {
         setUserEmail(value);
         if (!userEmailPattern.test(value)) {
             setUserEmailError(true);
-            setUserEmailMessage('이메일 형식이 아닙니다.');
+            setUserEmailMessage('올바른 이메일 형식이 아닙니다.');
         } else {
             setUserEmailError(false);
             setUserEmailMessage('');
@@ -148,12 +147,7 @@ function SignUp() {
     // 이메일 인증
     const onUserEmailButtonClickHandler = async () => {
         if (!userId || !userEmail) return;
-        const checkedUserEmail = userEmailPattern.test(userEmail);
-        if (!checkedUserEmail) {
-            setUserEmailError(true);
-            setUserEmailMessage('이메일 형식이 아닙니다.');
-            return;
-        }
+        setUserEmailMessage('인증번호가 전송 중입니다..');
         console.log('userEmail:', userEmail);
         try {
             const response = await axios.post('http://localhost:4000/api/v1/auth/email-certification', {
@@ -161,7 +155,6 @@ function SignUp() {
             });
             userEmailCertificationResponse(response.data);
             setUserEmailError(false);
-            setUserEmailMessage('이메일이 전송됐습니다.');
         } catch (error) {
             console.error('이메일 전송 실패:', error.response ? error.response.data : error.message);
             setUserEmailError(true);
@@ -185,7 +178,7 @@ function SignUp() {
         if (code === ResponseCode.DATABASE_ERROR) alert('데이터베이스 오류입니다.');
         if (code !== ResponseCode.SUCCESS) return;
         setUserEmailError(false);
-        setUserEmailMessage('인증번호가 전송되었습니다.');
+        setUserEmailMessage('전송 완료되었습니다.');
     };
 
     // 인증번호 확인
@@ -223,11 +216,11 @@ function SignUp() {
     // 회원가입
     const onSignUpClickHandler = async () => {
         if (!userId || !userNick || !userPwd || !userPwdCheck || !userEmail || !certificationNumber) {
-            setMessage("모든 필드를 입력하세요.");
+            alert("모든 필드를 입력하세요.");
             return;
         }
         if (isUserIdError || isUserNickError || isUserPwdError || isUserPwdCheckError || isUserEmailError || isCertificationNumberError) {
-            setMessage("잘못된 입력이 있습니다.");
+            alert("잘못된 입력이 있습니다.");
             return;
         }
         if (userPwd !== userPwdCheck) {
@@ -257,7 +250,7 @@ function SignUp() {
             signUpResponse(response.data);
         } catch (error) {
             console.error('회원가입 실패:', error.response ? error.response.data : error.message);
-            setMessage("회원가입에 실패했습니다. 다시 시도해주세요.");
+            alert("회원가입에 실패했습니다. 다시 시도해주세요.");
         }
         window.location.href = '/';
     };
@@ -327,7 +320,7 @@ function SignUp() {
                         <InputBox ref={certificationNumberRef} title='인증번호' placeholder='인증번호 4자리를 입력해주세요.' type='text' value={certificationNumber} onChange={onCertificationNumberChangeHandler} isErrorMessage={isCertificationNumberError} message={certificationNumberMessage} buttonTitle='인증 확인' onButtonClick={onCertificationNumberButtonClickHandler}/>
                     </div>
                     <div className='sign-up-content-button-box'>
-                    <button className={`${signUpButtonClass} full-width`} onClick={onSignUpClickHandler} onKeyDown={onKeyPressHandler}>{'회원가입'}</button>
+                    <div className={`${signUpButtonClass} full-width`} onClick={onSignUpClickHandler} onKeyDown={onKeyPressHandler}>{'회원가입'}</div>
                     <div className='text-link-lg full-width' onClick={onSignInButtonClickHandler}>{'로그인'}</div>
                 </div>
             </div>
