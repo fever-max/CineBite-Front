@@ -8,9 +8,9 @@ import MyPage from '../components/Main/MyPage/MyPage';
 import NotFound from '../components/Main/NotFound';
 import ReviewWrite from '../components/Main/Review/ReviewWrite';
 import MovieInfo from '../components/Main/Review/MovieInfo';
-import OAuth from '../components/Main/UserInfo/OAuth';
 import SignIn from '../components/Main/UserInfo/SignIn';
 import SignUp from '../components/Main/UserInfo/SignUp';
+import GetAccess from '../components/Main/MyPage/api/getAccess';
 import Board from './../components/Main/Community/Board';
 import BoardItem from '../components/Main/Community/BoardItem';
 import BoardWrite from '../components/Main/Community/BoardWrite';
@@ -23,10 +23,13 @@ function Main() {
         {/* 메인 */}
         <Route path="/" element={<Home />} />
 
-        {/* 로그인,회원가입 */}
+        {/* 마이페이지 */}
+        <Route path="/myPage" element={<MyPage />} />
+
+        {/* 로그인, 회원가입 */}
         {<Route path="/login" element={<SignIn />} />}
         <Route path="/join" element={<SignUp />} />
-        {/* <Route path="oauth-response/:token/:expirationTime" element={<OAuth />} /> */}
+        <Route path="/getAccess" element={<GetAccess />} />
 
         {/* 영화 검색 */}
         <Route path="/search" element={<Search />} />
@@ -42,9 +45,6 @@ function Main() {
         {/* 영화정보 및 리뷰 */}
         <Route path="/review/:movieId" element={<MovieInfo />} />
         <Route path="/review/write/:movieId" element={<ReviewWrite />} />
-
-        {/* 마이페이지 */}
-        <Route path="/myPage" element={<MyPage />} />
 
         {/* 404 페이지 */}
         <Route path="/*" element={<NotFound />} />
