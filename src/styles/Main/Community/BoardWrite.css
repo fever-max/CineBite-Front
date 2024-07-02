@@ -1,45 +1,102 @@
 .write_input {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .write_input input {
-  width: 300px;
+    width: 98%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid gainsboro;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 15px;
 }
 
 .write_input textarea {
-  width: 300px;
+    width: 98%;
+    border: none;
+    resize: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 5px;
 }
 
 .write_input form {
-  display: flex;
-  flex-direction: column;
-}
-
-.write_btn {
-  width: 300px;
+    display: flex;
+    flex-direction: column;
 }
 
 .tag_container {
-  display: flex;
+    display: flex;
+    margin-bottom: 20px;
 }
 
+.tag_container button {
+    margin-left: 5px;
+    border: none;
+    background-color: gainsboro;
+    border-radius: 10%;
+    cursor: pointer;
+}
 .edit_img {
-  width: 500px;
+    width: 500px;
 }
 
 .imgAdd {
-  width: 100px;
-  text-align: center;
-  padding: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 15px;
-  border-radius: 5px;
-  border: 1px solid gainsboro;
-  cursor: pointer;
+    width: 100px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    border-radius: 5px;
+    background-color: gainsboro;
+    cursor: pointer;
+    font-weight: 900;
 }
 
 .write_content {
-  white-space: pre-wrap;
+    margin-left: 150px;
+    margin-right: 150px;
+    background-color: #f1f3f5;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.write_top {
+    margin-left: 150px;
+    margin-right: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.write_top_title {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.write_btn {
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: gainsboro;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.write_edit_delete {
+    display: flex;
+}
+
+.write_edit_delete label {
+    margin-right: 5px;
 }

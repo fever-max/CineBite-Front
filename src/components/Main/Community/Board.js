@@ -142,6 +142,7 @@ function Board() {
                     </button>
                 </Link>
                 <h3>인기 태그</h3>
+                <div className="post_tag_div"></div>
             </div>
         </div>
     );
