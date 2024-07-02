@@ -19,7 +19,7 @@ const useFetchData = (apiUrl) => {
     fetchData();
   }, [apiUrl]);
 
-  return { entities, fetchData };
+  return { entities, setEntities, fetchData };
 };
 
 export default useFetchData;

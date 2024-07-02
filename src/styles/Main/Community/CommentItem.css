@@ -1,0 +1,21 @@
+.comment_div {
+  margin-bottom: 10px;
+}
+
+.comment_title {
+  display: flex;
+  align-items: center;
+}
+
+.comment_id {
+  font-weight: 900;
+  margin-right: 10px;
+}
+
+.comment_date {
+  font-size: 12px;
+}
+
+.comment_content {
+  white-space: pre-wrap;
+}

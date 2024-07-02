@@ -1,0 +1,22 @@
+.reply_div {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.reply_title {
+  display: flex;
+  align-items: center;
+}
+
+.reply_id {
+  font-weight: 900;
+  margin-right: 10px;
+}
+
+.reply_date {
+  font-size: 12px;
+}
+
+.reply_content {
+  white-space: pre-wrap;
+}

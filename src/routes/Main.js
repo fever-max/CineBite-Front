@@ -9,12 +9,12 @@ import NotFound from '../components/Main/NotFound';
 import ReviewWrite from '../components/Main/Review/ReviewWrite';
 import MovieInfo from '../components/Main/Review/MovieInfo';
 import SignIn from '../components/Main/UserInfo/SignIn';
+import MovieDetail from '../components/Main/Home/MovieDetail';
 import SignUp from '../components/Main/UserInfo/SignUp';
 import GetAccess from '../components/Main/MyPage/api/getAccess';
 import Board from './../components/Main/Community/Board';
 import BoardItem from '../components/Main/Community/BoardItem';
 import BoardWrite from '../components/Main/Community/BoardWrite';
-
 
 function Main() {
   return (
@@ -41,10 +41,12 @@ function Main() {
         <Route path="/community" element={<Board />} />
         <Route path="/community/:postNo" element={<BoardItem />} />
         <Route path="/community/write" element={<BoardWrite />} />
+        <Route path="/community/edit/:postNo" element={<BoardWrite />} />
 
         {/* 영화정보 및 리뷰 */}
         <Route path="/review/:movieId" element={<MovieInfo />} />
         <Route path="/review/write/:movieId" element={<ReviewWrite />} />
+        <Route path="/movie/:movieId" element={<MovieDetail />} />
 
         {/* 404 페이지 */}
         <Route path="/*" element={<NotFound />} />
