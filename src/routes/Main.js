@@ -11,10 +11,10 @@ import MovieInfo from '../components/Main/Review/MovieInfo';
 import SignIn from '../components/Main/UserInfo/SignIn';
 import MovieDetail from '../components/Main/Home/MovieDetail';
 import SignUp from '../components/Main/UserInfo/SignUp';
-import GetAccess from '../components/Main/MyPage/api/getAccess';
 import Board from './../components/Main/Community/Board';
 import BoardItem from '../components/Main/Community/BoardItem';
 import BoardWrite from '../components/Main/Community/BoardWrite';
+import GetAccess from '../utils/userInfo/api/getAccess';
 
 function Main() {
   return (
