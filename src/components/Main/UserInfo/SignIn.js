@@ -55,7 +55,7 @@ function SignIn() {
 
     // OAuth
     const onSnsSignInButtonClickHandler = (type) => {
-        window.location.href = `http://localhost:4000/api/v1/auth/oauth2/${type}`;
+        window.location.href = `${process.env.REACT_APP_API_URL}/api/v1/auth/oauth2/${type}`;
     };
 
     // 로그인 버튼
@@ -72,7 +72,7 @@ function SignIn() {
             formData.append('userId', userId);
             formData.append('userPwd',userPwd);
             console.log('로그인:', userId, userPwd);
-            const response = await axios.post('http://localhost:4000/login', formData, {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, formData, {
                 withCredentials: true
             });
             const accessToken = response.headers['access'];
