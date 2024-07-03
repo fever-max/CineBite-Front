@@ -1,0 +1,9 @@
+.input_box {
+  width: 60vw;
+  height: 5vh;
+  margin-right: 5px;
+}
+
+.input_box .placeholder {
+  padding-left: 50px;
+}
