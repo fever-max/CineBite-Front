@@ -1,0 +1,13 @@
+.total {
+  margin-top: 50px;
+}
+
+.total_menu {
+  display: flex;
+  justify-content: center;
+}
+
+.total_item {
+  display: inline-block; /* 아이템을 가로로 배열하기 위해 인라인 블록 요소로 설정 */
+  margin: 0 100px;
+}

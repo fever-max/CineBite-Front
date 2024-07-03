@@ -1,0 +1,25 @@
+.search_list {
+  display: flex;
+}
+
+.search_list_data {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.search_list_data li {
+  width: 20%; /* 5개씩 한 줄에 배치 */
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.delete {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.delete_all {
+  margin-left: auto;
+  cursor: pointer;
+  text-decoration: underline;
+}
