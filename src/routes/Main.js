@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import '../styles/Main/Main.css';
 import Home from '../components/Main/Home/Home';
 import Search from '../components/Main/Search/Search';
@@ -15,14 +15,13 @@ import GetAccess from '../components/Main/MyPage/api/getAccess';
 import Board from './../components/Main/Community/Board';
 import BoardItem from '../components/Main/Community/BoardItem';
 import BoardWrite from '../components/Main/Community/BoardWrite';
-
 function Main() {
   return (
     <div className="main_div">
       <Routes>
         {/* 메인 */}
         <Route path="/" element={<Home />} />
-
+        
         {/* 마이페이지 */}
         <Route path="/myPage" element={<MyPage />} />
 
@@ -35,7 +34,7 @@ function Main() {
         <Route path="/search" element={<Search />} />
 
         {/* 사용자 영화 추천 */}
-        <Route path="/recommend" element={<MovieList />} />
+        <Route path="/recommend" element={<Recommend />} />
 
         {/* 영화 커뮤니티 */}
         <Route path="/community" element={<Board />} />
@@ -45,7 +44,6 @@ function Main() {
 
         {/* 영화정보 및 리뷰 */}
         <Route path="/review/:movieId" element={<MovieInfo />} />
-        <Route path="/api/movie/detail/:movieId" element={<MovieDetail />} />
         <Route path="/review/write/:movieId" element={<ReviewWrite />} />
         <Route path="/movie/:movieId" element={<MovieDetail />} />
 
@@ -55,5 +53,4 @@ function Main() {
     </div>
   );
 }
-
 export default Main;

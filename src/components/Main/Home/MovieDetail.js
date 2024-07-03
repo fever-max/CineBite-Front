@@ -8,7 +8,7 @@ import { FaBookmark } from "react-icons/fa";
 import MovieInfo from '../Review/MovieInfo';
 import ReviewWrite from '../Review/ReviewWrite';
 import GenreRecommend from '../Recommend/GenreRecommend';
-import Community from '../Community/Community';
+// import Community from '../Community/Community';
 
 const MovieDetail = () => {
     const {movieId} = useParams();
@@ -101,7 +101,7 @@ const MovieDetail = () => {
                     <ReviewWrite/>
                 </div>
                 <div>
-                    <Community/>
+                    {/* <Community/> */}
                 </div>
                 <div>
                     <GenreRecommend movie={movie}/>
