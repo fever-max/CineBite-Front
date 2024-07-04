@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import '../../styles/Header/UserInfo.css';
 import { logoutFunction } from '../../utils/userInfo/api/reissue';
-import { jwtDecode } from 'jwt-decode';
+import { GetUser } from '../../utils/userInfo/api/userApi';
 
 function UserInfo() {
 
-  const [isLogin, setIsLogin] = useState(false);
-  const [nickname, setNickname] = useState('');
-
-  useEffect(() => {
-    const token = localStorage.getItem('access');
-    if (token) {
-      setIsLogin(true);
-      const decodedToken = jwtDecode(token);
-      setNickname(decodedToken.userNick);
-    }   
-  }, []);
+  const { isLogin, userNick, userRole } = GetUser();
 
   return (
   <div className="nav_userInfo">
@@ -23,7 +13,15 @@ function UserInfo() {
         <div><a href="/join"><ul>회원가입</ul></a></div>
         <div><a href="/login"><ul>로그인</ul></a></div>
       </> : <>
-        <div><a href="/mypage"><ul>{nickname}님 마이페이지</ul></a></div>
+        {userRole === 'USER_ADMIN' && (
+          <div><a href="/admin"><ul>{userNick}님 관리자 페이지</ul></a></div>
+        )}
+        {userRole === 'USER_WRITER' && (
+          <div><a href="/writer"><ul>{userNick}님 평론가 페이지</ul></a></div>
+        )}
+        {userRole !== 'USER_ADMIN' && userRole !== 'USER_WRITER' && (
+          <div><a href="/mypage"><ul>{userNick}님 마이페이지</ul></a></div>
+        )}
         <div className="cursor" onClick={logoutFunction}><ul>로그아웃</ul></div>
       </>}
     </div>
