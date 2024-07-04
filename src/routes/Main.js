@@ -15,14 +15,13 @@ import GetAccess from '../components/Main/MyPage/api/getAccess';
 import Board from './../components/Main/Community/Board';
 import BoardItem from '../components/Main/Community/BoardItem';
 import BoardWrite from '../components/Main/Community/BoardWrite';
-
 function Main() {
   return (
     <div className="main_div">
       <Routes>
         {/* 메인 */}
         <Route path="/" element={<Home />} />
-
+        
         {/* 마이페이지 */}
         <Route path="/myPage" element={<MyPage />} />
 
@@ -54,5 +53,4 @@ function Main() {
     </div>
   );
 }
-
 export default Main;
