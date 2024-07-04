@@ -125,6 +125,9 @@ function SignUp() {
             userIdCheckResponse(response.data);
         } catch (error) {
             console.error('ID 중복 확인 요청 실패:', error.response ? error.response.data : error.message);
+            setUserIdError(true);
+            setUserIdMessage('이미 사용중인 아이디입니다.');
+            setUserIdCheck(false);
         }
     };
 
@@ -132,22 +135,30 @@ function SignUp() {
         if (!responseBody) return;
         const { code } = responseBody;
         if (code === ResponseCode.VALIDATION_FAIL) alert('아이디를 입력하세요.');
-        if (code === ResponseCode.DUPLICATION_ID) {
-            setUserIdError(true);
-            setUserIdMessage('이미 사용중인 아이디입니다.');
-            setUserIdCheck(false);
-        }
         if (code === ResponseCode.DATABASE_ERROR) alert('데이터베이스 오류입니다.');
         if (code !== ResponseCode.SUCCESS) return;
         setUserIdError(false);
         setUserIdMessage('사용 가능한 아이디입니다.');
         setUserIdCheck(true);
     };
-
-    // 이메일 인증
     const onUserEmailButtonClickHandler = async () => {
+        if (!isUserIdCheck) {
+            setUserEmailMessage('아이디 중복 확인은 필수입니다.');
+            return;
+        }
         if (!userId || !userEmail) return;
-        setUserEmailMessage('인증번호가 전송 중입니다..');
+        if (isUserEmailError) return;
+        try {
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/auth/email-check`, {
+                userId: userId, userEmail: userEmail,
+            });
+        } catch (error) {
+            console.error('이메일 중복 확인 실패:', error.response ? error.response.data : error.message);
+            setUserEmailError(true);
+            setUserEmailMessage('이미 사용중인 이메일입니다.');
+            return;
+        }
+        setUserEmailMessage('인증번호가 전송됐습니다.');
         console.log('userEmail:', userEmail);
         try {
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/auth/email-certification`, {
@@ -178,7 +189,6 @@ function SignUp() {
         if (code === ResponseCode.DATABASE_ERROR) alert('데이터베이스 오류입니다.');
         if (code !== ResponseCode.SUCCESS) return;
         setUserEmailError(false);
-        setUserEmailMessage('전송 완료되었습니다.');
     };
 
     // 인증번호 확인
