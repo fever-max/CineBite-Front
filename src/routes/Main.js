@@ -22,7 +22,7 @@ function Main() {
       <Routes>
         {/* 메인 */}
         <Route path="/" element={<Home />} />
-
+        
         {/* 마이페이지 */}
         <Route path="/myPage" element={<MyPage />} />
 
@@ -54,5 +54,4 @@ function Main() {
     </div>
   );
 }
-
 export default Main;

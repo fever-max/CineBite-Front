@@ -188,3 +188,9 @@
     height: 2px;
     background-color: #fff; /* White underline color */
 }
+
+/* 토마토 이미지 */
+.tomato-image {
+    width : 37px;
+    height: 30px;
+}
