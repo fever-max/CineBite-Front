@@ -1,5 +1,6 @@
 import useFetchData from "../../../hooks/useFetchData";
 import axios from "axios";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../../styles/Main/Community/BoardItem.css";
 import CommentItem from "./CommentItem";
@@ -15,7 +16,9 @@ function BoardItem() {
     const apiUrl = process.env.REACT_APP_API_URL;
     const postUrl = `${apiUrl}/board/post/${postNo}`;
     const currentTime = useCurrentTime();
-    const { entities } = useFetchData(postUrl);
+    const { entities, fetchData, setEntities } = useFetchData(postUrl);
+    const [isLiked, setIsLiked] = useState(false);
+    const userId = "test12";
 
     const editBtn = () => {
         navigate("/community/edit/" + postNo);
@@ -33,6 +36,30 @@ function BoardItem() {
             } catch (error) {
                 console.log("게시글 삭제 에러: ", error);
             }
+        }
+    };
+
+    const likeBtn = async () => {
+        try {
+            const response = await axios.get(`${apiUrl}/like/post/${postNo}/${userId}`);
+            if (response) {
+                console.log(response.data);
+                if (isLiked) {
+                    setIsLiked(false);
+                    setEntities((prevEntities) => ({
+                        ...prevEntities,
+                        likeCount: prevEntities.likeCount + 1,
+                    }));
+                } else {
+                    setIsLiked(true);
+                    setEntities((prevEntities) => ({
+                        ...prevEntities,
+                        likeCount: prevEntities.likeCount - 1,
+                    }));
+                }
+            }
+        } catch (error) {
+            console.log("개시글 좋아요 에러:", error);
         }
     };
 
@@ -81,7 +108,7 @@ function BoardItem() {
                             </div>
                             {entities.hitCount}
                         </div>
-                        <div className="boardItem_infos_sub">
+                        <div className="boardItem_infos_sub" onClick={likeBtn}>
                             <div className="boardItem_info_i">
                                 <BiSolidLike />
                             </div>
@@ -89,7 +116,7 @@ function BoardItem() {
                         </div>
                         <div className="boardItem_infos_sub">
                             <div className="boardItem_info_i">
-                                <FaComments />{" "}
+                                <FaComments />
                             </div>
                             {entities.commentCount}
                         </div>
