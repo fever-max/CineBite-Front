@@ -15,6 +15,7 @@ import Board from './../components/Main/Community/Board';
 import BoardItem from '../components/Main/Community/BoardItem';
 import BoardWrite from '../components/Main/Community/BoardWrite';
 import FavoriteList from '../components/Main/Favorite/FavoriteList';
+import GetAccess from '../utils/userInfo/api/getAccess';
 
 function Main() {
   return (
@@ -30,7 +31,7 @@ function Main() {
         {/* 로그인, 회원가입 */}
         {<Route path="/login" element={<SignIn />} />}
         <Route path="/join" element={<SignUp />} />
-        {/* <Route path="/getAccess" element={<GetAccess />} /> */}
+        <Route path="/getAccess" element={<GetAccess />} />
 
         {/* 영화 검색 */}
         <Route path="/search" element={<Search />} />
