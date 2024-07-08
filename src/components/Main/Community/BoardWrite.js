@@ -144,18 +144,18 @@ function BoardWrite() {
 
     return (
         <div>
-            <div className="write_top">
-                <div>
-                    <IoIosArrowBack size={30} />
-                </div>
-                <div className="write_top_title"> {postNo ? "글수정" : "글쓰기"}</div>
-                <button type="submit" className="write_btn">
-                    저장
-                </button>
-            </div>
             <div className="write_content">
                 <div className="write_input">
                     <form onSubmit={handleSubmit}>
+                        <div className="write_top">
+                            <div>
+                                <IoIosArrowBack size={30} />
+                            </div>
+                            <div className="write_top_title"> {postNo ? "글수정" : "글쓰기"}</div>
+                            <button type="submit" className="write_btn">
+                                저장
+                            </button>
+                        </div>
                         <input type="text" id="postTitle" placeholder="제목을 입력해주세요." value={formData.postTitle} onChange={handleChange} className="write_title" />
                         <div className="write_edit_delete">
                             <label htmlFor="file-upload" className="imgAdd">

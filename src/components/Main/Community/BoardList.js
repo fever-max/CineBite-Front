@@ -108,7 +108,7 @@ function BoardList() {
                             </li>
                         ))
                 ) : (
-                    <p>게시물이 없습니다.</p>
+                    <p></p>
                 )}
             </ul>
 

@@ -8,13 +8,12 @@ import { BiSolidLike } from "react-icons/bi";
 import { FaComments } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import TagItem from "./TagItem";
+import { IoIosList } from "react-icons/io";
 
 function Board() {
     const url = process.env.REACT_APP_API_URL;
     const recentListUrl = `${url}/board/post/recentList`;
     const popularListUrl = `${url}/board/post/popularList`;
-
-    // 데이터 Fetching
     const { entities: popularEntities } = useFetchData(popularListUrl);
     const { entities: recentEntities } = useFetchData(recentListUrl);
 
@@ -24,7 +23,12 @@ function Board() {
         <div className="board_content">
             <div className="post_content">
                 <div>
-                    <h2>인기글</h2>
+                    <div className="post_content_name">
+                        <h2>인기글</h2>
+                        <Link to={"/community/list"}>
+                            <IoIosList size={25} />
+                        </Link>
+                    </div>
                     <div className="post_content_sub">
                         <ul>
                             {popularEntities && popularEntities.length > 0 ? (
@@ -80,7 +84,12 @@ function Board() {
                         </ul>
                     </div>
                 </div>
-                <h2>최신글</h2>
+                <div className="post_content_name">
+                    <h2>최신글</h2>
+                    <Link to={"/community/list"}>
+                        <IoIosList size={25} />
+                    </Link>
+                </div>
                 <div className="post_content_sub">
                     <ul>
                         {recentEntities && recentEntities.length > 0 ? (

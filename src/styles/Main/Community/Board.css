@@ -122,3 +122,13 @@
     border-radius: 7px;
     padding: 15px;
 }
+
+.post_content_name {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.post_content_name_i {
+    cursor: pointer;
+}
