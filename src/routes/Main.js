@@ -42,6 +42,8 @@ function Main() {
         <Route path="/community/:postNo" element={<BoardItem />} />
         <Route path="/community/write" element={<BoardWrite />} />
         <Route path="/community/edit/:postNo" element={<BoardWrite />} />
+        <Route path="/community/list" element={<BoardList />} />
+        <Route path="/community/list/:tagName" element={<BoardList />} />
 
         {/* 영화정보 및 리뷰 */}
         <Route path="/review/:movieId" element={<MovieInfo />} />
