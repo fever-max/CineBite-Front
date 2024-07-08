@@ -23,3 +23,23 @@
 .tag_container {
   display: flex;
 }
+
+.edit_img {
+  width: 500px;
+}
+
+.imgAdd {
+  width: 100px;
+  text-align: center;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+  cursor: pointer;
+}
+
+.write_content {
+  white-space: pre-wrap;
+}

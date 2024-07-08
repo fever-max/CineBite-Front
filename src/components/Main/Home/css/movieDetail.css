@@ -1,0 +1,196 @@
+
+/* 전체 메인 화면 */
+.movieDetail-main {
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+     background: none transparent; /* 투명한 배경 */
+}
+.movieDetail-main .movieDetail-main-sub {
+    position: relative;
+    width: 90%;
+    margin: 5px auto;
+    margin-bottom: 20px;
+    justify-content: center;
+    text-align: center;
+}
+/* 영화 기본 정보(제목,포스터,평점,아이콘) */
+.movie-title {
+    position: relative;
+    width: 70%;
+    height: 380px;
+    margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+    /* background-color: rgb(14, 47, 36); 위치 확인용*/
+}
+/* 영화 기본 정보-뒤로가기,검색 아이콘 */
+.movie-title .movie-title-icon{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.movie-title-icon .icon-back{
+    font-size: 30px;
+    padding-left: 10px;
+    cursor: pointer;
+    color: #fff;
+}
+.movie-title-icon .icon-search{
+    font-size: 30px;
+    padding-right: 10px;
+    cursor: pointer;
+    color: #fff;
+}
+/* 영화 기본 정보-제목,포스터,평점 */
+.movie-title .movie-title-info{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    /* background-color: rgb(233, 238, 236); 위치 확인용*/
+}
+.movie-title-info .movie-info{
+    margin-top: 170px; 
+    padding-left: 30px;
+}
+
+.movie-info .title{
+    font-size: 45px;
+}
+.movie-info .title-sub{
+    padding-top: 5px;
+    font-size: 17px;
+}
+.movie-info .title-grade{
+    padding-top: 15px;
+    font-size: 25px;
+}
+.movie-info .title-grade span{
+    padding-left: 2px;
+}
+.movie-title-info .movie-img {
+    margin-top: 60px; 
+    padding-right: 30px;
+}
+.movie-title-info .movie-img img{
+    width: 180px;
+}
+
+/* 평점남기기 - 좋아요/별로/찜 등등 */
+.movie-middle{
+    position: relative;
+    width: 70%;
+    height: 150px;
+    margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+    /* background-color: rgb(13, 235, 161); 위치 확인용*/
+}
+.movie-middle .movie-middle-like{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+}
+.movie-middle-like button{
+    width: 356px;
+    height: 60px;
+    border: 0px;
+    border-radius: 10px;
+    background-color: rgb(173, 173, 173, 0.5);
+    font-size: 20px;
+}
+
+.movie-middle .movie-middle-view{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.movie-middle .movie-middle-view ul{
+    display: flex;
+    justify-content: center;
+    gap: 130px;
+    list-style: none;
+}
+.movie-middle .movie-middle-view li{
+    margin-top: 15px;
+    padding: 3px;
+    font-size: 20px;
+    border: 1px solid #fff;
+}
+.movie-middle-view .view-icon{
+    font-size: 23px;
+}
+
+/* 임시 */
+.movie-middle .display{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    /* background-color: #e22b2b; 위치 확인용*/
+}
+
+.movie-bottom{
+    position: relative;
+    width: 70%;
+    height: 100px;
+    margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+    /* background-color: rgb(13, 235, 161); 위치 확인용 */
+}
+
+.movie-bottom .movie-bottom-select{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 30px;
+    font-size: 50px;
+    border-bottom: 1px solid #000000;
+}
+
+.movie-bottom .movie-bottom-select button{
+    background-color: transparent; /* Transparent background */
+    color: #333; /* Default text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Adjust padding as needed */
+    font-size: 20px;
+    cursor: pointer;
+    position: relative; /* Needed for pseudo-element positioning */
+    text-decoration: none;
+}
+.movie-bottom .movie-bottom-select button:hover {
+    color: #fff; /* Text color on hover */
+}
+
+.movie-bottom .movie-bottom-select button:focus {
+    outline: none; /* Remove focus outline */
+}
+
+/* Underline effect on active button */
+.movie-bottom .movie-bottom-select button.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff; /* White underline color */
+}
+
+/* 토마토 이미지 */
+.tomato-image {
+    width : 37px;
+    height: 30px;
+}
