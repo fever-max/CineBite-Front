@@ -158,7 +158,7 @@ function SignUp() {
             setUserEmailMessage('이미 사용중인 이메일입니다.');
             return;
         }
-        setUserEmailMessage('인증번호가 전송됐습니다.');
+        setUserEmailMessage('인증번호가 전송되었습니다.');
         console.log('userEmail:', userEmail);
         try {
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/auth/email-certification`, {
