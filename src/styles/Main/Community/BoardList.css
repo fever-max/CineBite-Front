@@ -1,0 +1,82 @@
+.boardList_content {
+    padding: 10px;
+    padding-left: 150px;
+    padding-right: 150px;
+    margin-bottom: 10px;
+}
+
+.boardList_title {
+    display: flex;
+    height: 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.boardList_content_sub:not(:last-child) {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.boardList_createDate {
+    margin-top: 10px;
+    text-align: right;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.boardList_sub {
+    display: flex;
+}
+
+.boardList_author_content {
+    width: 100%;
+}
+
+.boardList_img {
+    height: 100px;
+    width: 200px;
+    border-radius: 5%;
+    object-fit: cover;
+}
+
+.boardList_info2 {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.boardList_info2_sub {
+    display: flex;
+    margin-right: 10px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-item {
+    margin: 0 2px;
+}
+
+.page-link {
+    display: block;
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 13px;
+}
+
+.page-link:hover {
+    background-color: #ddd;
+}
+
+.active .page-link {
+    background-color: gray;
+    color: white;
+    border: 1px solid gray;
+}

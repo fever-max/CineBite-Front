@@ -36,7 +36,6 @@ const MovieDetail = () => {
         try {
             const response = await axios.get(`${url}/favorites/list`, {
                 params: { userId },
-                withCredentials: true,
             });
             const isBookmarked = response.data.some((favorite) => favorite.movieId === parseInt(movieId));
             setIsBookmarked(isBookmarked);
@@ -81,7 +80,6 @@ const MovieDetail = () => {
             if (isBookmarked) {
                 await axios.delete(`${url}/favorites/delete`, {
                     params: { userId, movieId },
-                    withCredentials: true,
                 });
             } else {
                 await axios.post(`${url}/favorites/add`, { userId, movieId });
