@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../../styles/Main/UserInfo/FavoriteList.css';
 import { FaTrashAlt } from 'react-icons/fa';
-import { useHistory } from 'react-router-dom'; // import useHistory
+import { useNavigate } from 'react-router-dom'; // useNavigate import
 
 const FavoriteList = () => {
     const [favorites, setFavorites] = useState([]);
     const [error, setError] = useState('');
-    const history = useHistory(); // useHistory 훅 사용
+    const navigate = useNavigate(); // useNavigate 사용
 
     const url = process.env.REACT_APP_API_URL;
     const ImageUrl = "https://image.tmdb.org/t/p/w500";
@@ -60,7 +60,7 @@ const FavoriteList = () => {
     };
 
     const handleItemClick = (movieId) => {
-        history.push(`/movies/${movieId}`);
+        navigate(`/movie/${movieId}`);
     };
 
     return (
