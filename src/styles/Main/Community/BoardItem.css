@@ -44,6 +44,8 @@
     margin-top: 20px;
     background-color: gainsboro;
     font-weight: 900;
+    font-size: 13px;
+    margin-right: 10px;
 }
 
 .boardItem_content {

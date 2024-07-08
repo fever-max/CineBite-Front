@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useFetchData from "../../../hooks/useFetchData";
 import { Link } from "react-router-dom";
 import "../../../styles/Main/Community/Board.css";
@@ -7,6 +7,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import { BiSolidLike } from "react-icons/bi";
 import { FaComments } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
+import TagItem from "./TagItem";
 
 function Board() {
     const url = process.env.REACT_APP_API_URL;
@@ -65,7 +66,7 @@ function Board() {
                                                 </div>
                                                 <div className="post_info2_sub">
                                                     <div className="post_info2_i">
-                                                        <FaComments />{" "}
+                                                        <FaComments />
                                                     </div>
                                                     {item.commentCount}
                                                 </div>
@@ -141,8 +142,7 @@ function Board() {
                         <div className="post_pen">글 작성</div> <FaPencil />
                     </button>
                 </Link>
-                <h3>인기 태그</h3>
-                <div className="post_tag_div"></div>
+                <TagItem url={url} />
             </div>
         </div>
     );

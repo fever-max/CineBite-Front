@@ -138,7 +138,7 @@ function CommentItem(props) {
                         </div>
                     ))
                 ) : (
-                    <p>댓글을 불러오는 중입니다...</p>
+                    <p></p>
                 )}
             </div>
             <div>
