@@ -16,47 +16,107 @@ const MovieDetail = () => {
     const [movie, setMovie] = useState();
     const [error, setError] = useState('');
     const [isBookmarked, setIsBookmarked] = useState(false);
+    const [secondsRemaining, setSecondsRemaining] = useState(0);
     const url = process.env.REACT_APP_API_URL;
+    const ImageUrl = "https://image.tmdb.org/t/p/w500";
+    const userId = 'test4'; // 임시 아이디
 
     const getMovieDetail = async (movieId) => {
         try {
-            const response = await axios.get(`${url}/movie/${movieId}`, { withCredentials: true });
+            const response = await axios.get(`${url}/movie/${movieId}`);
             console.log('movieDetail', response.data.genres);
             setMovie(response.data);
-            // 기본적으로 찜 상태를 불러오는 코드가 없으므로 직접 설정해야 합니다.
         } catch (err) {
-            console.error('Failed to fetch movie details:', err);
+            console.error('영화 상세정보 불러오기 실패 :', err);
+        }
+    };
+
+    // 즐겨찾기 목록의 해당 영화의 찜 상태 확인
+    const checkIfBookmarked = async () => {
+        try {
+            const response = await axios.get(`${url}/favorites/list`, {
+                params: { userId },
+            });
+            const isBookmarked = response.data.some((favorite) => favorite.movieId === parseInt(movieId));
+            setIsBookmarked(isBookmarked);
+        } catch (err) {
+            console.error('찜 상태를 확인할 수  없어요 :', err);
         }
     };
 
     const handleRating = async (rating) => {
         try {
-            const userId = 'test1'; // 임시 아이디 입력
-            await axios.post(`${url}/movies/${movieId}/rate`, null, {
-                params: { userId, rating },
-                withCredentials: true,
-            });
+            const evaluation = {
+                userRatingRequest: {
+                    movieId, 
+                    userId,
+                    rating,
+                    tomato: rating === 'fresh' ? 1 : 0
+                },
+                movieRatingRequest: {
+                    freshCount: 0, 
+                    rottenCount: 0, 
+                    tomatoScore: 0.0 
+                }
+            };
+    
+            await axios.post(`${url}/movie/${movieId}/rate`, evaluation);
             getMovieDetail(movieId);
-            setError(''); // 
+            setError(''); // 에러 메시지 초기화
         } catch (err) {
-            setError(err.response ? err.response.data : '평가 실패. 다시 시도해주세요.');
+            const responseError = err.response;
+            if (responseError && responseError.data && responseError.data.includes('남은 시간:')) {
+                const seconds = responseError.data.match(/남은 시간: (\d+)초/)[1];
+                setSecondsRemaining(parseInt(seconds, 10));
+            } else {
+                setError(responseError ? responseError.data : '평가 실패. 다시 시도해주세요.');
+            }
             console.error('평가 실패 :', err);
         }
     };
 
     const handleBookmarkToggle = async () => {
         try {
-            const userId = 'test1'; // 임시 아이디 입력
-            await axios.post(`${url}/favorites/add`, { userId, movieId }, { withCredentials: true });
+            if (isBookmarked) {
+                await axios.delete(`${url}/favorites/delete`, {
+                    params: { userId, movieId },
+                });
+            } else {
+                await axios.post(`${url}/favorites/add`, { userId, movieId });
+            }
             setIsBookmarked(!isBookmarked); // 토글 상태 변경
         } catch (err) {
-            console.error('Failed to toggle bookmark:', err);
+            console.error('찜 관련 작업 실패 :', err);
+        }
+    };
+
+    const handleDeleteRating = async () => {
+        try {
+            await axios.delete(`${url}/movie/${movieId}/deleteRating`, {
+                params: { userId },
+            });
+            getMovieDetail(movieId);
+            console.log("평가 삭제된 영화번호 :", movieId);
+            setError('');
+        } catch (err) {
+            setError(err.response ? err.response.data : '평가 삭제 실패. 다시 시도해주세요.');
+            console.error('평가 삭제 실패 :', err);
         }
     };
 
     useEffect(() => {
         getMovieDetail(movieId);
+        checkIfBookmarked();
     }, [movieId]);
+
+    useEffect(() => {
+        if (secondsRemaining > 0) {
+            const timer = setInterval(() => {
+                setSecondsRemaining((prev) => prev - 1);
+            }, 1000);
+            return () => clearInterval(timer);
+        }
+    }, [secondsRemaining]);
 
     const formatTomatoScore = (score) => {
         return score ? score.toFixed(2) : 'ㅡ';
@@ -102,7 +162,7 @@ const MovieDetail = () => {
                                 <span>별점</span>
                             </div>
                             <div className='movie-img'>
-                                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                                <img src={`${ImageUrl}${movie.poster_path}`} alt={movie.title} />
                             </div>
                         </div>
                     </div>
@@ -111,8 +171,14 @@ const MovieDetail = () => {
                         <div className='movie-middle-like'>
                             <button onClick={() => handleRating('fresh')}>신선해요</button>
                             <button onClick={() => handleRating('rotten')}>썩었어요</button>
+                            <button onClick={handleDeleteRating}>평가 삭제하기</button>
                         </div>
                         {error && <div className='error-message'>{error}</div>}
+                        {secondsRemaining > 0 && (
+                            <div className='error-message'>
+                                평가를 취소한 영화라 잠시 후에 이용해주세요. 남은 시간: {secondsRemaining}초
+                            </div>
+                        )}
                         <div className='movie-middle-view'>
                             <ul>
                                 <li>
