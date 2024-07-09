@@ -1,10 +1,10 @@
-import React from 'react';
-import '../../styles/Header/Nav.css';
-import { FaSearch } from 'react-icons/fa';
-import { IoChatbubbleEllipses } from 'react-icons/io5';
-import { AiFillLike } from 'react-icons/ai';
-import { FaUser } from 'react-icons/fa';
-import logo from '../../assets/images/cineBite.png';
+import React from "react";
+import "../../styles/Header/Nav.css";
+import { FaSearch } from "react-icons/fa";
+import { IoChatbubbleEllipses } from "react-icons/io5";
+import { AiFillLike } from "react-icons/ai";
+import { FaUser } from "react-icons/fa";
+import logo from "../../assets/images/cineBite.png";
 
 function Nav() {
   return (
@@ -17,22 +17,22 @@ function Nav() {
       <div className="nav_menu">
         <ul>
           <a href="/search">
-            <FaSearch size="25" color="black" />
+            <FaSearch size="25" color="white" />
           </a>
         </ul>
         <ul>
           <a href="/recommend">
-            <AiFillLike size="25" color="black" />
+            <AiFillLike size="25" color="white" />
           </a>
         </ul>
         <ul>
           <a href="/community">
-            <IoChatbubbleEllipses size="25" color="black" />
+            <IoChatbubbleEllipses size="25" color="white" />
           </a>
         </ul>
         <ul>
           <a href="/myPage">
-            <FaUser size="25" color="black" />
+            <FaUser size="25" color="white" />
           </a>
         </ul>
       </div>

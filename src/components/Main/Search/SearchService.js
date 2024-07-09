@@ -17,12 +17,14 @@ export const saveSearchList = async (userId, keyword) => {
       request
     );
     console.log("클라이언트 검색 기록 저장 성공:", response);
+    return response.data; // 확인: 서버가 올바른 데이터를 반환하는지 확인하세요.
   } catch (error) {
     console.error("클라이언트 검색 기록 저장 실패:", error);
+    return null; // 명확한 값을 반환하여 함수가 실패했음을 나타냅니다.
   }
 };
 
-//검색어 삭제
+// 검색어 삭제
 export const deleteSearchList = async (userId, searchListNo) => {
   try {
     const response = await axios.delete(
@@ -34,20 +36,20 @@ export const deleteSearchList = async (userId, searchListNo) => {
   }
 };
 
-//검색어 전체삭제
+// 검색어 전체 삭제
 export const deleteAll = async (userId) => {
   userId = userId || "guest";
   try {
     const response = await axios.delete(
       `${API_URL}/api/search/delete/${userId}`
     );
-    console.log("클라이언트 검색어 전체삭제 성공:", response.data);
+    console.log("클라이언트 검색어 전체 삭제 성공:", response.data);
   } catch (error) {
-    console.log("클라이언트 검색어 전체삭제 실패:", error);
+    console.log("클라이언트 검색어 전체 삭제 실패:", error);
   }
 };
 
-// 영화 데이터 가져오기
+// 영화 데이터 조회
 export const getSearchData = async (keyword) => {
   try {
     console.log("키워드:", keyword);
@@ -61,35 +63,59 @@ export const getSearchData = async (keyword) => {
 };
 
 // 최근 검색어 목록 가져오기
-export const fetchSearchList = async (userId, setSearchKeyword) => {
-  const response = await axios.get(`${API_URL}/api/search/user/${userId}`);
-
-  if (response && response.data && Array.isArray(response.data)) {
-    const searchData = response.data;
-    //검색어 목록 - 날짜별 내림차순
-    searchData.sort(
-      (a, b) => new Date(b.searchListTime) - new Date(a.searchListTime)
-    );
-    setSearchKeyword(searchData); // 검색어 업데이트
-    return searchData;
-  } else {
-    setSearchKeyword([]); // 값 비우기
+export const fetchSearchList = async (userId) => {
+  try {
+    const response = await axios.get(`${API_URL}/api/search/user/${userId}`);
+    console.log("fetchSearchList response:", response.data);
+    if (response && response.data && Array.isArray(response.data)) {
+      const searchData = response.data;
+      // 검색어 목록 - 날짜별 내림차순
+      searchData.sort(
+        (a, b) => new Date(b.searchListTime) - new Date(a.searchListTime)
+      );
+      return searchData;
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.error("최근 검색어 목록 가져오기 실패:", error);
     return [];
   }
 };
 
-//연관검색어 저장
-// export const saveRelatedData = async (primaryKeyword, secondaryKeyword) => {
+// 연관 검색어 저장
+export const saveRelatedData = async (
+  previousSearchListNo,
+  userId,
+  keyword
+) => {
+  try {
+    const response = await axios.post(`${API_URL}/related/save`, {
+      searchListNo: previousSearchListNo,
+      userId: userId,
+      keywords: [keyword],
+    });
+    console.log("요청한 연관 검색어 저장 데이터:", {
+      searchListNo: previousSearchListNo,
+      userId: userId,
+      keywords: [keyword],
+    });
+    console.log("클라이언트 연관 검색어 저장 성공:", response);
+    return response.data;
+  } catch (error) {
+    console.error("클라이언트 연관 검색어 저장 실패:", error);
+    throw error;
+  }
+};
+
+// 연관 검색어 조회
+// export const findRelatedByKeyword = async (keyword) => {
 //   try {
-//     console.log("primaryKeyword:", primaryKeyword);
-//     console.log("secondaryKeyword :", secondaryKeyword);
-//     const response = await axios.post(`${API_URL}/related/search/save`, {
-//       keywords: [primaryKeyword, secondaryKeyword],
-//     });
-//     console.log("클라이언트 연관 검색어 저장 성공:", response);
-//     return response.data; // Optionally, return response data if needed
+//     const response = await axios.get(`${API_URL}/related/find/${keyword}`);
+//     console.log("키워드로 연관 검색어 조회 성공:", response.data);
+//     return response.data;
 //   } catch (error) {
-//     console.error("클라이언트 연관 검색어 저장 실패:", error);
-//     throw error; // Re-throw the error to handle it elsewhere if needed
+//     console.error("키워드로 연관 검색어 조회 오류:", error.message);
+//     return [];
 //   }
 // };

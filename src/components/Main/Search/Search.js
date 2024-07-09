@@ -1,8 +1,14 @@
+// Search.js
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SearchMovie from "./SearchMenu/SearchMovie";
 import SearchList from "./SearchList";
-import { fetchSearchList, saveSearchList } from "./SearchService";
+import {
+  saveRelatedData,
+  fetchSearchList,
+  saveSearchList,
+} from "./SearchService";
 import "../../../styles/Main/Search/Search.css";
 import SearchTotal from "./SearchMenu/SearchTotal";
 
@@ -11,23 +17,27 @@ const Search = () => {
   const [movieData, setMovieData] = useState([]); // 영화 데이터
   const [searchMessage, setSearchMessage] = useState(""); // 검색 메시지
   const [searchKeyword, setSearchKeyword] = useState([]); // 키워드 목록
-  const userId = "guest";
+  const [userId] = useState("guest"); // 사용자 ID
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [userId]);
 
-  // 최근 검색어 목록 가져오기
   const fetchData = async () => {
     if (userId) {
-      await fetchSearchList(userId, setSearchKeyword);
+      const searchDataList = await fetchSearchList(userId);
+      console.log("fetchData: searchDataList", searchDataList);
+      if (searchDataList.length > 0) {
+        setSearchKeyword(searchDataList); // 검색어 업데이트
+      } else {
+        console.log("fetchData: No search data found");
+      }
       console.log("최근검색어 가져오기 성공!");
     } else {
-      console.error("최근 검색어를 가져오는데 실패했습니다.");
+      console.error("fetchData: 최근 검색어를 가져오는데 실패했습니다.");
     }
   };
 
-  // DB에서 데이터 가져오기
   const getSearchData = async (keyword) => {
     console.log("키워드:", keyword);
     const url = `${process.env.REACT_APP_API_URL}/movie/search/${keyword}`;
@@ -42,8 +52,8 @@ const Search = () => {
     }
   };
 
-  // 검색 실행
   const search = async (keyword) => {
+    console.log("search: 검색 시작: ", keyword);
     const searchData = await getSearchData(keyword);
     if (searchData.length > 0) {
       setMovieData(searchData);
@@ -52,17 +62,43 @@ const Search = () => {
       setMovieData([]);
       setSearchMessage("검색한 결과를 찾을 수 없습니다.");
     }
-    await saveSearchList(userId, [keyword]);
-    fetchData();
+    // 최근 검색어 목록 업데이트
+    const newSearchList = await saveSearchList(userId, [keyword]);
+    console.log("newSearchList: ", newSearchList);
+
+    // 이미 최근 검색어 목록에 있는 경우 맨 앞으로 이동시키기
+    const existingKeyword = searchKeyword.find(
+      (searchList) => searchList.searchKeyword === keyword
+    );
+    if (existingKeyword) {
+      //검색어 제거
+      const updatedSearchKeyword = searchKeyword.filter(
+        (searchList) => searchList.searchKeyword !== keyword
+      );
+      //맨 앞 추가
+      updatedSearchKeyword.unshift(existingKeyword);
+      setSearchKeyword(updatedSearchKeyword);
+    } else {
+      await fetchData(); // 검색어 목록 다시 불러오기
+    }
+
+    if (searchKeyword.length > 0 && searchKeyword[0].searchListNo) {
+      const previousSearchListNo = searchKeyword[0].searchListNo;
+      console.log("searchKeyword[0]: ", searchKeyword[0]);
+      console.log("previousSearchListNo: ", previousSearchListNo);
+
+      await saveRelatedData(previousSearchListNo, userId, keyword);
+    } else {
+      console.log("첫 번째 검색이므로 연관 검색어 저장 스킵");
+    }
+    console.log("연관keyword: ", keyword);
   };
 
-  // 검색어 입력 시 처리 함수
   const changeInput = (e) => {
     const { value } = e.target;
     setKeyword(value);
   };
 
-  // 검색 폼 제출
   const handleSubmit = async (e) => {
     e.preventDefault();
     await search(keyword);
@@ -82,18 +118,15 @@ const Search = () => {
         <button type="submit">검색</button>
       </form>
 
-      {/* 최근 검색어 목록 */}
       <SearchList
         searchKeyword={searchKeyword}
         setSearchKeyword={setSearchKeyword}
       />
-
-      {/* 검색 결과 메시지 */}
       {searchMessage && <p>{searchMessage}</p>}
 
+      {/* <RelatedList keyword={keyword} /> */}
       <SearchTotal />
 
-      {/* 영화 목록 */}
       {movieData.length > 0 && <SearchMovie movieData={movieData} />}
     </div>
   );
