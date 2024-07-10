@@ -109,13 +109,13 @@ export const saveRelatedData = async (
 };
 
 // 연관 검색어 조회
-// export const findRelatedByKeyword = async (keyword) => {
-//   try {
-//     const response = await axios.get(`${API_URL}/related/find/${keyword}`);
-//     console.log("키워드로 연관 검색어 조회 성공:", response.data);
-//     return response.data;
-//   } catch (error) {
-//     console.error("키워드로 연관 검색어 조회 오류:", error.message);
-//     return [];
-//   }
-// };
+export const findRelatedByKeyword = async (keyword) => {
+  try {
+    const response = await axios.get(`${API_URL}/related/find/${keyword}`);
+    console.log("키워드로 연관 검색어 조회 성공:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("키워드로 연관 검색어 조회 오류:", error.message);
+    return [];
+  }
+};

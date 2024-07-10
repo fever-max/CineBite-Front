@@ -1,5 +1,3 @@
-// Search.js
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SearchMovie from "./SearchMenu/SearchMovie";
@@ -8,9 +6,11 @@ import {
   saveRelatedData,
   fetchSearchList,
   saveSearchList,
+  findRelatedByKeyword,
 } from "./SearchService";
 import "../../../styles/Main/Search/Search.css";
 import SearchTotal from "./SearchMenu/SearchTotal";
+import RelatedList from "./RelatedList";
 
 const Search = () => {
   const [keyword, setKeyword] = useState(""); // 검색어
@@ -18,6 +18,8 @@ const Search = () => {
   const [searchMessage, setSearchMessage] = useState(""); // 검색 메시지
   const [searchKeyword, setSearchKeyword] = useState([]); // 키워드 목록
   const [userId] = useState("guest"); // 사용자 ID
+  const [submittedKeyword, setSubmittedKeyword] = useState(""); // 제출된 검색어
+  const [relatedKeywords, setRelatedKeywords] = useState([]); // 연관 검색어
 
   useEffect(() => {
     fetchData();
@@ -30,7 +32,7 @@ const Search = () => {
       if (searchDataList.length > 0) {
         setSearchKeyword(searchDataList); // 검색어 업데이트
       } else {
-        console.log("fetchData: No search data found");
+        console.log("fetchData: 데이터를 찾을 수 없습니다.");
       }
       console.log("최근검색어 가져오기 성공!");
     } else {
@@ -62,6 +64,9 @@ const Search = () => {
       setMovieData([]);
       setSearchMessage("검색한 결과를 찾을 수 없습니다.");
     }
+    // 연관 검색어 초기화
+    setRelatedKeywords([]);
+
     // 최근 검색어 목록 업데이트
     const newSearchList = await saveSearchList(userId, [keyword]);
     console.log("newSearchList: ", newSearchList);
@@ -71,15 +76,16 @@ const Search = () => {
       (searchList) => searchList.searchKeyword === keyword
     );
     if (existingKeyword) {
-      //검색어 제거
+      // 검색어 제거
       const updatedSearchKeyword = searchKeyword.filter(
         (searchList) => searchList.searchKeyword !== keyword
       );
-      //맨 앞 추가
+      // 맨 앞 추가
       updatedSearchKeyword.unshift(existingKeyword);
       setSearchKeyword(updatedSearchKeyword);
     } else {
-      await fetchData(); // 검색어 목록 다시 불러오기
+      // 검색어 목록 다시 불러오기
+      await fetchData();
     }
 
     if (searchKeyword.length > 0 && searchKeyword[0].searchListNo) {
@@ -88,10 +94,16 @@ const Search = () => {
       console.log("previousSearchListNo: ", previousSearchListNo);
 
       await saveRelatedData(previousSearchListNo, userId, keyword);
+      await fetchAndSetRelatedKeywords(keyword);
     } else {
       console.log("첫 번째 검색이므로 연관 검색어 저장 스킵");
     }
     console.log("연관keyword: ", keyword);
+  };
+
+  const fetchAndSetRelatedKeywords = async (keyword) => {
+    const relatedData = await findRelatedByKeyword(keyword);
+    setRelatedKeywords(relatedData); // 연관 검색어 설정
   };
 
   const changeInput = (e) => {
@@ -101,6 +113,7 @@ const Search = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmittedKeyword(keyword);
     await search(keyword);
     setKeyword("");
   };
@@ -124,7 +137,7 @@ const Search = () => {
       />
       {searchMessage && <p>{searchMessage}</p>}
 
-      {/* <RelatedList keyword={keyword} /> */}
+      <RelatedList relatedKeywords={relatedKeywords} />
       <SearchTotal />
 
       {movieData.length > 0 && <SearchMovie movieData={movieData} />}
