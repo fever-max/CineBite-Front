@@ -19,44 +19,44 @@ import GetAccess from "../utils/userInfo/api/getAccess";
 import BoardList from "../components/Main/Community/BoardList";
 
 function Main() {
-  return (
-      <div className="main_div">
-          <Routes>
-              {/* 메인 */}
-              <Route path="/" element={<Home />} />
+    return (
+        <div className="main_div">
+            <Routes>
+                {/* 메인 */}
+                <Route path="/" element={<Home />} />
 
-              {/* 마이페이지 */}
-              <Route path="/myPage" element={<MyPage />} />
-              <Route path="/favoriteList" element={<FavoriteList />} />
+                {/* 마이페이지 */}
+                <Route path="/myPage" element={<MyPage />} />
+                <Route path="/favoriteList" element={<FavoriteList />} />
 
-              {/* 로그인, 회원가입 */}
-              {<Route path="/login" element={<SignIn />} />}
-              <Route path="/join" element={<SignUp />} />
-              <Route path="/getAccess" element={<GetAccess />} />
+                {/* 로그인, 회원가입 */}
+                {<Route path="/login" element={<SignIn />} />}
+                <Route path="/join" element={<SignUp />} />
+                <Route path="/getAccess" element={<GetAccess />} />
 
-              {/* 영화 검색 */}
-              <Route path="/search" element={<Search />} />
+                {/* 영화 검색 */}
+                <Route path="/search" element={<Search />} />
 
-              {/* 사용자 영화 추천 */}
-              <Route path="/recommend" element={<Recommend />} />
+                {/* 사용자 영화 추천 */}
+                <Route path="/recommend" element={<Recommend />} />
 
-              {/* 영화 커뮤니티 */}
-              <Route path="/community" element={<Board />} />
-              <Route path="/community/:postNo" element={<BoardItem />} />
-              <Route path="/community/write" element={<BoardWrite />} />
-              <Route path="/community/edit/:postNo" element={<BoardWrite />} />
-              <Route path="/community/list" element={<BoardList />} />
-              <Route path="/community/list/:tagName" element={<BoardList />} />
+                {/* 영화 커뮤니티 */}
+                <Route path="/community" element={<Board />} />
+                <Route path="/community/:postNo" element={<BoardItem />} />
+                <Route path="/community/write" element={<BoardWrite />} />
+                <Route path="/community/edit/:postNo" element={<BoardWrite />} />
+                <Route path="/community/list" element={<BoardList />} />
+                <Route path="/community/list/:tagName" element={<BoardList />} />
 
-              {/* 영화정보 및 리뷰 */}
-              <Route path="/review/:movieId" element={<MovieInfo />} />
-              <Route path="/review/write/:movieId" element={<ReviewWrite />} />
-              <Route path="/movie/:movieId" element={<MovieDetail />} />
+                {/* 영화정보 및 리뷰 */}
+                <Route path="/review/:movieId" element={<MovieInfo />} />
+                <Route path="/review/write/:movieId" element={<ReviewWrite />} />
+                <Route path="/movie/:movieId" element={<MovieDetail />} />
 
-              {/* 404 페이지 */}
-              <Route path="/*" element={<NotFound />} />
-          </Routes>
-      </div>
-  );
+                {/* 404 페이지 */}
+                <Route path="/*" element={<NotFound />} />
+            </Routes>
+        </div>
+    );
 }
 export default Main;
