@@ -12,6 +12,7 @@ function UserInfo() {
       {!isLogin ? <>
         <div><a href="/join"><ul>회원가입</ul></a></div>
         <div><a href="/login"><ul>로그인</ul></a></div>
+        <div><a href="/favoriteList"><ul>즐겨찾기</ul></a></div>
       </> : <>
         {userRole === 'ROLE_ADMIN' && (
           <div><a href="/admin"><ul>{userNick}님 관리자 페이지</ul></a></div>
@@ -23,6 +24,9 @@ function UserInfo() {
           <div><a href="/mypage"><ul>{userNick}님 마이페이지</ul></a></div>
         )}
         <div className="cursor" onClick={logoutFunction}><ul>로그아웃</ul></div>
+        <div><a href="/mypage"><ul>마이페이지</ul></a></div>
+
+        <div onClick={logoutFunction} style={{ cursor: 'pointer' }}><ul>로그아웃</ul></div>
       </>}
     </div>
   );

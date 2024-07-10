@@ -1,0 +1,43 @@
+.favorite-list {
+    padding: 20px;
+  }
+  
+  .favorite-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .favorite-poster {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  .favorite-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .favorite-info h3 {
+    margin: 0;
+  }
+  
+  .favorite-info button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .favorite-info button:hover {
+    background-color: darkred;
+  }
+
+  .deleteSize {
+    width : 100px;
+    height : 27px;
+  }
+  
