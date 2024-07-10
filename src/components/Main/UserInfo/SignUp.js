@@ -293,9 +293,9 @@ function SignUp() {
     };
 
     // key down
-    const onKeyPressHandler = (event) => {
+    const onKeyDownHandler = (event) => {
         if (event.key === 'Enter') {
-            onSignUpClickHandler();
+            onSignUpClickHandler(event);
         }
     };
 
@@ -327,10 +327,10 @@ function SignUp() {
 
                         <InputBox ref={userEmailRef} title='이메일' placeholder='이메일 주소를 입력해주세요.' type='text' value={userEmail} onChange={onUserEmailChangeHandler} isErrorMessage={isUserEmailError} message={userEmailMessage} buttonTitle='이메일 인증' onButtonClick={onUserEmailButtonClickHandler}/>
                         
-                        <InputBox ref={certificationNumberRef} title='인증번호' placeholder='인증번호 4자리를 입력해주세요.' type='text' value={certificationNumber} onChange={onCertificationNumberChangeHandler} isErrorMessage={isCertificationNumberError} message={certificationNumberMessage} buttonTitle='인증 확인' onButtonClick={onCertificationNumberButtonClickHandler}/>
+                        <InputBox ref={certificationNumberRef} title='인증번호' placeholder='인증번호 4자리를 입력해주세요.' type='text' value={certificationNumber} onChange={onCertificationNumberChangeHandler} onKeyDown={onKeyDownHandler} isErrorMessage={isCertificationNumberError} message={certificationNumberMessage} buttonTitle='인증 확인' onButtonClick={onCertificationNumberButtonClickHandler}/>
                     </div>
                     <div className='sign-up-content-button-box'>
-                    <div className={`${signUpButtonClass} full-width`} onClick={onSignUpClickHandler} onKeyDown={onKeyPressHandler}>{'회원가입'}</div>
+                    <div className={`${signUpButtonClass} full-width`} onClick={onSignUpClickHandler} onKeyDown={onKeyDownHandler}>{'회원가입'}</div>
                     <div className='text-link-lg full-width' onClick={onSignInButtonClickHandler}>{'로그인'}</div>
                 </div>
             </div>

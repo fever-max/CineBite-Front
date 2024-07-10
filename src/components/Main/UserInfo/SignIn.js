@@ -45,12 +45,9 @@ function SignIn() {
     };
 
     // key down
-    const onUserIdKeyDownHandler = (event) => {
+    const onKeyDownHandler = (event) => {
         if(event.key !== 'Enter') return;
-    };
-    const onUserPwdKeyDownHandler = (event) => {
-        if(event.key !== 'Enter') return;
-        onSignInButtonClickHandler();
+        onSignInButtonClickHandler(event);
     };
 
     // OAuth
@@ -98,14 +95,14 @@ function SignIn() {
             <div className='sign-in-title'>{'CineBite 로그인'}</div>
             <div className='sign-in-content-box'>
                 <div className='sign-in-content-input-box'>
-                <InputBox title='아이디' id="userId" name="userId" autoComplete="userId" required placeholder='아이디를 입력해주세요.' type='text' value={userId} isErrorMessage={isUserIdError} message={userIdMessage} onChange={handleUserId} onKeyDown={onUserIdKeyDownHandler} />
-                <InputBox title='비밀번호' id="userPwd" name="userPwd" autoComplete="userPwd" required placeholder='비밀번호를 입력해주세요.' type='password' value={userPwd} onChange={handleUserPwd} onKeyDown={onUserPwdKeyDownHandler} isErrorMessage={isUserPwdError} message={userPwdMessage} />        
+                <InputBox title='아이디' id="userId" name="userId" autoComplete="userId" required placeholder='아이디를 입력해주세요.' type='text' value={userId} isErrorMessage={isUserIdError} message={userIdMessage} onChange={handleUserId} />
+                <InputBox title='비밀번호' id="userPwd" name="userPwd" autoComplete="userPwd" required placeholder='비밀번호를 입력해주세요.' type='password' value={userPwd} onChange={handleUserPwd} onKeyDown={onKeyDownHandler} isErrorMessage={isUserPwdError} message={userPwdMessage} />        
                 </div>
                 <div className='sign-in-content-button-box'>
                 <div className={`${signInButtonClass} full-width`}  onClick={onSignInButtonClickHandler}>로그인</div>
                 <div class="link-container">
-                    <div className='text-link-lg'><a href="/find/id">아이디 찾기</a></div>
-                    <div className='text-link-lg'><a href="/find/pwd">비밀번호 찾기</a></div>
+                    <div className='text-link-lg'><a href="/findId">아이디 찾기</a></div>
+                    <div className='text-link-lg'><a href="/findPwd">비밀번호 찾기</a></div>
                     <div className='text-link-lg'><a href="/join">회원가입</a></div>
                 </div>
                 </div>
