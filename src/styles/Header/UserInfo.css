@@ -9,3 +9,7 @@
 .nav_userInfo ul {
   margin-right: 10px;
 }
+
+.cursor {
+  cursor: pointer;
+}
