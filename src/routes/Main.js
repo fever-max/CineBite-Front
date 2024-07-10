@@ -15,6 +15,8 @@ import Board from './../components/Main/Community/Board';
 import BoardItem from '../components/Main/Community/BoardItem';
 import BoardWrite from '../components/Main/Community/BoardWrite';
 import GetAccess from '../utils/userInfo/api/getAccess';
+import FindUserId from '../components/Main/UserInfo/FindUserId';
+import FindUserPwd from '../components/Main/UserInfo/FindUserPwd';
 
 function Main() {
   return (
@@ -30,6 +32,8 @@ function Main() {
         {<Route path="/login" element={<SignIn />} />}
         <Route path="/join" element={<SignUp />} />
         <Route path="/getAccess" element={<GetAccess />} />
+        <Route path="/findId" element={<FindUserId />} />
+        <Route path="/findPwd" element={<FindUserPwd />} />
 
         {/* 영화 검색 */}
         <Route path="/search" element={<Search />} />
