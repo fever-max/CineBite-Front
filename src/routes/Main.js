@@ -12,6 +12,7 @@ import SignIn from '../components/Main/UserInfo/SignIn';
 import MovieDetail from '../components/Main/Home/MovieDetail';
 import SignUp from '../components/Main/UserInfo/SignUp';
 import Board from './../components/Main/Community/Board';
+import BoardList from '../components/Main/Community/BoardList';
 import BoardItem from '../components/Main/Community/BoardItem';
 import BoardWrite from '../components/Main/Community/BoardWrite';
 import FavoriteList from '../components/Main/Favorite/FavoriteList';

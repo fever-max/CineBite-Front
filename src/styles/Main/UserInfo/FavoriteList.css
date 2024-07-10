@@ -1,43 +1,114 @@
 .favorite-list {
-    padding: 20px;
-  }
-  
-  .favorite-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .favorite-poster {
-    width: 100px;
-    height: auto;
-    margin-right: 20px;
-  }
-  
-  .favorite-info {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .favorite-info h3 {
-    margin: 0;
-  }
-  
-  .favorite-info button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: red;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .favorite-info button:hover {
-    background-color: darkred;
-  }
+  padding: 20px;
+  background-color: #1f1f1f;
+  color: #fff;
+}
 
-  .deleteSize {
-    width : 100px;
-    height : 27px;
-  }
-  
+.favorite-list h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.favorites-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 한 행에 4개의 아이템을 표시 */
+  gap: 20px;
+  justify-content: center;
+}
+
+.favorite-item {
+  background-color: #2c2c2c;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  width: 200px;
+  position: relative;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.favorite-item:hover {
+  transform: scale(1.05);
+}
+
+.favorite-poster {
+  width: 100%;
+  height: auto;
+}
+
+.favorite-info {
+  padding: 10px;
+}
+
+.favorite-info h3 {
+  margin: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* 길이가 긴 텍스트를 ...으로 표시 */
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.tomato-image {
+  width: 20px;
+  height: auto;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+/* Modal 스타일 */
+.Modal {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.Overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Modal button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Modal button:hover {
+  background-color: #ccc;
+}
