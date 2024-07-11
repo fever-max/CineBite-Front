@@ -46,10 +46,13 @@ const Search = () => {
     try {
       const response = await axios.get(url);
       console.log("서버 응답:", response.data);
+      if (response.data.length === 0) {
+        return [];
+      }
       return response.data;
     } catch (error) {
-      console.error("서버 요청 오류:", error);
-      return [];
+      console.error("서버로 보내는 요청 오류:", error);
+      throw new Error("서버로 보내는 요청 오류");
     }
   };
 
