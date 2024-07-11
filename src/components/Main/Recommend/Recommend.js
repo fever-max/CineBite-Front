@@ -1,7 +1,14 @@
 import React from 'react';
+import FavoriteListRecommend from './FavoriteListRecommend';
+import GenreRecommend from './GenreRecommend';
+import '../../../styles/Main/UserInfo/FavoriteList.css';
 
 function Recommend() {
-  return <div>Recommend(진영)</div>;
+
+  return <div>
+    <FavoriteListRecommend/>
+    {/* <GenreRecommend/> */}
+    </div>;
 }
 
 export default Recommend;
