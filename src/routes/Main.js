@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "../styles/Main/Main.css";
@@ -20,7 +19,9 @@ import GetAccess from "../utils/userInfo/api/getAccess";
 import BoardList from "../components/Main/Community/BoardList";
 import FindUserId from '../components/Main/UserInfo/FindUserId';
 import FindUserPwd from '../components/Main/UserInfo/FindUserPwd';
-          
+import CheckUserPwd from '../components/Main/MyPage/CheckUserPwd';
+import UserUpdate from '../components/Main/MyPage/UserUpdate';
+
 function Main() {
     return (
         <div className="main_div">
@@ -30,6 +31,8 @@ function Main() {
 
                 {/* 마이페이지 */}
                 <Route path="/myPage" element={<MyPage />} />
+                <Route path="/checkUserPwd" element={<CheckUserPwd />} />
+                <Route path="/modifyUser" element={<UserUpdate />} />
                 <Route path="/favoriteList" element={<FavoriteList />} />
 
                 {/* 로그인, 회원가입 */}
