@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "../styles/Main/Main.css";
@@ -17,7 +18,9 @@ import BoardWrite from "../components/Main/Community/BoardWrite";
 import FavoriteList from "../components/Main/Favorite/FavoriteList";
 import GetAccess from "../utils/userInfo/api/getAccess";
 import BoardList from "../components/Main/Community/BoardList";
-
+import FindUserId from '../components/Main/UserInfo/FindUserId';
+import FindUserPwd from '../components/Main/UserInfo/FindUserPwd';
+          
 function Main() {
     return (
         <div className="main_div">
@@ -33,6 +36,8 @@ function Main() {
                 {<Route path="/login" element={<SignIn />} />}
                 <Route path="/join" element={<SignUp />} />
                 <Route path="/getAccess" element={<GetAccess />} />
+                <Route path="/findId" element={<FindUserId />} />
+                <Route path="/findPwd" element={<FindUserPwd />} />
 
                 {/* 영화 검색 */}
                 <Route path="/search" element={<Search />} />
