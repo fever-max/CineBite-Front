@@ -5,8 +5,6 @@ const API_URL = process.env.REACT_APP_API_URL;
 // 검색어 저장
 export const saveSearchList = async (userId, keyword) => {
   try {
-    // 만약 userId가 null이거나 비어 있다면 'guest'로 설정합니다.
-    userId = userId || "guest";
     const request = {
       userId: userId,
       keywords: keyword,
@@ -17,10 +15,10 @@ export const saveSearchList = async (userId, keyword) => {
       request
     );
     console.log("클라이언트 검색 기록 저장 성공:", response);
-    return response.data; // 확인: 서버가 올바른 데이터를 반환하는지 확인하세요.
+    return response.data;
   } catch (error) {
     console.error("클라이언트 검색 기록 저장 실패:", error);
-    return null; // 명확한 값을 반환하여 함수가 실패했음을 나타냅니다.
+    return null;
   }
 };
 
@@ -115,7 +113,6 @@ export const findRelatedByKeyword = async (keyword) => {
     console.log("키워드로 연관 검색어 조회 성공:", response.data);
     return response.data;
   } catch (error) {
-    console.error("키워드로 연관 검색어 조회 오류:", error.message);
     return [];
   }
 };

@@ -1,13 +1,4 @@
-.total {
-  margin-top: 50px;
-}
-
-.total_menu {
-  display: flex;
-  justify-content: center;
-}
-
-.total_item {
-  display: inline-block;
-  margin: 0 100px;
+.search_total {
+  color: white;
+  font-size: 20px;
 }

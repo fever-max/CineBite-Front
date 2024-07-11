@@ -1,25 +1,42 @@
+.search_box {
+  margin: 10px 20px 0 20px;
+  align-items: center;
+}
+
 .search_list {
   display: flex;
+  align-items: center;
 }
 
 .search_list_data {
   display: flex;
+  gap: 20px;
+  padding-bottom: 40px;
   flex-wrap: wrap;
 }
 
 .search_list_data li {
-  width: 20%; /* 5개씩 한 줄에 배치 */
-  padding: 5px;
-  box-sizing: border-box;
+  padding: 7px 15px 7px 15px;
 }
-
-.delete {
-  font-size: 20px;
-  cursor: pointer;
+.search_list_keywords {
+  border-radius: 20px;
+  background-color: #1a1a1a;
+  border: 1px solid #6a6a6b;
+  /* outline: none; */
+  color: #bdbecb;
 }
 
 .delete_all {
   margin-left: auto;
   cursor: pointer;
-  text-decoration: underline;
+}
+
+.delete {
+  font-size: 20px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.delete svg {
+  vertical-align: middle;
 }
