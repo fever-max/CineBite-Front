@@ -13,12 +13,17 @@
     margin-bottom: 50px;
 }
 
+.boardList_content_sub {
+    background-color: #172036;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
 .boardList_content_sub:not(:last-child) {
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
 }
 
 .boardList_createDate {
+    color: gray;
     margin-top: 10px;
     text-align: right;
     font-size: 13px;
@@ -29,8 +34,23 @@
     display: flex;
 }
 
-.boardList_author_content {
+.boardList_info_content {
     width: 100%;
+}
+
+.boardList_info_id {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.boardList_info_title {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.boardList_info_content {
+    margin-bottom: 30px;
 }
 
 .boardList_img {
@@ -47,6 +67,9 @@
 }
 
 .boardList_info2_sub {
+    background-color: #25304a;
+    padding: 5px;
+    border-radius: 5%;
     display: flex;
     margin-right: 10px;
 }
@@ -64,7 +87,7 @@
 .page-link {
     display: block;
     padding: 10px 15px;
-    background-color: #f9f9f9;
+    background-color: #172036;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
@@ -72,11 +95,11 @@
 }
 
 .page-link:hover {
-    background-color: #ddd;
+    background-color: #e83c4d;
 }
 
 .active .page-link {
-    background-color: gray;
+    background-color: #172036;
     color: white;
-    border: 1px solid gray;
+    border: 1px solid #172036;
 }

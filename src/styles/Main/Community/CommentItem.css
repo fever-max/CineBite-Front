@@ -13,6 +13,7 @@
 }
 
 .comment_date {
+    color: gray;
     font-size: 12px;
 }
 
@@ -29,10 +30,11 @@
 .commentItem_editBtns button {
     border: none;
     cursor: pointer;
-    background-color: gainsboro;
+    background-color: #25304a;
     margin-left: 10px;
     border-radius: 5px;
     font-weight: 900;
+    color: white;
 }
 
 .commentItem_toggle {
@@ -41,6 +43,7 @@
 }
 
 .comment_write_div {
+    background-color: #25304a;
     display: flex;
     align-items: center;
 }
@@ -56,8 +59,10 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: gainsboro;
+    background-color: #25304a;
     margin-left: 10px;
+    color: white;
+    font-weight: 900;
 }
 
 .commentItem_div_content {

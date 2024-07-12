@@ -54,62 +54,62 @@ function BoardList() {
     return (
         <div>
             <ul className="boardList_content">
-                <div className="boardList_title">
-                    <IoIosArrowBack />
-                    <h3>{tagName ? `#${tagName} 검색 결과` : "전체글"}</h3>
-                    <Link to={"/community/write"}>
-                        <button className="write_btn">글쓰기</button>
-                    </Link>
+                <div>
+                    <div className="boardList_title">
+                        <IoIosArrowBack />
+                        <h3>{tagName ? `#${tagName} 검색 결과` : "전체글"}</h3>
+                        <Link to={"/community/write"}>
+                            <button className="write_btn">글쓰기</button>
+                        </Link>
+                    </div>
+                    {dataToDisplay && dataToDisplay.length > 0 ? (
+                        currentItems
+                            .slice()
+                            .reverse()
+                            .map((item) => (
+                                <li key={item.postNo} className="boardList_content_sub">
+                                    <Link to={`/community/${item.postNo}`}>
+                                        <p className="boardList_createDate">{getTimeAgo(currentTime, item.createdDate)}</p>
+                                        <div className="boardList_sub">
+                                            <div className="boardList_info_content">
+                                                <div>
+                                                    <div className="boardList_info_id">{item.userId}</div>
+                                                </div>
+                                                <div>
+                                                    <div className="boardList_info_title">{item.postTitle}</div>
+                                                    <div className="boardList_info_content">{item.postContent}</div>
+                                                    <div>{item.tagNames && item.tagNames.map((tag, index) => <span key={index}>#{tag} </span>)}</div>
+                                                </div>
+                                            </div>
+                                            {item.imgUrl && <img src={item.imgUrl} className="boardList_img" alt={item.postTitle} />}
+                                        </div>
+                                        <div className="boardList_info2">
+                                            <div className="boardList_info2_sub">
+                                                <div>
+                                                    <IoEyeSharp />
+                                                </div>
+                                                <div>{item.hitCount}</div>
+                                            </div>
+                                            <div className="boardList_info2_sub">
+                                                <div>
+                                                    <BiSolidLike />
+                                                </div>
+                                                <div>{item.likeCount}</div>
+                                            </div>
+                                            <div className="boardList_info2_sub">
+                                                <div>
+                                                    <FaComments />
+                                                </div>
+                                                <div>{item.commentCount}</div>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </li>
+                            ))
+                    ) : (
+                        <p></p>
+                    )}
                 </div>
-
-                {dataToDisplay && dataToDisplay.length > 0 ? (
-                    currentItems
-                        .slice()
-                        .reverse()
-                        .map((item) => (
-                            <li key={item.postNo} className="boardList_content_sub">
-                                <Link to={`/community/${item.postNo}`}>
-                                    <p className="boardList_createDate">{getTimeAgo(currentTime, item.createdDate)}</p>
-                                    <div className="boardList_sub">
-                                        <div className="boardList_author_content">
-                                            <div>
-                                                <div></div>
-                                                <div>{item.userId}</div>
-                                            </div>
-                                            <div>
-                                                <div>{item.postTitle}</div>
-                                                <div>{item.postContent}</div>
-                                                <div>{item.tagNames && item.tagNames.map((tag, index) => <span key={index}>#{tag} </span>)}</div>
-                                            </div>
-                                        </div>
-                                        {item.imgUrl && <img src={item.imgUrl} className="boardList_img" alt={item.postTitle} />}
-                                    </div>
-                                    <div className="boardList_info2">
-                                        <div className="boardList_info2_sub">
-                                            <div>
-                                                <IoEyeSharp />
-                                            </div>
-                                            <div>{item.hitCount}</div>
-                                        </div>
-                                        <div className="boardList_info2_sub">
-                                            <div>
-                                                <BiSolidLike />
-                                            </div>
-                                            <div>{item.likeCount}</div>
-                                        </div>
-                                        <div className="boardList_info2_sub">
-                                            <div>
-                                                <FaComments />
-                                            </div>
-                                            <div>{item.commentCount}</div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </li>
-                        ))
-                ) : (
-                    <p></p>
-                )}
             </ul>
 
             {/* Pagination controls */}

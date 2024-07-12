@@ -171,10 +171,10 @@ function BoardWrite() {
                             </button>
                         </div>
                         <input type="text" id="postTitle" placeholder="제목을 입력해주세요." value={formData.postTitle} onChange={handleChange} className="write_title" />
+                        <label htmlFor="file-upload" className="imgAdd">
+                            {postNo ? "이미지 변경" : "이미지 추가"}
+                        </label>
                         <div className="write_edit_delete">
-                            <label htmlFor="file-upload" className="imgAdd">
-                                {postNo ? "이미지 변경" : "이미지 추가"}
-                            </label>
                             {imageUrl ? <img src={imageUrl} alt="Uploaded" className="edit_img" /> : null}
 
                             {postNo && (
@@ -195,7 +195,7 @@ function BoardWrite() {
                                 </div>
                             ))}
                         </div>
-                        <input type="text" id="tagNames" placeholder="태그 입력 후 엔터" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={handleKeyDown} />
+                        <input type="text" id="tagNames" placeholder="태그 입력 후 엔터" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={handleKeyDown} className="tag_write" />
                     </form>
                 </div>
             </div>
