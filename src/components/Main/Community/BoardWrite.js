@@ -3,15 +3,18 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../../styles/Main/Community/BoardWrite.css";
 import { IoIosArrowBack } from "react-icons/io";
+import { useUserData } from "../../../utils/userInfo/api/userApi";
 
 function BoardWrite() {
+    const { userData, loading } = useUserData();
+
     const apiUrl = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
     const { postNo } = useParams();
     const [formData, setFormData] = useState({
         postTitle: "",
         postContent: "",
-        userId: "test1",
+        userId: "",
         tagNames: [],
     });
     const [file, setFile] = useState(null);
@@ -38,6 +41,15 @@ function BoardWrite() {
             fetchData();
         }
     }, [postNo, apiUrl]);
+
+    useEffect(() => {
+        if (userData) {
+            setFormData((prevState) => ({
+                ...prevState,
+                userId: userData.userId,
+            }));
+        }
+    }, [userData]);
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -141,6 +153,8 @@ function BoardWrite() {
             console.error(postNo ? "글 수정 오류:" : "글 저장 오류:", error);
         }
     };
+
+    if (loading) return <div>Loading...</div>;
 
     return (
         <div>
