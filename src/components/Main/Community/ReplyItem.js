@@ -123,7 +123,7 @@ function ReplyItem(props) {
                     </div>
                     {replyEdit.replyNo === item.replyNo ? (
                         <form onSubmit={handleSubmitEdit}>
-                            <textarea placeholder="대댓글 수정" id="content" value={replyEdit.content} onChange={handleContentChange} wrap="hard" />
+                            <textarea placeholder="대댓글 수정" id="content" value={replyEdit.content} onChange={handleContentChange} wrap="hard" className="post_textarea" />
                             <div className="commentItem_editBtns">
                                 {userData.userId === item.userId && (
                                     <>

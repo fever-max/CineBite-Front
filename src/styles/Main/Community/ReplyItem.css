@@ -38,7 +38,9 @@
 }
 
 .reply_write_div {
+    background-color: #25304a;
     display: flex;
+    align-items: center;
 }
 
 .reply_write_div textarea {
@@ -46,6 +48,8 @@
     resize: none;
     padding-left: 10px;
     padding-top: 10px;
+    height: 50px;
+    width: 100%;
 }
 
 .reply_write_div button {
@@ -55,7 +59,7 @@
     border-radius: 5px;
     cursor: pointer;
     background-color: #25304a;
+    margin-left: 10px;
     color: white;
     font-weight: 900;
-    margin-left: 10px;
 }
