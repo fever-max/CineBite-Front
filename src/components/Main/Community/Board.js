@@ -28,9 +28,6 @@ function Board() {
                             <div className="red-dot"></div>
                             <div className="post_content_title_sub">인기글</div>
                         </div>
-                        <Link to={"/community/list"}>
-                            <IoIosList size={25} />
-                        </Link>
                     </div>
                     <div className="post_content_sub">
                         <ul>

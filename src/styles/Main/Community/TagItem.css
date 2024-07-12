@@ -1,3 +1,12 @@
+.post_tag_div {
+    background-color: #172036;
+    width: 400px;
+    height: 85px;
+    border-radius: 7px;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
 .tag-list {
     display: flex;
 }
@@ -14,4 +23,52 @@
     font-size: 20px;
     font-weight: 900;
     margin-bottom: 10px;
+}
+
+/* 영화 항목 스타일 */
+
+.post_tag_div2 {
+    display: flex;
+    flex-wrap: wrap; /* 줄 바꿈 허용 */
+    gap: 16px; /* 항목 간의 간격 */
+    background-color: #172036;
+    width: 400px;
+    border-radius: 7px;
+    padding: 15px;
+}
+
+/* 영화 리스트 스타일 */
+.tag_movieList {
+    display: flex;
+    flex-wrap: wrap; /* 항목들이 줄 바꿈되도록 설정 */
+    list-style: none; /* 기본 리스트 스타일 제거 */
+    padding: 0; /* 기본 패딩 제거 */
+    margin: 0; /* 기본 마진 제거 */
+}
+
+/* 각 영화 항목 스타일 */
+.tag_movieList li {
+    flex: 1 0 calc(50% - 16px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+/* 영화 이미지 스타일 */
+.tag_postImg {
+    width: 180px;
+    height: 275px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* 영화 제목 스타일 */
+.tag_movieList div {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 900;
 }

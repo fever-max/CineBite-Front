@@ -7,9 +7,11 @@ function TagItem(props) {
     const { url } = props;
     const recentTagsUrl = `${url}/tag/list`;
     const popularTagsUrl = `${url}/tag/list/popular`;
+    const movieListUrl = `${url}/movie/movieList`;
 
     const { entities: recentEntities } = useFetchData(recentTagsUrl);
     const { entities: popularEntities } = useFetchData(popularTagsUrl);
+    const { entities: movieEntities } = useFetchData(movieListUrl);
 
     return (
         <div>
@@ -47,8 +49,26 @@ function TagItem(props) {
                 </ul>
             </div>
 
-            <div className="tag_content_title">Hot Movies</div>
-            <div className="post_tag_div2"></div>
+            <div className="post_content_title">
+                <div className="red-dot"></div>
+                <div className="tag_content_title">Hot Movies</div>
+            </div>
+            <div className="post_tag_div2">
+                <ul className="tag_movieList">
+                    {movieEntities && movieEntities.length > 0 ? (
+                        movieEntities.slice(0, 4).map((item) => (
+                            <li key={item.id}>
+                                <Link to={`/movie/${item.id}`}>
+                                    <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} className="tag_postImg" />
+                                    <div>{item.title}</div>
+                                </Link>
+                            </li>
+                        ))
+                    ) : (
+                        <p>No Movie Data</p>
+                    )}
+                </ul>
+            </div>
         </div>
     );
 }

@@ -50,13 +50,13 @@ function BoardItem() {
                     setIsLiked(false);
                     setEntities((prevEntities) => ({
                         ...prevEntities,
-                        likeCount: prevEntities.likeCount + 1,
+                        likeCount: prevEntities.likeCount - 1,
                     }));
                 } else {
                     setIsLiked(true);
                     setEntities((prevEntities) => ({
                         ...prevEntities,
-                        likeCount: prevEntities.likeCount - 1,
+                        likeCount: prevEntities.likeCount + 1,
                     }));
                 }
             }
