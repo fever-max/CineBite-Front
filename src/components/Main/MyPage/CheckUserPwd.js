@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useUserData } from '../../../utils/userInfo/api/userApi';
+import InputBox from '../UserInfo/InputBox';
+import '../../../styles/Main/MyPage/CheckUserPwd.css'
 
 const CheckUserPwd = () => {
     const [userPwd, setUserPwd] = useState('');
@@ -37,14 +39,17 @@ const CheckUserPwd = () => {
     }
 
     return (
-        <div>
-            <div 
-                type="text" 
-                // type="hidden" 
-                value={userData.userId || ''} >
-                {userData.userId || ''} </div> 
-            <input type="password" placeholder="Password" value={userPwd} onChange={(e) => setUserPwd(e.target.value)} />
-            <button onClick={handlePasswordValidation}>비밀번호 확인</button>
+    
+        <div id='pwd-check-wrapper'>
+            <div className='pwd-check-container'>
+                <div className='pwd-check-box'>
+                    <div className='pwd-check-content-box'>
+                        <div className='pwd-check-content-input-box' type="hidden" value={userData.userId || ''} >
+                            <InputBox type="password" placeholder="비밀번호를 입력해주세요." value={userPwd} onChange={(e) => setUserPwd(e.target.value)} buttonTitle='확인' onButtonClick={handlePasswordValidation}/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
