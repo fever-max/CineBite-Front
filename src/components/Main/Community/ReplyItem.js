@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useFetchData from "../../../hooks/useFetchData";
 import axios from "axios";
 import "../../../styles/Main/Community/ReplyItem.css";
 import { useCurrentTime, getTimeAgo } from "../../../utils/TimeUtil";
 import { FaReply } from "react-icons/fa";
+import { useUserData } from "../../../utils/userInfo/api/userApi";
 
 function ReplyItem(props) {
+    const { userData } = useUserData();
     const { commentNo, apiUrl, showReplyForm } = props;
     const commentUrl = `${apiUrl}/board/comment/${commentNo}/reply`;
     const { entities, fetchData } = useFetchData(commentUrl);
     const currentTime = useCurrentTime();
     const [formReply, setFormReply] = useState({
-        userId: "test5",
+        userId: "",
         content: "",
     });
     const [replyEdit, setReplyEdit] = useState({
@@ -19,6 +21,19 @@ function ReplyItem(props) {
         userId: "",
         content: "",
     });
+
+    useEffect(() => {
+        if (userData) {
+            setFormReply((prevState) => ({
+                ...prevState,
+                userId: userData.userId,
+            }));
+            setReplyEdit((prevState) => ({
+                ...prevState,
+                userId: userData.userId,
+            }));
+        }
+    }, [userData]);
 
     const handleContentChange = (e) => {
         setReplyEdit({
@@ -110,10 +125,14 @@ function ReplyItem(props) {
                         <form onSubmit={handleSubmitEdit}>
                             <textarea placeholder="대댓글 수정" id="content" value={replyEdit.content} onChange={handleContentChange} wrap="hard" />
                             <div className="commentItem_editBtns">
-                                <button type="submit">수정 완료</button>
-                                <button type="button" onClick={handleCancelEdit}>
-                                    취소
-                                </button>
+                                {userData.userId === item.userId && (
+                                    <>
+                                        <button type="submit">수정 완료</button>
+                                        <button type="button" onClick={handleCancelEdit}>
+                                            취소
+                                        </button>
+                                    </>
+                                )}
                             </div>
                         </form>
                     ) : (

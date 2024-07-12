@@ -6,15 +6,17 @@ import ReplyItem from "./ReplyItem";
 import { useCurrentTime, getTimeAgo } from "../../../utils/TimeUtil";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { IoIosAddCircle } from "react-icons/io";
+import { useUserData } from "../../../utils/userInfo/api/userApi";
 
 function CommentItem(props) {
+    const { userData } = useUserData();
     const { postNo, apiUrl, commentCount } = props;
     const commentUrl = `${apiUrl}/board/post/${postNo}/comment`;
     const { entities, fetchData } = useFetchData(commentUrl);
     const currentTime = useCurrentTime();
     const [showReplyForm, setShowReplyForm] = useState(false);
     const [formComment, setFormComment] = useState({
-        userId: "test4",
+        userId: "",
         content: "",
     });
     const [formEdit, setFormEdit] = useState({
@@ -22,6 +24,19 @@ function CommentItem(props) {
         userId: "",
         content: "",
     });
+
+    useEffect(() => {
+        if (userData) {
+            setFormComment((prevState) => ({
+                ...prevState,
+                userId: userData.userId,
+            }));
+            setFormEdit((prevState) => ({
+                ...prevState,
+                userId: userData.userId,
+            }));
+        }
+    }, [userData]);
 
     const handleContentChange = (e) => {
         setFormEdit({
@@ -126,8 +141,12 @@ function CommentItem(props) {
                                         <button onClick={() => setShowReplyForm((prevState) => (prevState === item.commentNo ? null : item.commentNo))} className="commentItem_toggle">
                                             {showReplyForm === item.commentNo ? <FaDeleteLeft /> : <IoIosAddCircle />}
                                         </button>
-                                        <button onClick={() => handleEditClick(item.commentNo, item.content, item.userId)}>수정</button>
-                                        <button onClick={() => handleDeleteClick(item.commentNo)}>삭제</button>
+                                        {userData.userId === item.userId && (
+                                            <>
+                                                <button onClick={() => handleEditClick(item.commentNo, item.content, item.userId)}>수정</button>
+                                                <button onClick={() => handleDeleteClick(item.commentNo)}>삭제</button>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             )}
@@ -138,7 +157,7 @@ function CommentItem(props) {
                         </div>
                     ))
                 ) : (
-                    <p></p>
+                    <p>댓글이 없습니다.</p>
                 )}
             </div>
             <div>
