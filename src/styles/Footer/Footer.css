@@ -1,6 +1,25 @@
 .footer_div {
-  background-color: ghostwhite;
-  height: 100px;
-  padding: 20px;
-  position: relative;
+    border-top: 1px solid #172036;
+    background-color: #15192a;
+    height: 20px;
+    padding: 20px;
+    margin-bottom: 70px;
+}
+
+.footer_info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer_info_title {
+    font-size: 17px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    color: gainsboro;
+}
+
+.footer_info p {
+    color: gray;
+    margin-bottom: 5px;
+    font-size: 14px;
 }

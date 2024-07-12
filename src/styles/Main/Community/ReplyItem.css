@@ -14,6 +14,7 @@
 }
 
 .reply_date {
+    color: gray;
     font-size: 12px;
 }
 
@@ -29,7 +30,8 @@
 .replyItem_editBtns button {
     border: none;
     cursor: pointer;
-    background-color: gainsboro;
+    background-color: #25304a;
+    color: white;
     margin-left: 10px;
     border-radius: 5px;
     font-weight: 900;
@@ -52,6 +54,8 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: gainsboro;
+    background-color: #25304a;
+    color: white;
+    font-weight: 900;
     margin-left: 10px;
 }

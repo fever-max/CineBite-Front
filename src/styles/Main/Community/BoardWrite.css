@@ -3,19 +3,31 @@
     flex-direction: column;
 }
 
+.write_title {
+    background-color: #172036;
+    color: white;
+}
+
+.tag_write {
+    background-color: #26304a;
+    color: white;
+}
+
 .write_input input {
     width: 98%;
     height: 30px;
     border: none;
-    border-bottom: 1px solid gainsboro;
+    border-bottom: 1px solid #26304a;
     margin-bottom: 20px;
     padding-left: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
     font-size: 15px;
+    color: white;
 }
 
 .write_input textarea {
+    background-color: #172036;
     width: 98%;
     border: none;
     resize: none;
@@ -25,6 +37,8 @@
     padding-left: 20px;
     padding-top: 20px;
     padding-bottom: 5px;
+    border-bottom: 1px solid #26304a;
+    color: white;
 }
 
 .write_input form {
@@ -40,15 +54,17 @@
 .tag_container button {
     margin-left: 5px;
     border: none;
-    background-color: gainsboro;
+    background-color: #3b4869;
     border-radius: 10%;
     cursor: pointer;
+    color: white;
 }
 .edit_img {
     width: 500px;
 }
 
 .imgAdd {
+    margin-left: 10px;
     width: 100px;
     text-align: center;
     padding-top: 5px;
@@ -56,7 +72,7 @@
     margin-bottom: 10px;
     font-size: 13px;
     border-radius: 5px;
-    background-color: gainsboro;
+    background-color: #3b4869;
     cursor: pointer;
     font-weight: 900;
 }
@@ -64,7 +80,7 @@
 .write_content {
     margin-left: 150px;
     margin-right: 150px;
-    background-color: #f1f3f5;
+    background-color: #172036;
     border-radius: 10px;
     padding: 20px;
 }
@@ -85,9 +101,10 @@
     border: none;
     padding: 5px;
     border-radius: 5px;
-    background-color: gainsboro;
+    background-color: #e83c4d;
     font-size: 16px;
     font-weight: 900;
+    color: white;
     cursor: pointer;
 }
 

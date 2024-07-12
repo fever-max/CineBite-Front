@@ -8,17 +8,19 @@ import { useCurrentTime, getTimeAgo } from "../../../utils/TimeUtil";
 import { IoEyeSharp } from "react-icons/io5";
 import { BiSolidLike } from "react-icons/bi";
 import { FaComments } from "react-icons/fa";
+import { useUserData } from "../../../utils/userInfo/api/userApi";
 
 function BoardItem() {
+    const { userData } = useUserData();
     const { postNo } = useParams();
     const navigate = useNavigate();
     console.log("postNo:" + postNo);
     const apiUrl = process.env.REACT_APP_API_URL;
     const postUrl = `${apiUrl}/board/post/${postNo}`;
     const currentTime = useCurrentTime();
-    const { entities, fetchData, setEntities } = useFetchData(postUrl);
+    const { entities, setEntities } = useFetchData(postUrl);
     const [isLiked, setIsLiked] = useState(false);
-    const userId = "test12";
+    const userId = userData?.userId;
 
     const editBtn = () => {
         navigate("/community/edit/" + postNo);
@@ -70,12 +72,16 @@ function BoardItem() {
     return (
         <div>
             <div className="boardItem_btns">
-                <button onClick={editBtn} className="boardItem_btn">
-                    글수정
-                </button>
-                <button onClick={deleteBtn} className="boardItem_btn">
-                    글삭제
-                </button>
+                {userId === entities.userId && (
+                    <>
+                        <button onClick={editBtn} className="boardItem_btn">
+                            글수정
+                        </button>
+                        <button onClick={deleteBtn} className="boardItem_btn">
+                            글삭제
+                        </button>
+                    </>
+                )}
             </div>
             <div className="boardItem_div">
                 <div className="boardItem_content">

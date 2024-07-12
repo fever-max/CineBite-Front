@@ -7,15 +7,17 @@ function TagItem(props) {
     const { url } = props;
     const recentTagsUrl = `${url}/tag/list`;
     const popularTagsUrl = `${url}/tag/list/popular`;
-    const [tagName, setTagName] = useState("");
 
-    // Fetch data using the custom hook
     const { entities: recentEntities } = useFetchData(recentTagsUrl);
     const { entities: popularEntities } = useFetchData(popularTagsUrl);
 
     return (
         <div>
-            <h3>인기 태그</h3>
+            <div className="post_content_title">
+                <div className="red-dot"></div>
+                <div className="tag_content_title">인기 태그</div>
+            </div>
+
             <div className="post_tag_div">
                 <ul className="tag-list">
                     {popularEntities && popularEntities.length > 0 ? (
@@ -30,7 +32,7 @@ function TagItem(props) {
                 </ul>
             </div>
 
-            <h3>최신 태그</h3>
+            <div className="tag_content_title">최신 태그</div>
             <div className="post_tag_div">
                 <ul className="tag-list">
                     {recentEntities && recentEntities.length > 0 ? (
@@ -45,7 +47,7 @@ function TagItem(props) {
                 </ul>
             </div>
 
-            <h3>Hot Movies</h3>
+            <div className="tag_content_title">Hot Movies</div>
             <div className="post_tag_div2"></div>
         </div>
     );

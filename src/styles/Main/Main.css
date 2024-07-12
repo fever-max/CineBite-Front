@@ -1,3 +1,8 @@
+body {
+  background-color: #15192a;
+}
+
 .main_div {
-    padding: 20px;
+  color: white;
+  padding: 20px;
 }

@@ -24,7 +24,10 @@ function Board() {
             <div className="post_content">
                 <div>
                     <div className="post_content_name">
-                        <h2>인기글</h2>
+                        <div className="post_content_title">
+                            <div className="red-dot"></div>
+                            <div className="post_content_title_sub">인기글</div>
+                        </div>
                         <Link to={"/community/list"}>
                             <IoIosList size={25} />
                         </Link>
@@ -85,7 +88,7 @@ function Board() {
                     </div>
                 </div>
                 <div className="post_content_name">
-                    <h2>최신글</h2>
+                    <div className="post_content_title_sub">최신글</div>
                     <Link to={"/community/list"}>
                         <IoIosList size={25} />
                     </Link>

@@ -1,0 +1,29 @@
+.ant-tabs {
+  cursor: none;
+  margin-top: 70px;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs
+  .ant-tabs-tab.ant-tabs-tab-active
+  .ant-tabs-tab-btn {
+  color: #ee394a;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs-large
+  > .ant-tabs-nav
+  .ant-tabs-tab {
+  padding: 16px 0;
+  font-size: 18px;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs .ant-tabs-tab {
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs .ant-tabs-ink-bar {
+  background: #ee394a;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs .ant-tabs-tab:hover {
+  color: #ee394a;
+}

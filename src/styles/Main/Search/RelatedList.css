@@ -1,0 +1,11 @@
+.related_list {
+  margin: 25px 0 0 10px;
+}
+
+.related_list ul {
+  display: flex;
+}
+
+.related_list ul li {
+  margin-right: 30px;
+}

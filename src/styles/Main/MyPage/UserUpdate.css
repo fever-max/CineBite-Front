@@ -1,0 +1,42 @@
+#user-update-wrapper {
+    width: 100vw;
+    min-width: 1440px;
+    height: 100vh;
+    min-height: 1024px;
+    display: flex;
+}
+
+.user-update-container {
+    flex: 1;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+}
+
+.user-update-box {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.user-update-content-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.user-update-content-input-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.user-update-content-button-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

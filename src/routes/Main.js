@@ -17,6 +17,10 @@ import BoardWrite from "../components/Main/Community/BoardWrite";
 import FavoriteList from "../components/Main/Favorite/FavoriteList";
 import GetAccess from "../utils/userInfo/api/getAccess";
 import BoardList from "../components/Main/Community/BoardList";
+import FindUserId from '../components/Main/UserInfo/FindUserId';
+import FindUserPwd from '../components/Main/UserInfo/FindUserPwd';
+import CheckUserPwd from '../components/Main/MyPage/CheckUserPwd';
+import UserUpdate from '../components/Main/MyPage/UserUpdate';
 
 function Main() {
     return (
@@ -27,12 +31,16 @@ function Main() {
 
                 {/* 마이페이지 */}
                 <Route path="/myPage" element={<MyPage />} />
+                <Route path="/checkUserPwd" element={<CheckUserPwd />} />
+                <Route path="/modifyUser" element={<UserUpdate />} />
                 <Route path="/favoriteList" element={<FavoriteList />} />
 
                 {/* 로그인, 회원가입 */}
                 {<Route path="/login" element={<SignIn />} />}
                 <Route path="/join" element={<SignUp />} />
                 <Route path="/getAccess" element={<GetAccess />} />
+                <Route path="/findId" element={<FindUserId />} />
+                <Route path="/findPwd" element={<FindUserPwd />} />
 
                 {/* 영화 검색 */}
                 <Route path="/search" element={<Search />} />

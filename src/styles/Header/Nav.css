@@ -3,8 +3,18 @@
   align-items: center;
 }
 
+.nav_fav {
+  position: absolute;
+  padding-top: 10px;
+  margin-left: 20px;
+  z-index: 1;
+  width: 47px;
+  height: 50px;
+}
+
 .nav_log {
   width: 200px;
+  margin-left: 50px;
   margin-right: 50px;
 }
 
@@ -14,4 +24,17 @@
 
 .nav_menu ul {
   margin-right: 50px;
+}
+
+.nav_menu ul a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav_menu ul a:hover {
+  color: #ee394a;
+}
+
+.nav_menu ul li a.active {
+  color: #ee394a;
 }

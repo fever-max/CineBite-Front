@@ -40,6 +40,10 @@ function SignUp() {
     const [isUserIdCheck, setUserIdCheck] = useState(false);
     const [isCertificationCheck, setCertificationCheck] = useState(false);
 
+    // 기본 프로필 이미지 설정
+    const defaultProfileImg = '/assets/images/default-avatar.png';
+    const [profileImage, setProfileImage] = useState(defaultProfileImg);
+
     const signUpButtonClass = userId && userNick && userPwd && userPwdCheck && userEmail && certificationNumber ? 'primary-button-lg' : 'disable-button-lg';
 
     // 패턴
@@ -83,12 +87,12 @@ function SignUp() {
     const onUserPwdCheckChangeHandler = (event) => {
         const { value } = event.target;
         setUserPwdCheck(value);
-        if (!userPwdPattern.test(value)) {
-            setUserPwdError(true);
-            setUserPwdMessage('영문, 숫자 포함 8자 이상으로 입력해주세요.');
+        if (value !== userPwd) {
+            setUserPwdCheckError(true);
+            setUserPwdCheckMessage('비밀번호가 일치하지 않습니다.');
         } else {
-            setUserPwdError(false);
-            setUserPwdMessage('');
+            setUserPwdCheckError(false);
+            setUserPwdCheckMessage('');
         }
     };
 
@@ -256,6 +260,7 @@ function SignUp() {
                 userPwd: userPwd,
                 userEmail: userEmail, 
                 certificationNumber: certificationNumber, 
+                profileImage: profileImage,
             });
             signUpResponse(response.data);
         } catch (error) {
@@ -293,18 +298,17 @@ function SignUp() {
     };
 
     // key down
-    const onKeyPressHandler = (event) => {
+    const onKeyDownHandler = (event) => {
         if (event.key === 'Enter') {
-            onSignUpClickHandler();
+            onSignUpClickHandler(event);
         }
     };
 
     return (
     
     <div id='sign-up-wrapper'>
-        <div className='sign-up-image'></div>
-            <div className='sign-up-container'>
-                <div className='sign-up-box'>
+        <div className='sign-up-container'>
+            <div className='sign-up-box'>
                 <div className='sign-up-title'>{'CineBite 회원가입'}</div>
                 <div className='sign-up-content-box'>
                     <div className='sign-up-content-sns-sign-in-box'>
@@ -319,21 +323,21 @@ function SignUp() {
                     <div className='sign-up-content-input-box'>
                         <InputBox ref={userIdRef} title='아이디' placeholder='아이디를 입력해주세요.' type='text' value={userId} onChange={onUserIdChangeHandler} isErrorMessage={isUserIdError} message={userIdMessage} buttonTitle='중복 확인' onButtonClick={onUserIdButtonClickHandler}/>
 
+                        <InputBox ref={userEmailRef} title='이메일' placeholder='이메일 주소를 입력해주세요.' type='text' value={userEmail} onChange={onUserEmailChangeHandler} isErrorMessage={isUserEmailError} message={userEmailMessage} buttonTitle='이메일 인증' onButtonClick={onUserEmailButtonClickHandler}/>
+
+                        <InputBox ref={certificationNumberRef} title='인증번호' placeholder='인증번호 4자리를 입력해주세요.' type='text' value={certificationNumber} onChange={onCertificationNumberChangeHandler} onKeyDown={onKeyDownHandler} isErrorMessage={isCertificationNumberError} message={certificationNumberMessage} buttonTitle='인증 확인' onButtonClick={onCertificationNumberButtonClickHandler}/>
+
                         <InputBox ref={userNickRef} title='닉네임' placeholder='닉네임을 입력해주세요.' type='text' value={userNick} onChange={onUserNickChangeHandler} isErrorMessage={isUserNickError} message={userNickMessage}/>
 
                         <InputBox ref={userPwdRef} title='비밀번호' placeholder='비밀번호를 입력해주세요.' type='password' value={userPwd} onChange={onUserPwdChangeHandler} isErrorMessage={isUserPwdError} message={userPwdMessage}/>
 
                         <InputBox ref={userPwdCheckRef} title='비밀번호 확인' placeholder='비밀번호를 한 번 더 입력해주세요.' type='password' value={userPwdCheck} onChange={onUserPwdCheckChangeHandler} isErrorMessage={isUserPwdCheckError} message={userPwdCheckMessage}/>
-
-                        <InputBox ref={userEmailRef} title='이메일' placeholder='이메일 주소를 입력해주세요.' type='text' value={userEmail} onChange={onUserEmailChangeHandler} isErrorMessage={isUserEmailError} message={userEmailMessage} buttonTitle='이메일 인증' onButtonClick={onUserEmailButtonClickHandler}/>
-                        
-                        <InputBox ref={certificationNumberRef} title='인증번호' placeholder='인증번호 4자리를 입력해주세요.' type='text' value={certificationNumber} onChange={onCertificationNumberChangeHandler} isErrorMessage={isCertificationNumberError} message={certificationNumberMessage} buttonTitle='인증 확인' onButtonClick={onCertificationNumberButtonClickHandler}/>
                     </div>
                     <div className='sign-up-content-button-box'>
-                    <div className={`${signUpButtonClass} full-width`} onClick={onSignUpClickHandler} onKeyDown={onKeyPressHandler}>{'회원가입'}</div>
-                    <div className='text-link-lg full-width' onClick={onSignInButtonClickHandler}>{'로그인'}</div>
+                        <div className={`${signUpButtonClass} full-width`} onClick={onSignUpClickHandler} onKeyDown={onKeyDownHandler}>{'회원가입'}</div>
+                        <div className='text-link-lg full-width' onClick={onSignInButtonClickHandler}>{'로그인'}</div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>

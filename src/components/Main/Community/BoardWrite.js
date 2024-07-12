@@ -3,15 +3,18 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../../styles/Main/Community/BoardWrite.css";
 import { IoIosArrowBack } from "react-icons/io";
+import { useUserData } from "../../../utils/userInfo/api/userApi";
 
 function BoardWrite() {
+    const { userData, loading } = useUserData();
+
     const apiUrl = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
     const { postNo } = useParams();
     const [formData, setFormData] = useState({
         postTitle: "",
         postContent: "",
-        userId: "test1",
+        userId: "",
         tagNames: [],
     });
     const [file, setFile] = useState(null);
@@ -38,6 +41,15 @@ function BoardWrite() {
             fetchData();
         }
     }, [postNo, apiUrl]);
+
+    useEffect(() => {
+        if (userData) {
+            setFormData((prevState) => ({
+                ...prevState,
+                userId: userData.userId,
+            }));
+        }
+    }, [userData]);
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -142,6 +154,8 @@ function BoardWrite() {
         }
     };
 
+    if (loading) return <div>Loading...</div>;
+
     return (
         <div>
             <div className="write_content">
@@ -157,10 +171,10 @@ function BoardWrite() {
                             </button>
                         </div>
                         <input type="text" id="postTitle" placeholder="제목을 입력해주세요." value={formData.postTitle} onChange={handleChange} className="write_title" />
+                        <label htmlFor="file-upload" className="imgAdd">
+                            {postNo ? "이미지 변경" : "이미지 추가"}
+                        </label>
                         <div className="write_edit_delete">
-                            <label htmlFor="file-upload" className="imgAdd">
-                                {postNo ? "이미지 변경" : "이미지 추가"}
-                            </label>
                             {imageUrl ? <img src={imageUrl} alt="Uploaded" className="edit_img" /> : null}
 
                             {postNo && (
@@ -181,7 +195,7 @@ function BoardWrite() {
                                 </div>
                             ))}
                         </div>
-                        <input type="text" id="tagNames" placeholder="태그 입력 후 엔터" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={handleKeyDown} />
+                        <input type="text" id="tagNames" placeholder="태그 입력 후 엔터" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={handleKeyDown} className="tag_write" />
                     </form>
                 </div>
             </div>
