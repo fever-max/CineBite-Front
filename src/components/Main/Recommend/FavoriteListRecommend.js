@@ -11,6 +11,9 @@ const FavoriteListRecommend = () => {
     const [recommend, setRecommend] = useState([]);
     const [error, setError] = useState('');
     const [user, setUser] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1); // 1-based index
+    const [totalPages, setTotalPages] = useState(0);
+    const itemsPerPage = 4; // 페이지당 항목 수
     const navigate = useNavigate();
 
     const url = process.env.REACT_APP_API_URL;
@@ -30,12 +33,17 @@ const FavoriteListRecommend = () => {
     useEffect(() => {
         if (isLogin && user) {
             const fetchRecommend = async () => {
-                try { 
+                try {
                     const response = await axios.get(`${url}/recommendations`, {
-                        params: {userId : user.userId}
+                        params: {
+                            userId: user.userId,
+                            page: currentPage - 1, // 0-based index
+                            size: itemsPerPage
+                        }
                     });
-                    setRecommend(response.data);
-                    console.log('추천 영화 : ', response.data);
+                    setRecommend(response.data.content);
+                    setTotalPages(response.data.totalPages);
+                    console.log('추천 영화 : ', response.data.content);
                 } catch (err) {
                     console.error('추천 목록 불러오기 실패1');
                     setError('추천 목록을 불러오는데 실패했습니다.');
@@ -44,10 +52,14 @@ const FavoriteListRecommend = () => {
 
             fetchRecommend();
         }
-    }, [isLogin, user, url]);
+    }, [isLogin, user, currentPage, url]);
 
     const handleItemClick = (movieId) => {
         navigate(`/movie/${movieId}`);
+    };
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
     };
 
     return (
@@ -83,6 +95,17 @@ const FavoriteListRecommend = () => {
                 ) : (
                     <p>추천 목록이 비어 있습니다.</p>
                 )}
+            </div>
+            <div className="pagination">
+                {Array.from({ length: totalPages }, (_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)}
+                        className={currentPage === index + 1 ? 'active' : ''}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
             </div>
         </div>
     );
