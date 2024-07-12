@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUserData } from '../../../utils/userInfo/api/userApi'; // 예시에서 사용하는 getUserData 함수
 import tomatoImg from '../../../assets/images/tomato.png';
 import rottenImg from '../../../assets/images/rotten.png';
+import Pagination from '../../../utils/Pagination';
 import '../../../styles/Main/UserInfo/FavoriteList.css';
 
 const FavoriteList = () => {
@@ -41,7 +42,11 @@ const FavoriteList = () => {
                 try {
                     // 페이징 처리된 찜 목록 불러오기
                     const pagingResponse = await axios.get(`${url}/favorites/paging/favoriteList`, {
-                        params: { userId: user.userId, page: currentPage, size: itemsPerPage, sort: 'favoriteId,desc' },
+                        params: { userId: user.userId,
+                            page: currentPage,
+                            size: itemsPerPage,
+                            sort: 'favoriteId,desc' 
+                        },
                     });
                     setPagedFavorites(pagingResponse.data.content);
                     setTotalPages(pagingResponse.data.totalPages);
@@ -55,9 +60,6 @@ const FavoriteList = () => {
         }
     }, [isLogin, user, url, currentPage]);
 
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    };
 
     const handleDelete = async () => {
         try {
@@ -93,6 +95,15 @@ const FavoriteList = () => {
         navigate(`/movie/${movieId}`);
     };
 
+    // 페이지 이동
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    const formatTomatoScore = (score) => {
+        return score ? score.toFixed(2) : 'ㅡ';
+    };
+
     return (
         <div className="favorite-list">
             <h1>즐겨찾기 목록</h1>
@@ -116,21 +127,17 @@ const FavoriteList = () => {
                                     <img
                                         src={
                                             favorite.tomatoScore === 0 || favorite.tomatoScore === undefined
-                                                ? tomatoImg
-                                                : favorite.tomatoScore <= 60
-                                                ? rottenImg
-                                                : tomatoImg
+                                                ? tomatoImg : favorite.tomatoScore <= 60
+                                                ? rottenImg : tomatoImg
                                         }
                                         alt={
                                             favorite.tomatoScore === 0 || favorite.tomatoScore === undefined
-                                                ? 'No Rating'
-                                                : favorite.tomatoScore <= 60
-                                                ? 'Rotten'
-                                                : 'Fresh'
+                                                ? 'No Rating' : favorite.tomatoScore <= 60
+                                                ? 'Rotten' : 'Fresh'
                                         }
                                         className="tomato-image"
                                     />
-                                    {favorite.tomatoScore}%
+                                    {formatTomatoScore(favorite.tomatoScore)}%
                                 </h3>
                                 <button
                                     onClick={(e) => {
@@ -149,17 +156,11 @@ const FavoriteList = () => {
                 )}
             </div>
             {/* 페이징 */}
-            <div className="pagination">
-                {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => handlePageChange(index + 1)}
-                        className={currentPage === index + 1 ? 'active' : ''}
-                    >
-                        {index + 1}
-                    </button>
-                ))}
-            </div>
+            <Pagination
+                totalPages={totalPages}
+                currentPage={currentPage}
+                handlePageChange={handlePageChange}
+            />
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
