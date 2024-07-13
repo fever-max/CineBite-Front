@@ -219,7 +219,7 @@ const UserUpdate = () => {
                 }
             });
             alert('업데이트 성공');
-            window.location.reload();
+            window.location.href = '/myPage';
         } catch (error) {
             alert('업데이트 실패');
         }
