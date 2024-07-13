@@ -8,14 +8,12 @@ const GenreRecommend = ({movie}) => {
     //장르별 데이터 출력
     const getMovieGenres = async (movie) => {
         try {
-            console.log('장르 데이터:', movie.genres);
             const genres = movie.genres
             if (genres) {
                 const resp = await axios.post(`${url}/movie/genresList`, 
                     genres, 
                     { headers: { 'Content-Type': 'application/json' } }
                 );
-                console.log('Response:', resp.data);
                 setMovieGenreList(resp.data);
             } else {
                 console.error('영화의 장르 데이터가 없습니다.');
@@ -29,18 +27,16 @@ const GenreRecommend = ({movie}) => {
     },[movie]);
 
     return (
-        <div>
-            <div>
-            <button></button>
-            <ul>
-                {movieGenreList && movieGenreList.map((genre, index) => (
-                    <li key={index}>
-                        <img src={`https://image.tmdb.org/t/p/w500${genre.poster_path}`} alt={genre.title} style={{width:'100px'}}/>
-                    </li>
-                ))}
-            </ul>
-        </div>
-        </div>
+        <>
+            {movieGenreList && movieGenreList.map((genre, index) => (
+                <li key={index}>
+                    <div className='genre_Img'>
+                        <img src={`https://image.tmdb.org/t/p/w500${genre.poster_path}`} alt={genre.title}/>
+                    </div>
+                    <div className='genre_Info'></div>
+                </li>
+            ))}
+        </>
     );
 };
 

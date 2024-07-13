@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './css/movieDetail.css';
+import '../../../styles/Main/Home/movieDetail.css';
 import { IoIosArrowBack, IoIosSearch } from 'react-icons/io';
 import { FaBookmark } from 'react-icons/fa';
 import { CiBookmark } from 'react-icons/ci';
@@ -20,6 +20,7 @@ const MovieDetail = () => {
     const [isBookmarked, setIsBookmarked] = useState(false);
     const [secondsRemaining, setSecondsRemaining] = useState(0);
     const [user, setUser] = useState(null);
+    const [activeComponent, setActiveComponent] = useState('MovieInfo');
     const navigate = useNavigate();
 
     const url = process.env.REACT_APP_API_URL;
@@ -160,7 +161,6 @@ const MovieDetail = () => {
                                     <p>{movie.title}</p>
                                 </div>
                                 <div className='title-sub'>
-                                    {/* <span>{movie.title}</span> */}
                                     <span>개봉년도 : {movie.release_date}</span><br/>
                                     <span>상영시간 : {movie.runtime}분</span>
                                 </div>
@@ -233,18 +233,30 @@ const MovieDetail = () => {
                         </div>
                     </div>
 
-                    <div className='movie-bottom'>
-                        <div className='movie-bottom-select'>
-                            <button>작품 정보</button>
-                            <button>리뷰</button>
-                            <button>커뮤니티</button>
-                            <button>비슷한 영화</button>
+                    {/* 메뉴바 */}
+                    <div className="movie-bottom">
+                        <div className="movie-bottom-select">
+                        <button onClick={() => setActiveComponent('MovieInfo')}>
+                            작품 정보
+                        </button>
+                        <button onClick={() => setActiveComponent('ReviewWrite')}>
+                            리뷰
+                        </button>
+                        <button onClick={() => setActiveComponent('GenreRecommend')}>
+                            비슷한 영화
+                        </button>
                         </div>
-                    </div>
-                    <div>
-                        <MovieInfo movie={movie} />
-                        <ReviewWrite movie={movie} />
-                        <GenreRecommend movie={movie} />
+                        <div className="genreList_container">
+                        <ul>
+                            {activeComponent === 'MovieInfo' && <MovieInfo movie={movie} />}
+                        </ul>
+                        <ul>{activeComponent === 'ReviewWrite' && <ReviewWrite />}</ul>
+                        <ul className="genre_lst">
+                            {activeComponent === 'GenreRecommend' && (
+                            <GenreRecommend movie={movie} />
+                            )}
+                        </ul>
+                        </div>
                     </div>
                 </div>
             )}
