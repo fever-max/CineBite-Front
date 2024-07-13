@@ -10,11 +10,24 @@ const SearchMovie = ({ movieData }) => {
       <ul>
         {movieData.map((movie) => (
           <li key={movie.id}>
-            <h3>{movie.title}</h3>
-            <img
-              src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`}
-              alt={`${movie.title} Poster`}
-            />
+            <div className="search_movies_r">
+              <div className="loader">
+                <ul className="search_movies_list">
+                  <img
+                    className="search_poster"
+                    src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`}
+                    alt={`${movie.title} Poster`}
+                  />
+                  <div>
+                    <li className="search_title">{movie.title}</li>
+                    <li className="search_genres">
+                      {movie.genres.map((genre) => genre.name).join(" / ")}
+                    </li>
+                    <li className="search_date">{movie.release_date}</li>
+                  </div>
+                </ul>
+              </div>
+            </div>
           </li>
         ))}
       </ul>

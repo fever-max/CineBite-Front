@@ -1,42 +1,51 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import SearchList from "./SearchList";
 import SearchMenu from "./SearchMenu/SearchMenu";
 import {
-  saveRelatedData,
   fetchSearchList,
   saveSearchList,
+  saveRelatedData,
   findRelatedByKeyword,
 } from "./SearchService";
 import "../../../styles/Main/Search/Search.css";
 import { useUserData } from "../../../utils/userInfo/api/userApi";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 const Search = () => {
   const [keyword, setKeyword] = useState(""); // 검색어
   const [movieData, setMovieData] = useState([]); // 영화 데이터
+  const [communityTitle, setCommunityTitle] = useState([]);
+  const [communityContent, setCommunityContent] = useState([]);
+  const [communityUserId, setCommunityUserId] = useState([]);
   const [searchMessage, setSearchMessage] = useState(""); // 검색 메시지
   const [searchKeyword, setSearchKeyword] = useState([]); // 키워드 목록
   const [submittedKeyword, setSubmittedKeyword] = useState(""); // 제출된 검색어
   const [relatedKeywords, setRelatedKeywords] = useState([]); // 연관 검색어
   const { userData, loading } = useUserData();
 
+  const [tagData, setTagData] = useState([]); // 태그 데이터
+  const { tagName } = useParams();
+
   useEffect(() => {
     if (userData && userData.userId) {
       fetchData();
     }
-  }, [userData, setSearchKeyword]);
+  }, [userData]);
 
   if (loading) return <div>Loading...</div>;
 
   const fetchData = async () => {
-    const searchDataList = await fetchSearchList(userData.userId);
-    console.log("fetchData: searchDataList", searchDataList);
-    if (searchDataList.length > 0) {
+    try {
+      const searchDataList = await fetchSearchList(userData.userId);
+      console.log("fetchData: searchDataList", searchDataList);
       setSearchKeyword(searchDataList);
-    } else {
+      console.log("최근검색어 가져오기 성공!");
+    } catch (error) {
       console.log("fetchData: 데이터를 찾을 수 없습니다.");
     }
-    console.log("최근검색어 가져오기 성공!");
   };
 
   const getSearchData = async (keyword) => {
@@ -56,16 +65,104 @@ const Search = () => {
     }
   };
 
+  const getCommunityTitle = async (keyword) => {
+    if (!keyword) {
+      console.error("검색어가 필요합니다.");
+      return;
+    }
+    try {
+      console.log("커뮤니티 제목 키워드:", keyword);
+      const response = await axios.post(`${API_URL}/search/post/title`, {
+        postTitle: keyword,
+      });
+      console.log("커뮤니티 제목 서버 응답:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("커뮤니티 제목 서버 요청 오류:", error);
+      return [];
+    }
+  };
+
+  const getCommunityContent = async (keyword) => {
+    if (!keyword) {
+      console.error("검색어가 필요합니다.");
+      return;
+    }
+
+    try {
+      console.log("커뮤니티 내용 키워드:", keyword);
+      const response = await axios.post(`${API_URL}/search/post/content`, {
+        postContent: keyword,
+      });
+      console.log("커뮤니티 내용 서버 응답:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("커뮤니티 내용 서버 요청 오류:", error);
+      return [];
+    }
+  };
+
+  const getCommunityUserId = async (keyword) => {
+    if (!keyword) {
+      console.error("검색어가 필요합니다.");
+      return;
+    }
+    try {
+      console.log("커뮤니티 작성자 키워드:", keyword);
+      const response = await axios.post(`${API_URL}/search/post/userId`, {
+        userId: keyword,
+      });
+      console.log("커뮤니티 작성자 서버 응답:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("커뮤니티 작성자 서버 요청 오류:", error);
+      return [];
+    }
+  };
+
+  const getTagData = async (keyword) => {
+    try {
+      const response = await axios.post(`${API_URL}/tag/list/post`, {
+        tagName: keyword,
+      });
+      console.log("태그조회", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("태그 데이터 불러오기 에러:", error);
+    }
+  };
+
   const search = async (keyword) => {
     console.log("search: 검색 시작: ", keyword);
-    const searchData = await getSearchData(keyword);
-    if (searchData.length > 0) {
-      setMovieData(searchData);
+    const searchMovieData = await getSearchData(keyword);
+    const searchCommunityTitle = await getCommunityTitle(keyword);
+    const searchCommunityContent = await getCommunityContent(keyword);
+    const searchCommunityUserId = await getCommunityUserId(keyword);
+    const searchTagData = await getTagData(keyword);
+
+    const hasResults =
+      searchMovieData.length > 0 ||
+      searchCommunityTitle.length > 0 ||
+      searchCommunityContent.length > 0 ||
+      searchCommunityUserId.length > 0 ||
+      searchTagData.length > 0;
+
+    if (hasResults) {
+      setMovieData(searchMovieData);
+      setCommunityTitle(searchCommunityTitle);
+      setCommunityContent(searchCommunityContent);
+      setCommunityUserId(searchCommunityUserId);
+      setTagData(searchTagData);
       setSearchMessage("");
     } else {
       setMovieData([]);
+      setCommunityTitle([]);
+      setCommunityContent([]);
+      setCommunityUserId([]);
+      setTagData([]);
       setSearchMessage("검색한 결과를 찾을 수 없습니다.");
     }
+
     // 연관 검색어 초기화
     setRelatedKeywords([]);
 
@@ -146,7 +243,13 @@ const Search = () => {
         relatedKeywords={relatedKeywords}
       />
       {searchMessage && <p>{searchMessage}</p>}
-      <SearchMenu movieData={movieData} />
+      <SearchMenu
+        movieData={movieData}
+        communityTitle={communityTitle}
+        communityContent={communityContent}
+        communityUserId={communityUserId}
+        tagData={tagData}
+      />
     </div>
   );
 };

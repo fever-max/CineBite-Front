@@ -1,5 +1,5 @@
 .search_box {
-  margin: 10px 20px 0 20px;
+  margin: 15px 80px 0 80px;
   align-items: center;
 }
 
@@ -16,23 +16,31 @@
 }
 
 .search_list_data li {
-  padding: 7px 15px 7px 15px;
+  padding: 10px 17px 7px 17px;
 }
 .search_list_keywords {
-  border-radius: 20px;
-  background-color: #1a1a1a;
-  border: 1px solid #6a6a6b;
-  /* outline: none; */
+  border-radius: 18px;
+  background-color: #1e2436;
+  outline: none;
   color: #bdbecb;
+  font-size: 15px;
+  transition: 0.1s ease-in-out;
+}
+
+.search_list_keywords:hover {
+  cursor: default;
+  background-color: #ee394a;
+  color: white;
 }
 
 .delete_all {
   margin-left: auto;
   cursor: pointer;
+  font-size: 15px;
 }
 
 .delete {
-  font-size: 20px;
+  font-size: 15px;
   padding-left: 5px;
   cursor: pointer;
 }
