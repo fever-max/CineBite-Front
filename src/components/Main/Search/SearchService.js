@@ -47,61 +47,6 @@ export const deleteAll = async (userId) => {
   }
 };
 
-//영화 데이터 조회
-// export const getSearchData = async (keyword) => {
-//   try {
-//     console.log("영화 데이터 키워드:", keyword);
-//     const response = await axios.get(`${API_URL}/api/movie/search/${keyword}`);
-//     console.log("영화 데이터 서버 응답:", response.data);
-//     return response.data;
-//   } catch (error) {
-//     console.error("영화 데이터 서버 요청 오류:", error);
-//     return [];
-//   }
-// };
-
-// export const getCommunityTitle = async (keyword) => {
-//   try {
-//     console.log("커뮤니티 제목 키워드:", keyword);
-//     const response = await axios.post(`${API_URL}/search/post/title`, {
-//       title: keyword,
-//     });
-//     console.log("커뮤니티 제목 서버 응답:", response.data);
-//     return response.data;
-//   } catch (error) {
-//     console.error("커뮤니티 제목 서버 요청 오류:", error);
-//     return [];
-//   }
-// };
-
-// export const getCommunityContent = async (keyword) => {
-//   try {
-//     console.log("커뮤니티 내용 키워드:", keyword);
-//     const response = await axios.post(`${API_URL}/search/post/content`, {
-//       content: keyword,
-//     });
-//     console.log("커뮤니티 내용 서버 응답:", response.data);
-//     return response.data;
-//   } catch (error) {
-//     console.error("커뮤니티 내용 서버 요청 오류:", error);
-//     return [];
-//   }
-// };
-
-// export const getCommunityUserId = async (keyword) => {
-//   try {
-//     console.log("커뮤니티 작성자 키워드:", keyword);
-//     const response = await axios.post(`${API_URL}/search/post/userId`, {
-//       userId: keyword,
-//     });
-//     console.log("커뮤니티 작성자 서버 응답:", response.data);
-//     return response.data;
-//   } catch (error) {
-//     console.error("커뮤니티 작성자 서버 요청 오류:", error);
-//     return [];
-//   }
-// };
-
 // 최근 검색어 목록 가져오기
 export const fetchSearchList = async (userId) => {
   try {

@@ -24,9 +24,9 @@
 
 .community_info {
   display: flex;
-  flex-direction: column; /* 세로로 배열 */
-  justify-content: space-between; /* 세로 정렬 */
-  width: calc(100% - 150px); /* 이미지 영역을 제외한 너비 */
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100% - 150px);
 }
 
 .community_info h3 {
