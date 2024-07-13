@@ -130,24 +130,8 @@
     border-bottom: 1px solid rgba(128, 128, 128, 0.2);
 }
 
-.post_tag_div {
-    background-color: #172036;
-    width: 400px;
-    height: 100px;
-    border-radius: 7px;
-    padding: 15px;
-    margin-bottom: 30px;
-}
-
-.post_tag_div2 {
-    background-color: #172036;
-    width: 400px;
-    height: 300px;
-    border-radius: 7px;
-    padding: 15px;
-}
-
 .post_content_name {
+    margin-top: 20px;
     display: flex;
     align-items: baseline;
     justify-content: space-between;

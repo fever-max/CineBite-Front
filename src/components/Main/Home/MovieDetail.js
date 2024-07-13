@@ -160,8 +160,9 @@ const MovieDetail = () => {
                                     <p>{movie.title}</p>
                                 </div>
                                 <div className='title-sub'>
-                                    <span>{movie.title}</span>
-                                    <span>{movie.release_date}</span>
+                                    {/* <span>{movie.title}</span> */}
+                                    <span>개봉년도 : {movie.release_date}</span><br/>
+                                    <span>상영시간 : {movie.runtime}분</span>
                                 </div>
                                 <div className='title-grade'>
                                     <span></span>

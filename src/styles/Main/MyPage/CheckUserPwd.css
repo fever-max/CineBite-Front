@@ -1,0 +1,35 @@
+#pwd-check-wrapper {
+    width: 100vw;
+    min-width: 1440px;
+    height: 100vh;
+    min-height: 1024px;
+    display: flex;
+}
+
+.pwd-check-container {
+    flex: 1;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+}
+
+.pwd-check-box {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.pwd-check-content-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.pwd-check-content-input-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
