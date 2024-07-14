@@ -1,14 +1,12 @@
 #user-update-wrapper {
-    width: 100vw;
-    min-width: 1440px;
-    height: 100vh;
-    min-height: 1024px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5%;
 }
 
 .user-update-container {
-    flex: 1;
-    /* display: flex; */
+    display: flex;
     justify-content: center;
     align-items: center;
 }

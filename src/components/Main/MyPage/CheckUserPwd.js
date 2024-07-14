@@ -43,6 +43,7 @@ const CheckUserPwd = () => {
         <div id='pwd-check-wrapper'>
             <div className='pwd-check-container'>
                 <div className='pwd-check-box'>
+                <div className='pwd-check-title'>{'정보수정'}</div>
                     <div className='pwd-check-content-box'>
                         <div className='pwd-check-content-input-box' type="hidden" value={userData.userId || ''} >
                             <InputBox type="password" placeholder="비밀번호를 입력해주세요." value={userPwd} onChange={(e) => setUserPwd(e.target.value)} buttonTitle='확인' onButtonClick={handlePasswordValidation}/>
