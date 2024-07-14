@@ -47,19 +47,6 @@ export const deleteAll = async (userId) => {
   }
 };
 
-// 영화 데이터 조회
-export const getSearchData = async (keyword) => {
-  try {
-    console.log("키워드:", keyword);
-    const response = await axios.get(`${API_URL}/api/movie/search/${keyword}`);
-    console.log("서버 응답:", response.data);
-    return response.data;
-  } catch (error) {
-    console.error("서버 요청 오류:", error);
-    return [];
-  }
-};
-
 // 최근 검색어 목록 가져오기
 export const fetchSearchList = async (userId) => {
   try {
@@ -77,7 +64,7 @@ export const fetchSearchList = async (userId) => {
     }
   } catch (error) {
     console.error("최근 검색어 목록 가져오기 실패:", error);
-    return [];
+    throw error;
   }
 };
 
@@ -114,5 +101,18 @@ export const findRelatedByKeyword = async (keyword) => {
     return response.data;
   } catch (error) {
     return [];
+  }
+};
+
+//검색된 작품 수 카운트
+export const searchMoviesCount = async (keyword) => {
+  try {
+    const response = await axios.post("${API_URL}/movie/moviesCount", {
+      keyword: keyword,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("검색된 작품 수 불러오기 실패: ", error);
+    throw error;
   }
 };

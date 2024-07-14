@@ -1,0 +1,41 @@
+.community_tag {
+  color: white;
+  margin: 20px 80px 150px 80px;
+  caret-color: transparent;
+}
+
+.community_tag h2 {
+  padding-bottom: 10px;
+}
+
+.community_tag_icon {
+  background-color: #242b3f;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 30px;
+  color: #bdbecb;
+  align-items: center;
+  padding: 3px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.community_tag_sub1 {
+  display: flex;
+}
+
+.community_tag_sub2 {
+  display: flex;
+  padding-right: 280px;
+  flex-wrap: wrap;
+}
+
+.community_tag_sub3 {
+  font-size: 15px;
+  padding-left: 20px;
+  padding-bottom: 15px;
+  justify-content: center;
+  align-content: center;
+}
