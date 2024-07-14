@@ -1,15 +1,13 @@
 
 #sign-in-wrapper {
-  width: 100vw;
-  min-width: 1440px;
-  height: 100vh;
-  min-height: 1024px;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5%;
 }
 
 .sign-in-container {
-  flex: 1;
-  /* display: flex; */
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -22,7 +20,7 @@
 }
 
 .sign-in-title {
-  color: rgba(64,64,64,1);
+  color: gray;
   display: flex;
   justify-content: center;
   font-size: 30px;

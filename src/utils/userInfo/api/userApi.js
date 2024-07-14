@@ -1,8 +1,8 @@
 import axios from "axios"
-import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAccessToken } from "./reissue";
+import { jwtDecode } from "jwt-decode";
 
 export const GetUser = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -46,11 +46,11 @@ export const useUserData = () => {
             setUserData(result);
             setLoading(false);
           } catch (error) {
-            console.error('Failed to refresh access token:', error);
+            console.error('토큰 갱신 실패:', error);
             setLoading(false);
           }
         } else {
-          console.error('Failed to fetch user data:', error);
+          console.error('사용자 정보 불러오기 실패:', error);
           setLoading(false);
         }
       }
@@ -71,10 +71,20 @@ export const getUserData = async (navigate, setIsLogin) => {
   }
   setIsLogin(true);
 
-  const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/data`,{headers:
-    {access: token},
-    withCredentials: true
-    });
-    console.log('접속한 유저1 : ', JSON.stringify(response.data));
-  return response.data
+  const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/data`, { headers: { access: token }, withCredentials: true });
+  console.log('접속한 유저1 : ', JSON.stringify(response.data));
+  return response.data;
 }
+
+export const modifyUserData = async (data) => {
+  const token = localStorage.getItem('access');
+
+  const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/user/modify`, data, {
+      headers: {
+          'Content-Type': 'multipart/form-data',
+          'access': token,
+      },
+  });
+
+  return response.data;
+};
