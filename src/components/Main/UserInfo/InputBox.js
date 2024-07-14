@@ -15,7 +15,7 @@ const InputBox = forwardRef((props, ref) => {
             <div className='input-box-title'>{title}</div>
             <div className='input-box-content'>
                 <div className='input-box-body'>
-                    <input ref={ref} className='input-box-input' placeholder={readOnly ? placeholder : ''} type={type} value={value} onChange={onChange} onKeyDown={onKeyDown} readOnly={readOnly} />
+                    <input ref={ref} className='input-box-input' placeholder={placeholder} type={type} value={value} onChange={onChange} onKeyDown={onKeyDown} readOnly={readOnly} />
                     {buttonTitle !== undefined && onButtonClick !== undefined && <div className={buttonClass} onClick={onButtonClick}>{buttonTitle}</div>}
                 </div>
                 {message !== undefined && <div className={messageClass}>{message}</div>}

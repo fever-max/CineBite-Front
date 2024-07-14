@@ -126,7 +126,7 @@ function CommentItem(props) {
                             </div>
                             {formEdit.commentNo === item.commentNo ? (
                                 <form onSubmit={handleSubmitEdit}>
-                                    <textarea placeholder="댓글 수정" id="content" value={formEdit.content} onChange={handleContentChange} wrap="hard" />
+                                    <textarea placeholder="댓글 수정" id="content" value={formEdit.content} onChange={handleContentChange} wrap="hard" className="post_textarea" />
                                     <div className="commentItem_editBtns">
                                         <button type="submit">수정 완료</button>
                                         <button type="button" onClick={handleCancelEdit}>

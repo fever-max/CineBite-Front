@@ -1,5 +1,4 @@
 .ant-tabs {
-  cursor: none;
   margin-top: 70px;
 }
 
@@ -7,13 +6,14 @@
   .ant-tabs-tab.ant-tabs-tab-active
   .ant-tabs-tab-btn {
   color: #ee394a;
+  caret-color: transparent;
 }
 
 :where(.css-dev-only-do-not-override-98ntnt).ant-tabs-large
   > .ant-tabs-nav
   .ant-tabs-tab {
-  padding: 16px 0;
-  font-size: 18px;
+  font-size: 19px;
+  font-weight: bold;
 }
 
 :where(.css-dev-only-do-not-override-98ntnt).ant-tabs .ant-tabs-tab {
@@ -26,4 +26,22 @@
 
 :where(.css-dev-only-do-not-override-98ntnt).ant-tabs .ant-tabs-tab:hover {
   color: #ee394a;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs-top
+  > .ant-tabs-nav::before,
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs-bottom
+  > .ant-tabs-nav::before,
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs-top
+  > div
+  > .ant-tabs-nav::before,
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs-bottom
+  > div
+  > .ant-tabs-nav::before {
+  position: absolute;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom: 1px solid #3a3a3a;
+  content: "";
 }
