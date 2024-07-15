@@ -5,6 +5,8 @@ import SearchCommunity from "./SearchCommunity";
 import SearchMovie from "./SearchMovie";
 import SearchTotal from "./SearchTotal";
 import SearchNone from "./SearchNone";
+import MovieRanking from "../../Home/MovieRanking";
+
 const SearchMenu = ({
   movieData,
   communityTitle,
@@ -12,6 +14,7 @@ const SearchMenu = ({
   communityUserId,
   tagData,
   submittedKeyword,
+  movieAllData,
 }) => {
   const [activeTab, setActiveTab] = useState("1");
 
@@ -35,6 +38,7 @@ const SearchMenu = ({
               <SearchMovie
                 movieData={movieData}
                 submittedKeyword={submittedKeyword}
+                movieAllData={movieAllData}
               />
               <SearchCommunity
                 tagData={tagData}
@@ -63,13 +67,16 @@ const SearchMenu = ({
               <SearchMovie
                 movieData={movieData}
                 submittedKeyword={submittedKeyword}
+                movieAllData={movieAllData}
               />
-              ) : (
             </>
           ) : (
-            <>
-              <p>오늘의 추천영화</p>
-            </>
+            <div className="tab2">
+              <div className="movie_ranking">
+                <p>이런 영화는 어떠세요?</p>
+                <MovieRanking />
+              </div>
+            </div>
           )}
         </Tabs.TabPane>
         <Tabs.TabPane tab="커뮤니티" key="3">
