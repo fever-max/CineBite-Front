@@ -7,6 +7,7 @@ const SearchCommunity = ({
   communityContent,
   communityUserId,
   tagData,
+  submittedKeyword,
 }) => {
   return (
     <div>
@@ -15,6 +16,7 @@ const SearchCommunity = ({
         communityTitle={communityTitle}
         communityContent={communityContent}
         communityUserId={communityUserId}
+        submittedKeyword={submittedKeyword}
       />
     </div>
   );

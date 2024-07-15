@@ -1,4 +1,183 @@
 .search_total {
   color: white;
+  margin: 15px 80px 0 80px;
+  caret-color: transparent;
+}
+
+.search_tag {
+  color: white;
+  margin: 20px 80px 150px 80px;
+  caret-color: transparent;
+}
+
+.search_tag_icon {
+  background-color: #242b3f;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 30px;
+  color: #bdbecb;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.search_tag_sub1 {
+  display: flex;
+}
+
+.search-list {
+  display: flex;
+}
+
+.search_tag_title {
+  margin-left: 5px;
   font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 30px;
+}
+
+.search_tag_sub3 {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 50px;
+  font-size: 15px;
+}
+
+.search_tag_sub3 a {
+  display: flex;
+  align-items: center;
+}
+
+.search_tag_icon {
+  margin-right: 10px;
+}
+
+.search_content_title {
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 30px;
+}
+
+.board_content {
+  width: 100%;
+  display: flex;
+}
+
+.search_content {
+  margin-top: 100px;
+}
+
+.search_content_sub {
+  background-color: #172036;
+  border-radius: 7px;
+  padding: 15px;
+  margin-bottom: 50px;
+}
+
+.search_sub {
+  display: flex;
+}
+
+.author_content {
+  width: 100%;
+}
+
+.sub_content {
+  margin-top: 60px;
+  margin-left: 70px;
+}
+
+.search_content2 {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.title_info {
+  display: flex;
+  justify-content: space-between;
+  width: 310px;
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.search_author {
+  margin-top: 5px;
+  font-size: 15px;
+  color: gray;
+}
+
+.search_tag2 {
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+.search_info2 {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.search_info2_sub {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  background-color: #25304a;
+  border-radius: 5%;
+  margin-right: 10px;
+}
+
+.search_info2_i {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.search_img {
+  height: 100px;
+  width: 200px;
+  border-radius: 5%;
+  object-fit: cover;
+}
+
+.search_createDate {
+  text-align: right;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.search_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e83c4d;
+  color: white;
+  font-size: 16px;
+  font-weight: 900;
+  border-radius: 5px;
+  padding: 10px;
+  width: 150px;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 30px;
+}
+
+.search_pen {
+  margin-right: 10px;
+}
+
+.search_content2:not(:last-child) {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.search_content_name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search_content_name_i {
+  cursor: pointer;
 }

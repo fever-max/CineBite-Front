@@ -43,3 +43,19 @@
   padding-bottom: 5px;
   font-size: 14px;
 }
+
+.button_container {
+  display: flex;
+  justify-content: center;
+}
+
+.show_more_button {
+  width: 15%;
+  padding: 10px 0;
+  margin: 20px auto;
+  border-radius: 20px;
+  background-color: #ee394a;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}

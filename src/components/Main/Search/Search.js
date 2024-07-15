@@ -10,28 +10,26 @@ import {
 import "../../../styles/Main/Search/Search.css";
 import { useUserData } from "../../../utils/userInfo/api/userApi";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const Search = () => {
   const [keyword, setKeyword] = useState(""); // 검색어
+  const [movieAllData, setMovieAllData] = useState([]); // 영화 전체 데이터
+  const [tagData, setTagData] = useState([]);
   const [movieData, setMovieData] = useState([]); // 영화 데이터
   const [communityTitle, setCommunityTitle] = useState([]);
   const [communityContent, setCommunityContent] = useState([]);
   const [communityUserId, setCommunityUserId] = useState([]);
-  const [searchMessage, setSearchMessage] = useState(""); // 검색 메시지
   const [searchKeyword, setSearchKeyword] = useState([]); // 키워드 목록
   const [submittedKeyword, setSubmittedKeyword] = useState(""); // 제출된 검색어
   const [relatedKeywords, setRelatedKeywords] = useState([]); // 연관 검색어
   const { userData, loading } = useUserData();
 
-  const [tagData, setTagData] = useState([]); // 태그 데이터
-  const { tagName } = useParams();
-
   useEffect(() => {
     if (userData && userData.userId) {
       fetchData();
+      getMovieAllData();
     }
   }, [userData]);
 
@@ -63,6 +61,12 @@ const Search = () => {
       console.error("서버로 보내는 요청 오류:", error);
       throw new Error("서버로 보내는 요청 오류");
     }
+  };
+
+  const getMovieAllData = async () => {
+    const response = await axios.get(`${API_URL}/movie/movieList`);
+    console.log("getMovieData", response.data);
+    setMovieAllData(response.data);
   };
 
   const getCommunityTitle = async (keyword) => {
@@ -153,14 +157,12 @@ const Search = () => {
       setCommunityContent(searchCommunityContent);
       setCommunityUserId(searchCommunityUserId);
       setTagData(searchTagData);
-      setSearchMessage("");
     } else {
       setMovieData([]);
       setCommunityTitle([]);
       setCommunityContent([]);
       setCommunityUserId([]);
       setTagData([]);
-      setSearchMessage("검색한 결과를 찾을 수 없습니다.");
     }
 
     // 연관 검색어 초기화
@@ -242,13 +244,14 @@ const Search = () => {
         setSearchKeyword={setSearchKeyword}
         relatedKeywords={relatedKeywords}
       />
-      {searchMessage && <p>{searchMessage}</p>}
       <SearchMenu
         movieData={movieData}
         communityTitle={communityTitle}
         communityContent={communityContent}
         communityUserId={communityUserId}
         tagData={tagData}
+        submittedKeyword={submittedKeyword}
+        movieAllData={movieAllData}
       />
     </div>
   );
