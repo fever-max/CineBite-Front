@@ -1,58 +1,56 @@
 
 #find-wrapper {
-    width: 100vw;
-    min-width: 1440px;
-    height: 100vh;
-    min-height: 1024px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5%;
 }
 
 .find-container {
-flex: 1;
-/* display: flex; */
-justify-content: center;
-align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .find-box {
-width: 380px;
-display: flex;
-flex-direction: column;
-gap: 24px;
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .find-title {
-color: rgba(64,64,64,1);
-display: flex;
-justify-content: center;
-font-size: 30px;
-font-weight: 700;
-line-height: 173%;
+    color: rgba(64,64,64,1);
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 173%;
 }
 
 .find-content-box {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
 }
 
 .find-content-input-box {
-width: 100%;
-display: flex;
-flex-direction: column;
-gap: 14px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 .find-content-button-box {
-width: 100%;
-display: flex;
-flex-direction: column;
-gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .link-container {
-display: flex;
-justify-content: center;
-gap: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
 }

@@ -56,10 +56,10 @@ function FindPwd() {
         } catch (error) {
             if (error.response && error.response.status === 400) {
                 setEmailError(true);
-                setUserEmailMessage(error.response.data.message || '잘못된 요청입니다.');
+                alert('아이디 혹은 비밀번호가 틀렸습니다.');
             } else {
                 setEmailError(true);
-                setUserEmailMessage('서버 오류가 발생했습니다. 다시 시도해주세요.');
+                alert('서버 오류가 발생했습니다. 다시 시도해주세요.');
             }
         }
     };
