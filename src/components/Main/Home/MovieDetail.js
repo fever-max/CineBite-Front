@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../../styles/Main/Home/movieDetail.css';
 import { IoIosArrowBack, IoIosSearch } from 'react-icons/io';
-import { FaBookmark } from 'react-icons/fa';
+import { FaBookmark,FaCheck } from 'react-icons/fa';
 import { CiBookmark } from 'react-icons/ci';
+import { IoEye } from "react-icons/io5";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import MovieInfo from '../Review/MovieInfo';
 import ReviewWrite from '../Review/ReviewWrite';
 import GenreRecommend from '../Recommend/GenreRecommend';
@@ -161,11 +163,10 @@ const MovieDetail = () => {
                                     <p>{movie.title}</p>
                                 </div>
                                 <div className='title-sub'>
-                                    <span>개봉년도 : {movie.release_date}</span><br/>
-                                    <span>상영시간 : {movie.runtime}분</span>
+                                    <span>{movie.release_date.substring(0, 4)}</span>
+                                    <span>{movie.runtime}분</span>
                                 </div>
                                 <div className='title-grade'>
-                                    <span></span>
                                     {/* 토마토 지수가 60점 이하일 경우 썩었어요 이미지 출력 */}
                                     <img 
                                         src={
@@ -180,7 +181,6 @@ const MovieDetail = () => {
                                     />
                                     <span>{formatTomatoScore(movie.tomatoScore)}%</span>
                                 </div>
-                                <span>별점</span>
                             </div>
                             <div className='movie-img'>
                                 <img src={`${ImageUrl}${movie.poster_path}`} alt={movie.title} />
@@ -203,59 +203,65 @@ const MovieDetail = () => {
                         <div className='movie-middle-view'>
                             <ul>
                                 <li>
-                                    <button onClick={handleBookmarkToggle}>
+                                    <div onClick={handleBookmarkToggle}>
                                         {isBookmarked ? <FaBookmark className='view-icon' /> : <CiBookmark className='view-icon' />}
-                                    </button>
+                                    </div>
                                     <p>찜</p>
                                 </li>
                                 <li>
                                     <div>
-                                        <FaBookmark className='view-icon' />
+                                        <IoEye className='view-icon' />
                                     </div>
                                     <p>보는중</p>
                                 </li>
                                 <li>
                                     <div>
-                                        <FaBookmark className='view-icon' />
+                                        <FaCheck className='view-icon' />
                                     </div>
                                     <p>봤어요</p>
                                 </li>
                                 <li>
                                     <div>
-                                        <FaBookmark className='view-icon' />
+                                        <BsThreeDotsVertical className='view-icon' />
                                     </div>
                                     <p>더보기</p>
                                 </li>
                             </ul>
-                        </div>
-                        <div className='display'>
-                            <div>임시</div>
                         </div>
                     </div>
 
                     {/* 메뉴바 */}
                     <div className="movie-bottom">
                         <div className="movie-bottom-select">
-                        <button onClick={() => setActiveComponent('MovieInfo')}>
+                        <button
+                            className={activeComponent === 'MovieInfo' ? 'active' : ''}
+                            onClick={() => setActiveComponent('MovieInfo')}
+                        >
                             작품 정보
                         </button>
-                        <button onClick={() => setActiveComponent('ReviewWrite')}>
+                        <button
+                            className={activeComponent === 'ReviewWrite' ? 'active' : ''}
+                            onClick={() => setActiveComponent('ReviewWrite')}
+                        >
                             리뷰
                         </button>
-                        <button onClick={() => setActiveComponent('GenreRecommend')}>
+                        <button
+                            className={activeComponent === 'GenreRecommend' ? 'active' : ''}
+                            onClick={() => setActiveComponent('GenreRecommend')}
+                        >
                             비슷한 영화
                         </button>
                         </div>
                         <div className="genreList_container">
-                        <ul>
-                            {activeComponent === 'MovieInfo' && <MovieInfo movie={movie} />}
-                        </ul>
-                        <ul>{activeComponent === 'ReviewWrite' && <ReviewWrite />}</ul>
-                        <ul className="genre_lst">
-                            {activeComponent === 'GenreRecommend' && (
-                            <GenreRecommend movie={movie} />
-                            )}
-                        </ul>
+                            <ul>
+                                {activeComponent === 'MovieInfo' && <MovieInfo movie={movie} />}
+                            </ul>
+                            <ul>{activeComponent === 'ReviewWrite' && <ReviewWrite />}</ul>
+                            <ul className="genre_lst">
+                                {activeComponent === 'GenreRecommend' && (
+                                <GenreRecommend movie={movie} />
+                                )}
+                            </ul>
                         </div>
                     </div>
                 </div>

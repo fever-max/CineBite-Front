@@ -1,9 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import '../../../styles/Main/Recommend/GenreRecommend.css'
+import { Link, useNavigate } from 'react-router-dom';
 
 const GenreRecommend = ({movie}) => {
     const [movieGenreList, setMovieGenreList] = useState([]);
     const url = process.env.REACT_APP_API_URL;
+    const navigate = useNavigate(); 
+    
+    const handleGenreClick = (genreId) => {
+        navigate(`/movie/${genreId}`, { replace: true }); // navigate to the movie detail page
+        window.location.reload(); // force refresh
+    };
 
     //장르별 데이터 출력
     const getMovieGenres = async (movie) => {
@@ -28,14 +36,19 @@ const GenreRecommend = ({movie}) => {
 
     return (
         <>
-            {movieGenreList && movieGenreList.map((genre, index) => (
-                <li key={index}>
-                    <div className='genre_Img'>
-                        <img src={`https://image.tmdb.org/t/p/w500${genre.poster_path}`} alt={genre.title}/>
-                    </div>
-                    <div className='genre_Info'></div>
-                </li>
-            ))}
+        <div className='genreList_container'>
+            <div className='genre_lst'>
+                {movieGenreList && movieGenreList.map((genre, index) => (
+                    <li key={index} onClick={() => handleGenreClick(genre.id)}> 
+                        <div className='genre_Img'>
+                            <img src={`https://image.tmdb.org/t/p/w500${genre.poster_path}`} alt={genre.title}/>
+                        </div>
+                        <div className='genre_Info'></div>
+                    </li>
+                ))}
+            </div>
+        </div>
+            
         </>
     );
 };
