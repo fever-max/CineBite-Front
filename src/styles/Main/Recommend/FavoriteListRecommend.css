@@ -3,6 +3,7 @@
     background-color: #172036;
     color: #fff;
     font-size: 15px;
+    max-height: 550px;
 }
 
 .recommend-header-link {
@@ -26,7 +27,6 @@
     justify-content: center;
 }
 
-/* 공백 처리  */
 .arrow {
     margin-left: 700px;
 }
@@ -46,6 +46,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    max-height: 550px;
 }
 
 .recommend-item {
@@ -87,5 +88,4 @@
     vertical-align: middle;
     margin-right: 5px;
     display: inline-block !important; /* 이미지와 텍스트를 수평으로 정렬 */
-
 }
