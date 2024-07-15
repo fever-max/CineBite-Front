@@ -11,8 +11,16 @@
 .search_list_data {
   display: flex;
   gap: 20px;
-  padding-bottom: 40px;
+  padding: 20px 0;
   flex-wrap: wrap;
+  margin: 0 200px;
+  justify-content: center;
+}
+
+.searchList_ment {
+  margin-top: 80px;
+  font-size: 17px;
+  font-weight: bold;
 }
 
 .search_list_data li {

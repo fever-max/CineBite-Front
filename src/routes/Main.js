@@ -45,7 +45,6 @@ function Main() {
 
         {/* 영화 검색 */}
         <Route path="/search" element={<Search />} />
-        <Route path="/communitTag/:keyword" element={<CommunityTagList />} />
 
         {/* 사용자 영화 추천 */}
         <Route path="/recommend" element={<Recommend />} />

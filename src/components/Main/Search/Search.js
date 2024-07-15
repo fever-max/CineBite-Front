@@ -20,7 +20,6 @@ const Search = () => {
   const [communityTitle, setCommunityTitle] = useState([]);
   const [communityContent, setCommunityContent] = useState([]);
   const [communityUserId, setCommunityUserId] = useState([]);
-  const [searchMessage, setSearchMessage] = useState(""); // 검색 메시지
   const [searchKeyword, setSearchKeyword] = useState([]); // 키워드 목록
   const [submittedKeyword, setSubmittedKeyword] = useState(""); // 제출된 검색어
   const [relatedKeywords, setRelatedKeywords] = useState([]); // 연관 검색어
@@ -153,14 +152,12 @@ const Search = () => {
       setCommunityContent(searchCommunityContent);
       setCommunityUserId(searchCommunityUserId);
       setTagData(searchTagData);
-      setSearchMessage("");
     } else {
       setMovieData([]);
       setCommunityTitle([]);
       setCommunityContent([]);
       setCommunityUserId([]);
       setTagData([]);
-      setSearchMessage("검색한 결과를 찾을 수 없습니다.");
     }
 
     // 연관 검색어 초기화
@@ -242,13 +239,13 @@ const Search = () => {
         setSearchKeyword={setSearchKeyword}
         relatedKeywords={relatedKeywords}
       />
-      {searchMessage && <p>{searchMessage}</p>}
       <SearchMenu
         movieData={movieData}
         communityTitle={communityTitle}
         communityContent={communityContent}
         communityUserId={communityUserId}
         tagData={tagData}
+        submittedKeyword={submittedKeyword}
       />
     </div>
   );
