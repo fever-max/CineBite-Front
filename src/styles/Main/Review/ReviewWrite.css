@@ -5,24 +5,6 @@
   background-color: #1e2436;
 }
 
-.review {
-  list-style-type: none;
-}
-
-.review-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-}
-
-.review-icons {
-  display: flex;
-}
-
-.layout {
-  display: flex;
-}
-
 .content {
   margin-top: 30px;
   width: 500px;
@@ -37,218 +19,12 @@
   text-align: center;
 }
 
-.submit_content {
-  width: 450px;
-  height: 100px;
-  margin-top: 25px;
-}
-
-.review_box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #faf9f9;
-  width: 900px;
-  padding-left: 100px;
-  padding-right: 50px;
-  height: 150px;
-  text-align: center;
-}
-
-.review_box_center {
-  display: flex;
-  justify-content: center;
-}
-
-.review_text {
-  font-size: 14px;
-  color: #5e6472;
-}
-
-.line_review {
-  width: 50vw;
-}
-
 .review_register_title {
   font-size: 15px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   margin-top: 80px;
   padding-top: 50px;
   text-align: center;
-}
-
-.review_register_pname {
-  color: #a4a4a4;
-  font-size: 18px;
-  text-align: center;
-}
-
-.review-modal {
-  margin-bottom: 50px;
-}
-
-.stars1 .ant-rate-star {
-  margin-top: 10px;
-  font-size: 40px;
-}
-
-.modal {
-  --bs-modal-width: 600px;
-}
-
-.btn.btn-outline-primary.btn-review,
-.btn.btn-primary.btn-review {
-  margin-bottom: 80px;
-}
-
-.loginUser b {
-  margin-left: 10px;
-  font-size: 18px;
-}
-
-.user_review_pname {
-  width: 250px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  padding-top: 2px;
-  border: 1px solid #a4a4a4;
-  border-radius: 15px;
-  font-weight: bold;
-  margin-left: 40px;
-}
-
-.user_review {
-  color: #a4a4a4;
-  font-size: 15px;
-  display: flex;
-  flex-direction: row;
-  padding-top: 10px;
-  margin-left: 40px;
-  caret-color: transparent;
-}
-
-.user_review_rcontent {
-  margin: 50px;
-  flex-direction: row;
-  font-size: 15px;
-}
-
-.redirectLogin {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 45vh;
-  color: #585858;
-}
-
-.redirectLogin hr {
-  width: 60vw;
-  border: 1px solid #a4a4a4;
-}
-
-.line {
-  width: 50vw;
-}
-
-button {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  outline: none;
-  border: 0;
-  vertical-align: middle;
-  text-decoration: none;
-  background: transparent;
-  padding: 0;
-  font-size: inherit;
-  font-family: inherit;
-}
-
-button.learn-more {
-  width: 12rem;
-  height: auto;
-  caret-color: transparent;
-  margin-left: 30px;
-}
-
-button.learn-more .circle {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: relative;
-  display: block;
-  margin: 0;
-  width: 3rem;
-  height: 3rem;
-  background: #0f71f2;
-  border-radius: 1.625rem;
-}
-
-button.learn-more .circle .icon {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  background: #fff;
-}
-
-button.learn-more .circle .icon.arrow {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  left: 0.625rem;
-  width: 1.125rem;
-  height: 0.125rem;
-  background: none;
-}
-
-button.learn-more .circle .icon.arrow::before {
-  position: absolute;
-  content: "";
-  top: -0.29rem;
-  right: 0.3rem;
-  width: 0.625rem;
-  height: 0.625rem;
-  border-top: 0.125rem solid #fff;
-  border-right: 0.125rem solid #fff;
-  transform: rotate(45deg);
-}
-
-.button-text {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.learn-more:hover .button-text {
-  opacity: 1;
-}
-
-button.learn-more .button-text {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 0.75rem 0;
-  margin: 0 0 0 1.85rem;
-  color: #282936;
-  font-weight: 700;
-  line-height: 1.6;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-button:hover .circle {
-  width: 100%;
-}
-
-button:hover .circle .icon.arrow {
-  background: #fff;
-  transform: translate(1rem, 0);
-}
-
-button:hover .button-text {
-  color: #fff;
 }
 
 .review_stars {
@@ -257,14 +33,30 @@ button:hover .button-text {
 
 .review_stars_box {
   display: flex;
-  justify-content: center; /* 가로 방향 가운데 정렬 */
-  align-items: center; /* 세로 방향 가운데 정렬 */
+  justify-content: center;
+  align-items: center;
   width: 35%;
   height: 70px;
   border-radius: 25px;
-  margin: 0 auto; /* 가운데 정렬을 위한 추가적인 마진 설정 */
+  margin: 0 auto;
 }
 
 :where(.css-dev-only-do-not-override-98ntnt).ant-rate .ant-rate-star-second {
   color: rgba(255, 255, 255, 0.685);
+}
+
+.review_btn {
+  color: rgb(255, 255, 255);
+  border-radius: 15px;
+  font-size: 14px;
+  width: 100px;
+  height: 50px;
+  margin: 30px;
+  border: 1px solid #a4a4a4;
+  background: transparent;
+  cursor: pointer;
+}
+
+.review_btn:hover {
+  background-color: #efd10f;
 }

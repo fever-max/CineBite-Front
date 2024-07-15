@@ -31,32 +31,9 @@ function ReviewWrite() {
 
         <textarea class="content" placeholder="리뷰를 입력하세요"></textarea>
       </form>
-      <div className="btns_review_footer">
-        <button
-          id="btn"
-          class="btn btn-outline-primary btn-review"
-          style={{
-            borderRadius: "20px",
-            fontSize: "18px",
-            paddingLeft: "40px",
-            paddingRight: "40px",
-            marginLeft: "160px",
-          }}
-        >
-          취소
-        </button>
-        <button
-          id="btn"
-          class="btn btn-primary btn-review"
-          style={{
-            borderRadius: "20px",
-            fontSize: "18px",
-            paddingLeft: "40px",
-            paddingRight: "40px",
-          }}
-        >
-          저장
-        </button>
+      <div>
+        <button className="review_btn">취소</button>
+        <button className="review_btn">저장</button>
       </div>
     </div>
   );
