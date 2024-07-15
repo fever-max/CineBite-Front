@@ -1,0 +1,73 @@
+.genreList_container{
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 80px;
+}
+
+.genreList_container .genre_lst {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 70px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+/*영화 1개*/
+.genreList_container .genre_lst > li {
+    position: relative;
+    width: 220px;
+    height: 320px;
+    display: inline-block;
+    margin: 0 10px 40px 20px;
+    transition: all 1.0s ease;
+    box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, .0);     
+}
+.genreList_container .genre_lst > li:hover {
+    width: 220px;
+    display: inline-block;
+    box-sizing: border-box;
+
+}
+.genreList_container .genre_lst > li > .prodt_Link {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+.genreList_container .genre_lst > li > .prodt_Link:link {
+    color: #0d0d0d;
+    text-decoration: none;
+}
+.genreList_container .genre_lst .genre_Img {
+    margin: 0 auto;
+    text-align: center;
+}
+.genreList_container .genre_lst .genre_Img img {
+    width: 220px;
+    height: 320px;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.genreList_container .genre_lst > li:hover .prodt_Img img {
+    width: 220px;
+}
+.genre_Info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* 토마토 이미지 */
+.tomato-image {
+    width : 37px;
+    height: 30px;
+}

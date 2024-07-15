@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './css/movieDetail.css';
+import '../../../styles/Main/Home/movieDetail.css';
 import { IoIosArrowBack, IoIosSearch } from 'react-icons/io';
-import { FaBookmark } from 'react-icons/fa';
+import { FaBookmark,FaCheck } from 'react-icons/fa';
 import { CiBookmark } from 'react-icons/ci';
+import { IoEye } from "react-icons/io5";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import MovieInfo from '../Review/MovieInfo';
 import ReviewWrite from '../Review/ReviewWrite';
 import GenreRecommend from '../Recommend/GenreRecommend';
@@ -20,6 +22,7 @@ const MovieDetail = () => {
     const [isBookmarked, setIsBookmarked] = useState(false);
     const [secondsRemaining, setSecondsRemaining] = useState(0);
     const [user, setUser] = useState(null);
+    const [activeComponent, setActiveComponent] = useState('MovieInfo');
     const navigate = useNavigate();
 
     const url = process.env.REACT_APP_API_URL;
@@ -98,8 +101,15 @@ const MovieDetail = () => {
         if (!user) return;
         console.log('handleBookmarkToggle 호출됨'); // 함수 호출 여부 확인
         try {
-            await axios.post(`${url}/favorites/add`, { userId: user.userId, movieId });
-            console.log("유저 확인2 :", user.userId); // 올바른 값이 출력되는지 확인
+            if(isBookmarked) {
+                await axios.delete(`${url}/favorites/delete`, 
+                    { params : { userId: user.userId, movieId }});
+                console.log("유저 찜 삭제 확인 :", user.userId); // 올바른 값이 출력되는지 확인
+            } else {
+                await axios.post(`${url}/favorites/add`, { userId: user.userId, movieId });
+                console.log("유저 찜 추가 확인 :", user.userId); // 올바른 값이 출력되는지 확인
+
+            }
             setIsBookmarked(!isBookmarked); // 토글 상태 변경
         } catch (err) {
             console.error('찜 관련 작업 실패 :', err);
@@ -160,12 +170,10 @@ const MovieDetail = () => {
                                     <p>{movie.title}</p>
                                 </div>
                                 <div className='title-sub'>
-                                    {/* <span>{movie.title}</span> */}
-                                    <span>개봉년도 : {movie.release_date}</span><br/>
-                                    <span>상영시간 : {movie.runtime}분</span>
+                                    <span>{movie.release_date.substring(0, 4)}</span>
+                                    <span>{movie.runtime}분</span>
                                 </div>
                                 <div className='title-grade'>
-                                    <span></span>
                                     {/* 토마토 지수가 60점 이하일 경우 썩었어요 이미지 출력 */}
                                     <img 
                                         src={
@@ -180,7 +188,6 @@ const MovieDetail = () => {
                                     />
                                     <span>{formatTomatoScore(movie.tomatoScore)}%</span>
                                 </div>
-                                <span>별점</span>
                             </div>
                             <div className='movie-img'>
                                 <img src={`${ImageUrl}${movie.poster_path}`} alt={movie.title} />
@@ -203,48 +210,66 @@ const MovieDetail = () => {
                         <div className='movie-middle-view'>
                             <ul>
                                 <li>
-                                    <button onClick={handleBookmarkToggle}>
+                                    <div onClick={handleBookmarkToggle}>
                                         {isBookmarked ? <FaBookmark className='view-icon' /> : <CiBookmark className='view-icon' />}
-                                    </button>
+                                    </div>
                                     <p>찜</p>
                                 </li>
                                 <li>
                                     <div>
-                                        <FaBookmark className='view-icon' />
+                                        <IoEye className='view-icon' />
                                     </div>
                                     <p>보는중</p>
                                 </li>
                                 <li>
                                     <div>
-                                        <FaBookmark className='view-icon' />
+                                        <FaCheck className='view-icon' />
                                     </div>
                                     <p>봤어요</p>
                                 </li>
                                 <li>
                                     <div>
-                                        <FaBookmark className='view-icon' />
+                                        <BsThreeDotsVertical className='view-icon' />
                                     </div>
                                     <p>더보기</p>
                                 </li>
                             </ul>
                         </div>
-                        <div className='display'>
-                            <div>임시</div>
-                        </div>
                     </div>
 
-                    <div className='movie-bottom'>
-                        <div className='movie-bottom-select'>
-                            <button>작품 정보</button>
-                            <button>리뷰</button>
-                            <button>커뮤니티</button>
-                            <button>비슷한 영화</button>
+                    {/* 메뉴바 */}
+                    <div className="movie-bottom">
+                        <div className="movie-bottom-select">
+                        <button
+                            className={activeComponent === 'MovieInfo' ? 'active' : ''}
+                            onClick={() => setActiveComponent('MovieInfo')}
+                        >
+                            작품 정보
+                        </button>
+                        <button
+                            className={activeComponent === 'ReviewWrite' ? 'active' : ''}
+                            onClick={() => setActiveComponent('ReviewWrite')}
+                        >
+                            리뷰
+                        </button>
+                        <button
+                            className={activeComponent === 'GenreRecommend' ? 'active' : ''}
+                            onClick={() => setActiveComponent('GenreRecommend')}
+                        >
+                            비슷한 영화
+                        </button>
                         </div>
-                    </div>
-                    <div>
-                        <MovieInfo movie={movie} />
-                        <ReviewWrite movie={movie} />
-                        <GenreRecommend movie={movie} />
+                        <div className="genreList_container">
+                            <ul>
+                                {activeComponent === 'MovieInfo' && <MovieInfo movie={movie} />}
+                            </ul>
+                            <ul>{activeComponent === 'ReviewWrite' && <ReviewWrite />}</ul>
+                            <ul className="genre_lst">
+                                {activeComponent === 'GenreRecommend' && (
+                                <GenreRecommend movie={movie} />
+                                )}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             )}

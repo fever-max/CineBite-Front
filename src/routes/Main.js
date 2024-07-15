@@ -1,27 +1,30 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import "../styles/Main/Main.css";
-import Home from "../components/Main/Home/Home";
-import Search from "../components/Main/Search/Search";
-import Recommend from "../components/Main/Recommend/Recommend";
-import MyPage from "../components/Main/MyPage/MyPage";
-import NotFound from "../components/Main/NotFound";
-import ReviewWrite from "../components/Main/Review/ReviewWrite";
-import MovieInfo from "../components/Main/Review/MovieInfo";
-import SignIn from "../components/Main/UserInfo/SignIn";
-import MovieDetail from "../components/Main/Home/MovieDetail";
-import SignUp from "../components/Main/UserInfo/SignUp";
-import Board from "./../components/Main/Community/Board";
-import BoardItem from "../components/Main/Community/BoardItem";
-import BoardWrite from "../components/Main/Community/BoardWrite";
-import FavoriteList from "../components/Main/Favorite/FavoriteList";
-import GetAccess from "../utils/userInfo/api/getAccess";
-import BoardList from "../components/Main/Community/BoardList";
-import FindUserId from "../components/Main/UserInfo/FindUserId";
-import FindUserPwd from "../components/Main/UserInfo/FindUserPwd";
-import CheckUserPwd from "../components/Main/MyPage/CheckUserPwd";
-import UserUpdate from "../components/Main/MyPage/UserUpdate";
-import PreFavoriteListRecommend from "../components/Main/Recommend/preFavoriteListRecommend"; // 컴포넌트 이름 수정
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import '../styles/Main/Main.css';
+import Home from '../components/Main/Home/Home';
+import Search from '../components/Main/Search/Search';
+import Recommend from '../components/Main/Recommend/Recommend';
+import MyPage from '../components/Main/MyPage/MyPage';
+import NotFound from '../components/Main/NotFound';
+import ReviewWrite from '../components/Main/Review/ReviewWrite';
+import MovieInfo from '../components/Main/Review/MovieInfo';
+import SignIn from '../components/Main/UserInfo/SignIn';
+import MovieDetail from '../components/Main/Home/MovieDetail';
+import SignUp from '../components/Main/UserInfo/SignUp';
+import Board from './../components/Main/Community/Board';
+import BoardItem from '../components/Main/Community/BoardItem';
+import BoardWrite from '../components/Main/Community/BoardWrite';
+import FavoriteList from '../components/Main/Favorite/FavoriteList';
+import GetAccess from '../utils/userInfo/api/getAccess';
+import BoardList from '../components/Main/Community/BoardList';
+import FindUserId from '../components/Main/UserInfo/FindUserId';
+import FindUserPwd from '../components/Main/UserInfo/FindUserPwd';
+import CheckUserPwd from '../components/Main/MyPage/CheckUserPwd';
+import UserUpdate from '../components/Main/MyPage/UserUpdate';
+import PreFavoriteListRecommend from "../components/Main/Recommend/preFavoriteListRecommend";
+import ActorRecomend from "../components/Main/Recommend/ActorRecomend";
+import GenreRecommend from "../components/Main/Recommend/GenreRecommend";
+import CommunityTagList from '../components/Main/Search/Community/CommunityTagList';
 
 function Main() {
   return (
@@ -49,6 +52,10 @@ function Main() {
         {/* 사용자 영화 추천 */}
         <Route path="/recommend" element={<Recommend />} />
         <Route path="/recommend/list" element={<PreFavoriteListRecommend />} />
+          
+        {/* 일반 영화 추천 */}
+        <Route path="/recomend/actor/:actorName" element={<ActorRecomend />} />
+        <Route path="/recomend/genre/:genre" element={<GenreRecommend />} />
 
         {/* 영화 커뮤니티 */}
         <Route path="/community" element={<Board />} />

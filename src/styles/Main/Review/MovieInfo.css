@@ -1,0 +1,111 @@
+.movieInfo_container {
+    position: relative;
+    width: 90%;
+    margin: 50px auto; /* Center the container horizontally on the page */
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movieInfo_container .movieInfo-subContainer {
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+.movieInfo-subContainer .movieInfo-overView {
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 30px;
+    border-bottom: 0.3px solid #808080;
+    text-align: center;
+}
+
+.movieInfo-subContainer .movieInfo-overView button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.movieInfo-subContainer .movieInfo-info {
+    width: 100%;
+}
+
+.movieInfo-subContainer .movieInfo-info ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.movieInfo-subContainer .movieInfo-info li {
+    flex: 1 1 50%;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: left;
+    max-width: 50%;
+    display: flex;
+    font-size: 18px;
+}
+
+.movieInfo-subContainer .movieInfo-info span {
+    color: #d3d3d3;
+}
+
+/* Additional styling to match the provided image */
+.movieInfo-info span:first-child {
+    font-weight: bold;
+    display: inline-block;
+    width: 70px;
+}
+
+.movieInfo-subContainer .movieInfo-actors {
+    margin-top: 30px;
+    float: left;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.movieInfo-actors > div:first-child {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.actors-list {
+    display: flex;
+    gap: 20px;
+}
+
+.actor {
+    text-align: center;
+    width: 90px;
+}
+
+.actor img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.actor-name {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #bbbbbb;
+}
+
+.actor-role {
+    font-size: 14px;
+    color: #bbbbbb;
+}

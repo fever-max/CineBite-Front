@@ -1,72 +1,63 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import "../../../styles/Main/Review/MovieInfo.css"
 
-function MovieInfo() {
-  const [movieData,setMovieData] = useState([]);
-    const url = process.env.REACT_APP_API_URL;
+function MovieInfo({movie}) {
+    const ImageUrl = process.env.REACT_APP_IMAGE_URL;
+    const [showMore, setShowMore] = useState(false);
+
+    const handleToggle = () => {
+        setShowMore(!showMore);
+    };
+
+    const getOverviewText = () => {
+        if (showMore) {
+            return movie.overview;
+        }
+        return movie.overview.length > 100 ? movie.overview.substring(0, 100) + '...' : movie.overview;
+    };
     
-    //전체 데이터 출력
-    const getMovieData= async()=>{
-        const response = await axios.get(`${url}/api/movie/movieList`);
-        console.log('getMovieData',response.data);
-        setMovieData(response.data);
-    }
 
-  return <div>MovieInfo(지민, 지은) / 영화 클릭시 영화 정보 
-    {movieData && 
-    movieData.map(item=>
-      <div key={item.id}>
-        <ul>
-          <li>제목: {item.title}</li>
-          <li>줄거리: {item.overview}</li>
-          <li>
-          <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}/>
-          </li>
-          <li>장르: {item.genres.map(genre=>genre.name).join(', ')}</li>
-          <li>배우: {item.credits.cast.map(cast=>cast.name).join(', ')}</li>
-        </ul>
-      </div>
-    )
-    }
-{/* <div>
-                    <section>
-                        <div>
-                            <div>
-                                <div>
-                                    <span></span>
-                                    <button>더보기</button>
-                                </div>
-                            </div>
+  return <div>
+    <div className='movieInfo_container'>
+        <div className='movieInfo-subContainer'>
+            <div className='movieInfo-overView'>
+                <span>{getOverviewText()}</span>
+                <button onClick={handleToggle}>{showMore ? '줄이기' : '더보기'}</button>
+            </div>
+            <div className='movieInfo-info'>
+                <ul>
+                    <li>
+                        <span>장르 </span>
+                        <span>{movie.genres.map(genre=>genre.name).slice(0,2).join(', ')}</span>
+                    </li>
+                    <li>
+                        <span>개봉일 </span>
+                        <span>{movie.release_date}</span>
+                    </li>
+                    <li>
+                        <span>러닝타임 </span>
+                        <span>{movie.runtime}분</span>
+                    </li>
+                    <li>
+                        <span>제작국가 </span>
+                        <span>US</span>
+                    </li>
+                </ul>
+            </div>
+            <div className='movieInfo-actors'>
+                <div>출연진</div>
+                <div class="actors-list">
+                    {movie.credits.cast.slice(0, 5).map(cast=>
+                        <div class="actor">
+                            <img src={`${ImageUrl}${cast.profile_path}`} alt="제시카 알바"/>
+                            <div class="actor-name">{cast.name}</div>
                         </div>
-                        <hr/>
-                        <ul>
-                            <li>
-                                <span></span>
-                                <span></span>
-                            </li>
-                            <li>
-                                <span></span>
-                                <span></span>
-                            </li>
-                            <li>
-                                <span></span>
-                                <span></span>
-                            </li>
-                            <li>
-                                <span></span>
-                                <span></span>
-                            </li>
-                        </ul>
-                    </section>
-                    <section>
-                        <div>
-                            <div>출연진</div>
-                            <div>출연진 값</div>
-                        </div>
-                    </section>
-                    <section></section>
-                    <section></section>
-                </div> */}
+                    )}
+                </div>
+            </div>
+        </div>
+    </div>
 
   </div>;
 }

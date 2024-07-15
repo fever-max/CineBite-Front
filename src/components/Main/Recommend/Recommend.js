@@ -7,7 +7,6 @@ function Recommend() {
 
   return <div>
     <FavoriteListRecommend/>
-    {/* <GenreRecommend/> */}
     </div>;
 }
 

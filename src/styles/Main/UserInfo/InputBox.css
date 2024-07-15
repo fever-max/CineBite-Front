@@ -30,7 +30,8 @@
     padding: 8px 16px;
     height: 28px;
     outline: none;
-    background-color: rgb(255, 255, 255);
+    background-color: #172036;
+    color: white;
     font-family: Inter;
     font-size: 16px;
     font-weight: 400;
@@ -52,7 +53,7 @@
     border-radius: 6px;
     width: 110px;
     height: 44px;
-    background-color: rgb(232, 222, 255);
+    background-color: #7786af;
     color: rgb(0, 0, 0);
     font-size: 16px;
     font-weight: 400;
@@ -76,18 +77,18 @@
 }
 
 .input-box-button:hover {
-    background-color: rgb(212, 194, 255);
+    background-color: #3b4869;
 }
 
 .input-box-message {
-    color: rgb(172, 83, 255);
+    color: #7e86a7;
     font-size: 13px;
     font-weight: 400;
     line-height: normal;
 }
 
 .input-box-message-error {
-    color: rgb(255, 112, 112);
+    color: rgb(191 87 87);
     font-size: 13px;
     font-weight: 400;
     line-height: normal;
