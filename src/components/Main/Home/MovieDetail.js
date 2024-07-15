@@ -101,8 +101,15 @@ const MovieDetail = () => {
         if (!user) return;
         console.log('handleBookmarkToggle 호출됨'); // 함수 호출 여부 확인
         try {
-            await axios.post(`${url}/favorites/add`, { userId: user.userId, movieId });
-            console.log("유저 확인2 :", user.userId); // 올바른 값이 출력되는지 확인
+            if(isBookmarked) {
+                await axios.delete(`${url}/favorites/delete`, 
+                    { params : { userId: user.userId, movieId }});
+                console.log("유저 찜 삭제 확인 :", user.userId); // 올바른 값이 출력되는지 확인
+            } else {
+                await axios.post(`${url}/favorites/add`, { userId: user.userId, movieId });
+                console.log("유저 찜 추가 확인 :", user.userId); // 올바른 값이 출력되는지 확인
+
+            }
             setIsBookmarked(!isBookmarked); // 토글 상태 변경
         } catch (err) {
             console.error('찜 관련 작업 실패 :', err);

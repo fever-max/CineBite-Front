@@ -1,11 +1,23 @@
-import React from 'react';
+import React from "react";
+import CommunityList from "../Community/CoummunityList";
+import CommunityTag from "../Community/CoummunityTag";
 
-const SearchCommunity = () => {
-    return (
-        <div>
-             {/* 메뉴 tab - 커뮤니티 */}
-        </div>
-    );
+const SearchCommunity = ({
+  communityTitle,
+  communityContent,
+  communityUserId,
+  tagData,
+}) => {
+  return (
+    <div>
+      <CommunityTag tagData={tagData} />
+      <CommunityList
+        communityTitle={communityTitle}
+        communityContent={communityContent}
+        communityUserId={communityUserId}
+      />
+    </div>
+  );
 };
 
 export default SearchCommunity;
