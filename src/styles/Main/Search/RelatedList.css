@@ -5,14 +5,13 @@
 }
 
 .related_list ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* 아이템 사이 간격 */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4개씩 한 줄에 배치 */
+  gap: 20px;
+  width: 100%;
 }
 
 .related_list ul li {
-  flex: 1 0 calc(50% - 20px); /* 2개의 열로 나누기 */
-  margin-bottom: 15px;
   text-align: center;
 }
 
