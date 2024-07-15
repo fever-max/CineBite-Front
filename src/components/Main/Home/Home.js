@@ -8,7 +8,6 @@ function Home() {
     <div>
       {/* <Test />
       <TestFile /> */}
-      ---
       <MovieRanking />
       <MovieReview />
       <MovieToday />

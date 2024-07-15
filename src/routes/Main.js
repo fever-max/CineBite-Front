@@ -21,7 +21,9 @@ import FindUserId from '../components/Main/UserInfo/FindUserId';
 import FindUserPwd from '../components/Main/UserInfo/FindUserPwd';
 import CheckUserPwd from '../components/Main/MyPage/CheckUserPwd';
 import UserUpdate from '../components/Main/MyPage/UserUpdate';
-import PreFavoriteListRecommend from '../components/Main/Recommend/preFavoriteListRecommend'; // 컴포넌트 이름 수정
+import PreFavoriteListRecommend from "../components/Main/Recommend/preFavoriteListRecommend";
+import ActorRecomend from "../components/Main/Recommend/ActorRecomend";
+import GenreRecommend from "../components/Main/Recommend/GenreRecommend";
 import CommunityTagList from '../components/Main/Search/Community/CommunityTagList';
 
 function Main() {
@@ -51,6 +53,10 @@ function Main() {
         {/* 사용자 영화 추천 */}
         <Route path="/recommend" element={<Recommend />} />
         <Route path="/recommend/list" element={<PreFavoriteListRecommend />} />
+          
+        {/* 일반 영화 추천 */}
+        <Route path="/recomend/actor/:actorName" element={<ActorRecomend />} />
+        <Route path="/recomend/genre/:genre" element={<GenreRecommend />} />
 
         {/* 영화 커뮤니티 */}
         <Route path="/community" element={<Board />} />
