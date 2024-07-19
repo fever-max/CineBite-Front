@@ -1,0 +1,61 @@
+.search_movies {
+  color: white;
+  caret-color: transparent;
+  margin: 15px 80px 0 80px;
+}
+
+.loader {
+  justify-content: right;
+  border-radius: 15px;
+  transition: 0.4s ease-in-out;
+}
+
+.loader:hover {
+  cursor: pointer;
+  background-color: #ee394a;
+}
+
+.search_movies_list {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.search_poster {
+  width: 9%;
+  border-radius: 10px;
+  margin-right: 25px;
+}
+
+.search_title {
+  font-size: 18px;
+  font-weight: bold;
+  padding-bottom: 30px;
+}
+
+.search_genres {
+  display: flex;
+}
+
+.search_date {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 14px;
+}
+
+.button_container {
+  display: flex;
+  justify-content: center;
+}
+
+.show_more_button {
+  width: 15%;
+  padding: 10px 0;
+  margin: 20px auto;
+  border-radius: 20px;
+  background-color: #ee394a;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}

@@ -1,0 +1,142 @@
+.red-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #e83c4d;
+    border-radius: 50%;
+}
+
+.post_content_title {
+    display: flex;
+}
+
+.post_content_title_sub {
+    font-size: 25px;
+    font-weight: 900;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+.board_content {
+    width: 100%;
+    display: flex;
+}
+
+.post_content {
+    margin-left: 100px;
+}
+
+.post_content_sub {
+    background-color: #172036;
+    border-radius: 7px;
+    padding: 15px;
+    margin-bottom: 50px;
+}
+
+.post_sub {
+    display: flex;
+}
+
+.author_content {
+    width: 100%;
+}
+
+.sub_content {
+    margin-top: 60px;
+    margin-left: 70px;
+}
+
+.post_content2 {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.title_info {
+    display: flex;
+    justify-content: space-between;
+    width: 310px;
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.post_author {
+    margin-top: 5px;
+    font-size: 15px;
+    color: gray;
+}
+
+.post_tag {
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.post_info {
+}
+
+.post_info2 {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.post_info2_sub {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    background-color: #25304a;
+    border-radius: 5%;
+    margin-right: 10px;
+}
+
+.post_info2_i {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.post_img {
+    height: 100px;
+    width: 200px;
+    border-radius: 5%;
+    object-fit: cover;
+}
+
+.post_createDate {
+    text-align: right;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.post_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e83c4d;
+    color: white;
+    font-size: 16px;
+    font-weight: 900;
+    border-radius: 5px;
+    padding: 10px;
+    width: 150px;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 30px;
+}
+
+.post_pen {
+    margin-right: 10px;
+}
+
+.post_content2:not(:last-child) {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.post_content_name {
+    margin-top: 20px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.post_content_name_i {
+    cursor: pointer;
+}

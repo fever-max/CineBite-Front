@@ -3,8 +3,17 @@
   font-size: 13px;
   justify-content: right;
   margin-right: 10px;
+  color: white;
+}
+
+.nav_userInfo:hover {
+  color: rgb(183, 183, 183);
 }
 
 .nav_userInfo ul {
   margin-right: 10px;
+}
+
+.cursor {
+  cursor: pointer;
 }

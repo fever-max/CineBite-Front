@@ -1,4 +1,8 @@
+body {
+  background-color: #15192a;
+}
+
 .main_div {
-  background-color: aliceblue;
+  color: white;
   padding: 20px;
 }

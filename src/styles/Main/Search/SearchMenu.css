@@ -1,0 +1,87 @@
+.ant-tabs {
+  margin-top: 70px;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs
+  .ant-tabs-tab.ant-tabs-tab-active
+  .ant-tabs-tab-btn {
+  color: #ee394a;
+  caret-color: transparent;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs-large
+  > .ant-tabs-nav
+  .ant-tabs-tab {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs .ant-tabs-tab {
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs .ant-tabs-ink-bar {
+  background: #ee394a;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs .ant-tabs-tab:hover {
+  color: #ee394a;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs-top
+  > .ant-tabs-nav::before,
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs-bottom
+  > .ant-tabs-nav::before,
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs-top
+  > div
+  > .ant-tabs-nav::before,
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs-bottom
+  > div
+  > .ant-tabs-nav::before {
+  position: absolute;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom: 1px solid #3a3a3a;
+  content: "";
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-tabs {
+  color: white;
+}
+
+.tab2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie_ranking {
+  border-radius: 60px;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  width: 90%;
+  height: 40%;
+  align-content: center;
+  background-color: #1e2436;
+}
+
+.movie_ranking p {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: -20px;
+}
+
+.movie_ranking:hover {
+  box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
+  background-color: #1e2436c7;
+}
+
+.movie_ranking:active {
+  transform: scale(0.95);
+}
+
+.movie_ranking:focus {
+  box-shadow: 0 0 0 2.5px #2f303d;
+}

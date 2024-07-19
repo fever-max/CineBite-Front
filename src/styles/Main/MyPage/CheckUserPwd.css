@@ -1,0 +1,42 @@
+#pwd-check-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5%;
+}
+
+.pwd-check-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pwd-check-title {
+    color: gray;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 173%;
+}
+
+.pwd-check-box {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.pwd-check-content-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.pwd-check-content-input-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}

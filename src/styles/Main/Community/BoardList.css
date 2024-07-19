@@ -1,0 +1,105 @@
+.boardList_content {
+    padding: 10px;
+    padding-left: 150px;
+    padding-right: 150px;
+    margin-bottom: 10px;
+}
+
+.boardList_title {
+    display: flex;
+    height: 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.boardList_content_sub {
+    background-color: #172036;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.boardList_content_sub:not(:last-child) {
+}
+
+.boardList_createDate {
+    color: gray;
+    margin-top: 10px;
+    text-align: right;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.boardList_sub {
+    display: flex;
+}
+
+.boardList_info_content {
+    width: 100%;
+}
+
+.boardList_info_id {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.boardList_info_title {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.boardList_info_content {
+    margin-bottom: 30px;
+}
+
+.boardList_img {
+    height: 100px;
+    width: 200px;
+    border-radius: 5%;
+    object-fit: cover;
+}
+
+.boardList_info2 {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.boardList_info2_sub {
+    background-color: #25304a;
+    padding: 5px;
+    border-radius: 5%;
+    display: flex;
+    margin-right: 10px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-item {
+    margin: 0 2px;
+}
+
+.page-link {
+    display: block;
+    padding: 10px 15px;
+    background-color: #172036;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 13px;
+}
+
+.page-link:hover {
+    background-color: #e83c4d;
+}
+
+.active .page-link {
+    background-color: #172036;
+    color: white;
+    border: 1px solid #172036;
+}
